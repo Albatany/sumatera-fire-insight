@@ -1,0 +1,23 @@
+{
+  "status": "BELUM_DIFIT_BELUM_ADA_LABEL_SAH",
+  "target": "lonjakan deteksi tercatat wilayah pada t+1",
+  "formula": "y[g,t+1] = 1{N[g,t+1] > q[g,0.90,training]} only if coverage and export completeness are verified; else NA",
+  "quantile_definition": "higher; per wilayah, hanya hitungan harian positif training yang coverage-nya sah",
+  "primary_quantile_proposed": 0.9,
+  "sensitivity_quantiles_proposed": [
+    0.8,
+    0.95
+  ],
+  "numeric_thresholds": null,
+  "training_years": [
+    2015,
+    2023
+  ],
+  "validation_year": 2024,
+  "final_test_year": 2025,
+  "case_year": 2026,
+  "cutoff_utc": "2026-10-30 23:59:59+00:00",
+  "negative_class_definition": "0 berarti tidak melampaui ambang pada pengamatan layak, bukan tidak ada api",
+  "time_design": "Origin at end of UTC day t, predicting UTC day t+1. Only records available by origin may be features.",
+  "notebook_behavior": "No fitting, target fabrication, zero-fill or fake predictions when prerequisites are missing."
+}

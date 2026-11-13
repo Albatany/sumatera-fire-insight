@@ -1,0 +1,157 @@
+[
+  {
+    "claim": "CSV mentah",
+    "value": 13,
+    "evidence": "clustering/audit_ulang_ringkas.json",
+    "status": "MATCH"
+  },
+  {
+    "claim": "Baris mentah",
+    "value": 630384,
+    "evidence": "clustering/audit_ulang_ringkas.json",
+    "status": "MATCH"
+  },
+  {
+    "claim": "Deteksi terpilih",
+    "value": 154184,
+    "evidence": "clustering/ringkasan_eksperimen.json",
+    "status": "MATCH"
+  },
+  {
+    "claim": "clusters",
+    "value": 3678,
+    "evidence": "clustering/ringkasan_eksperimen.json",
+    "status": "MATCH"
+  },
+  {
+    "claim": "noise",
+    "value": 74383,
+    "evidence": "clustering/ringkasan_eksperimen.json",
+    "status": "MATCH"
+  },
+  {
+    "claim": "core",
+    "value": 73129,
+    "evidence": "clustering/ringkasan_eksperimen.json",
+    "status": "MATCH"
+  },
+  {
+    "claim": "border",
+    "value": 6672,
+    "evidence": "clustering/ringkasan_eksperimen.json",
+    "status": "MATCH"
+  },
+  {
+    "claim": "configurations",
+    "value": 27,
+    "evidence": "clustering/ringkasan_eksperimen.json",
+    "status": "MATCH"
+  },
+  {
+    "claim": "candidate_rows",
+    "value": 34568,
+    "evidence": "clustering/keputusan_classification.json",
+    "status": "MATCH"
+  },
+  {
+    "claim": "region_days_without_records",
+    "value": 23809,
+    "evidence": "clustering/keputusan_classification.json",
+    "status": "MATCH"
+  },
+  {
+    "claim": "model_fitted",
+    "value": false,
+    "evidence": "clustering/keputusan_classification.json",
+    "status": "MATCH"
+  },
+  {
+    "claim": "target_quantiles_fitted",
+    "value": false,
+    "evidence": "clustering/keputusan_classification.json",
+    "status": "MATCH"
+  },
+  {
+    "claim": "negative_labels_created",
+    "value": 0,
+    "evidence": "clustering/keputusan_classification.json",
+    "status": "MATCH"
+  },
+  {
+    "claim": "test2025_evaluated",
+    "value": false,
+    "evidence": "clustering/keputusan_classification.json",
+    "status": "MATCH"
+  },
+  {
+    "claim": "Label sah",
+    "value": 0,
+    "evidence": "hasil/status_eksekusi.json",
+    "status": "MATCH"
+  },
+  {
+    "claim": "Hash arsip mentah",
+    "value": "8749435dfb96884cb30db501ac35f556fd1104b35e023fcdd6eb375a85e636d4",
+    "evidence": "clustering/audit_ulang_ringkas.json",
+    "status": "MATCH"
+  },
+  {
+    "claim": "Hash hasil pengolahan",
+    "value": "cf505d81d257a80d1a7f7c766fb74afd9a6f780c7fdd4fceb643186d314a7cb5",
+    "evidence": "clustering/audit_ulang_ringkas.json",
+    "status": "MATCH"
+  },
+  {
+    "claim": "Jumlah baris menurut manifest",
+    "value": 630384,
+    "evidence": "hasil/manifest_sumber.csv",
+    "status": "MATCH"
+  },
+  {
+    "claim": "Versi literal",
+    "value": {
+      "6.1NRT": 91697,
+      "6.03": 397657,
+      "61.03": 141030
+    },
+    "evidence": "hasil/manifest_sumber.csv",
+    "status": "MATCH"
+  },
+  {
+    "claim": "Jendela sebanding 1 Januari–30 Oktober",
+    "value": {
+      "2024": 4268,
+      "2025": 4203,
+      "2026": 20252
+    },
+    "evidence": "hasil/tabel/perbandingan_1Jan_30Okt.csv",
+    "status": "MATCH"
+  },
+  {
+    "claim": "Baris tabel sensitivitas",
+    "value": 27,
+    "evidence": "clustering/sensitivitas_27_skenario.csv",
+    "status": "MATCH"
+  },
+  {
+    "claim": "Rentang noise sensitivitas (%)",
+    "value": [
+      28.721527525553885,
+      94.99299538214082
+    ],
+    "evidence": "clustering/sensitivitas_27_skenario.csv",
+    "status": "READ_EXISTING_OUTPUT"
+  },
+  {
+    "claim": "ARI dense/sparse",
+    "value": 1.0,
+    "evidence": "clustering/validasi_implementasi.json",
+    "status": "MATCH"
+  },
+  {
+    "claim": "ARI pembanding upstream",
+    "value": 1.0,
+    "evidence": "clustering/validasi_implementasi.json",
+    "status": "MATCH"
+  }
+]

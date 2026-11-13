@@ -1,0 +1,8 @@
+{
+  "hasil/data_sesudah_diolah.csv": "cf505d81d257a80d1a7f7c766fb74afd9a6f780c7fdd4fceb643186d314a7cb5",
+  "hasil/data_panel_wilayah_harian.csv": "5a690efab46c034649fa69964d77d3aa9a35ea245f71a66e6aed325de7884b58",
+  "hasil/data_fitur.csv": "9b6a9d2923d72a93619d59477c82aedbefb6d3e3951513a5a6c4b1b26000d5a1",
+  "hasil/manifest_sumber.csv": "5ab0475c833dcaa109207ba88ef03fc3422ffc7e02b2a7bb9108a5ad839afaec",
+  "hasil/sumatera_daratan_utama.geojson": "e0709c15c898e3f1c8f6d6a2f38273fbd29336591d710f8b00afb693649ba45a",
+  "sources/st_dbscan_upstream.py": "128639c9b3b326395ab9fb3eaadcf1042f3039276c5877ad785264d657e424c8"
+}

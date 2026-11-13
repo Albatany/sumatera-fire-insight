@@ -1,0 +1,332 @@
+[
+  {
+    "index": 0,
+    "type": "markdown",
+    "execution": null,
+    "source": "# UTS Penambangan Data\n## Rancangan Classification Lonjakan Deteksi Hotspot MODIS dengan Clustering Pendukung\n**Muhammad Aziz Syah Dani · F1E325063 · Informatika R-002**  \nFakultas Sains dan Teknologi, Universitas Jambi.  \nDosen: Ulfa Khaira S.Komp, M.Kom; Akhiyar Waladi S.Komp. UTS 2026/2027.\n\nTujuan utama: prediksi lonjakan jumlah deteksi wilayah pada hari berikutnya. **Classification belum memenuhi syarat pengamatan, provenance dan available_at.** Clustering adalah analisis retrospektif pendukung, bukan prediksi kebakaran atau sistem operasional.\n\n**Run All:** ekstrak ZIP paket lengkap; VS Code buka folder paket. Colab unggah dan ekstrak paket ke `/content`, lalu ubah BASE pada konfigurasi. Pasang requirements hanya bila internet tersedia; notebook tidak memasang paket atau meminta API key. Raw tidak ditulis. Audit/spatial join lama dipakai sebagai checkpoint dengan hash terverifikasi; pembangunan dari raw tersedia pada audit_reproducible.py.\n\nRevisi 1 November 2026; cutoff data 30 Oktober 2026 pukul 23.59.59 UTC. ST-DBSCAN merupakan **[METODE TAMBAHAN DI LUAR MATERI]**. Rubrik resmi masih diperlukan.",
+    "outputs": []
+  },
+  {
+    "index": 1,
+    "type": "markdown",
+    "execution": null,
+    "source": "### 1 Konfigurasi\n**Apa:** Memeriksa dependensi dan file lokal.\n\n**Mengapa:** Menjaga eksekusi tanpa unduhan otomatis.\n\n**Cara membaca:** Missing package harus diselesaikan dengan requirements, bukan data contoh.",
+    "outputs": []
+  },
+  {
+    "index": 2,
+    "type": "code",
+    "execution": 1,
+    "source": "from pathlib import Path\nimport importlib.util,time\nrequired=['numpy','pandas','scipy','sklearn','matplotlib','shapely']\nmissing=[x for x in required if importlib.util.find_spec(x) is None]\nif missing: raise RuntimeError('Paket belum tersedia: '+', '.join(missing))\nBASE=Path.cwd() # Colab: Path('/content/Paket_UTS_Klasifikasi_F1E325063')\nfor r in ['checkpoint_sha256.json','hasil/data_sesudah_diolah.csv','sources/st_dbscan_upstream.py']:\n    assert (BASE/r).is_file(),r\nSTART=time.monotonic()\nprint('Seed 42; seluruh input lokal.')",
+    "outputs": [
+      {
+        "type": "stream",
+        "text": "Seed 42; seluruh input lokal.\n"
+      }
+    ]
+  },
+  {
+    "index": 3,
+    "type": "markdown",
+    "execution": null,
+    "source": "### 2 Fungsi audit dan algoritma\n**Apa:** Mendefinisikan seluruh fungsi.\n\n**Mengapa:** Kode dapat ditelusuri.\n\n**Cara membaca:** Varian dua ambang Cakmak/Plank; seluruh density factor Birant–Kut tidak diklaim diimplementasikan.",
+    "outputs": []
+  },
+  {
+    "index": 4,
+    "type": "code",
+    "execution": 2,
+    "source": "\"\"\"ST-DBSCAN dua ambang, audit ulang, dan gerbang classification; raw read-only.\"\"\"\nfrom pathlib import Path\nimport json,io,hashlib,zipfile,time,platform,importlib.util,importlib.metadata as meta\nfrom datetime import datetime,timezone\nimport numpy as np\nimport pandas as pd\nfrom scipy.sparse import csr_matrix\nfrom sklearn.cluster import DBSCAN\nfrom sklearn.neighbors import BallTree\nfrom sklearn.metrics import adjusted_rand_score,silhouette_score\nfrom sklearn.metrics.pairwise import haversine_distances\nSEED=42;R_KM=6371.0088;PRIMARY=(2.,48.,5)\nCUTOFF=pd.Timestamp('2026-10-30 23:59:59',tz='UTC')\nGRID=[(s,t,m) for s in (1.,2.,5.) for t in (24.,48.,72.) for m in (3,5,10)]\ndef sha(p):\n h=hashlib.sha256()\n with Path(p).open('rb') as f:\n  for b in iter(lambda:f.read(1048576),b''):h.update(b)\n return h.hexdigest()\ndef save_json(p,obj):Path(p).write_text(json.dumps(obj,indent=2,ensure_ascii=False,default=str))\ndef audit_again(base):\n base=Path(base);out=base/'clustering';out.mkdir(exist_ok=True)\n protocol=out/'protokol_sebelum_eksperimen.json'\n if not protocol.exists():save_json(protocol,dict(primary=PRIMARY,sensitivity_grid=GRID,seed=SEED,partition='tahun UTC dan version literal',metric='haversine and absolute UTC hours',scope='all valid retained detections; not confirmed vegetation fires',rationale='2 km beberapa piksel nominal; 48 jam lintasan berulang; 5 rekaman termasuk diri; eksploratif',recovery_note='Parameter dipertahankan dari eksperimen sesi sebelumnya; berkas dipulihkan dengan eksekusi ulang, bukan pemilihan ulang berdasarkan hasil',created_utc=datetime.now(timezone.utc).isoformat()))\n for rel,digest in json.loads((base/'checkpoint_sha256.json').read_text()).items():assert sha(base/rel)==digest,rel\n raw=base/'data_sebelum_diolah/NASA_MODIS_2015_2026_RAW.zip'\n expected=json.loads((base/'hasil/audit_ringkas.json').read_text());assert sha(raw)==expected['zip_sha256']\n old=pd.read_csv(base/'hasil/manifest_sumber.csv',dtype=str).set_index('source_file')\n rows=[];allkeys=[]\n with zipfile.ZipFile(raw) as z:\n  assert z.testzip() is None\n  for n in sorted(n for n in z.namelist() if n.lower().endswith('.csv')):\n   b=z.read(n);a=pd.read_csv(io.BytesIO(b),dtype=str,keep_default_na=False);h=hashlib.sha256(b).hexdigest()\n   assert h==old.loc[Path(n).name,'sha256'] and len(a)==int(old.loc[Path(n).name,'rows'])\n   ts=pd.to_datetime(a.acq_date+' '+a.acq_time.str.zfill(4),format='%Y-%m-%d %H%M',utc=True)\n   key=pd.DataFrame(dict(latitude=pd.to_numeric(a.latitude),longitude=pd.to_numeric(a.longitude),time=ts,satellite=a.satellite,instrument=a.instrument,source_file=n));allkeys.append(key)\n   rows.append(dict(source_file=n,sha256=h,hash_match_previous=True,rows=len(a),exact_duplicates_within_file=int(a.duplicated().sum()),date_min=str(ts.min()),date_max=str(ts.max()),versions_literal=json.dumps(a.version.value_counts().to_dict()),nrt_documented_rows=int(a.version.eq('6.1NRT').sum()),standard_documented_code_rows=int(a.version.eq('6.03').sum()),archive_unresolved_6103_rows=int(a.version.eq('61.03').sum()),original_download_url='BELUM_DIBERIKAN',original_access_time='BELUM_DIBERIKAN'))\n pd.DataFrame(rows).to_csv(out/'audit_ulang_13_csv.csv',index=False)\n keys=pd.concat(allkeys,ignore_index=True);dup=keys.duplicated(['latitude','longitude','time','satellite','instrument'],keep=False)\n keys.loc[dup].to_csv(out/'duplikasi_kunci_audit_ulang.csv',index=False)\n d=pd.read_csv(base/'hasil/data_sesudah_diolah.csv',dtype={'version':str,'type':str},low_memory=False)\n d['acq_datetime_utc']=pd.to_datetime(d.acq_datetime_utc,utc=True)\n assert len(d)==154184 and d.row_id.is_unique and d.acq_datetime_utc.max()<=CUTOFF\n d=d.sort_values(['year','version','acq_datetime_utc','row_id']).reset_index(drop=True);d['partition']=d.year.astype(str)+'__'+d.version\n d['boundary_near_72h']=False\n for _,g in d.groupby('partition'):\n  y=int(g.year.iloc[0]);v=g.version.iloc[0];lo=pd.Timestamp(f'{y}-01-01',tz='UTC');hi=min(pd.Timestamp(f'{y+1}-01-01',tz='UTC'),CUTOFF+pd.Timedelta(seconds=1))\n  if y==2026 and v=='61.03':hi=pd.Timestamp('2026-09-01',tz='UTC')\n  if y==2026 and v=='6.1NRT':lo=pd.Timestamp('2026-09-01',tz='UTC')\n  d.loc[g.index,'boundary_near_72h']=((g.acq_datetime_utc-lo).dt.total_seconds()<=259200)|((hi-g.acq_datetime_utc).dt.total_seconds()<=259200)\n save_json(out/'audit_ulang_ringkas.json',dict(csv_count=len(rows),raw_rows=len(keys),exact_key_duplicates=int(dup.sum()),unchanged_raw=True,raw_zip_sha256=sha(raw),retained_detections=len(d),processed_csv_sha256=sha(base/'hasil/data_sesudah_diolah.csv'),unresolved_version='61.03',access_utc=datetime.now(timezone.utc).isoformat()))\n return d\ndef build_edges(g,max_space=5.,max_hours=72.):\n xy=np.radians(g[['latitude','longitude']].to_numpy(float));hours=g.acq_datetime_utc.astype('int64').to_numpy()/3.6e12\n tree=BallTree(xy,metric='haversine');rr=[];cc=[];ss=[];tt=[]\n for start in range(0,len(g),256):\n  ind,dist=tree.query_radius(xy[start:start+256],r=max_space/R_KM,return_distance=True)\n  for off,(js,dd) in enumerate(zip(ind,dist)):\n   i=start+off;dt=np.abs(hours[js]-hours[i]);ok=dt<=max_hours\n   rr.append(np.full(ok.sum(),i,dtype=np.int32));cc.append(js[ok].astype(np.int32));ss.append(dd[ok]*R_KM);tt.append(dt[ok])\n return tuple(np.concatenate(x) for x in (rr,cc,ss,tt))\ndef fit_edges(n,edges,s,t,m):\n row,col,space,hours=edges;ok=(space<=s)&(hours<=t)\n graph=csr_matrix((np.ones(ok.sum()),(row[ok],col[ok])),shape=(n,n));graph.sort_indices();assert np.all(graph.diagonal()==1)\n fit=DBSCAN(eps=1.,min_samples=m,metric='precomputed',n_jobs=1).fit(graph)\n core=np.zeros(n,bool);core[fit.core_sample_indices_]=True\n return fit.labels_,core,graph\ndef params(s,t,m):return f's{int(s)}_h{int(t)}_m{m}'\ndef run_clustering(base,d):\n out=Path(base)/'clustering';start=time.monotonic();configs=[PRIMARY]+[p for p in GRID if p!=PRIMARY]\n labelsall={params(*p):np.full(len(d),-1,dtype=np.int32) for p in configs};offsets={k:0 for k in labelsall};coreall=np.zeros(len(d),bool)\n rows=[];sils=[];silrows=[];qualities=[]\n for part,g0 in d.groupby('partition',sort=True):\n  ids=g0.index.to_numpy();g=g0.reset_index(drop=True);edges=build_edges(g)\n  for s,t,m in configs:\n   label,core,graph=fit_edges(len(g),edges,s,t,m);key=params(s,t,m);ncl=int(label.max()+1);yes=label>=0\n   global_l=label.copy();global_l[yes]+=offsets[key];offsets[key]+=ncl;labelsall[key][ids]=global_l\n   durations=g.assign(label=label).loc[yes].groupby('label').acq_datetime_utc.agg(['min','max']);days=(durations['max']-durations['min']).dt.total_seconds()/86400\n   sizes=np.bincount(label[yes]) if yes.any() else np.array([0])\n   rows.append(dict(partition=part,config=key,eps_spatial_km=s,eps_temporal_hours=t,min_samples=m,n=len(g),clusters=ncl,noise=int((~yes).sum()),core=int(core.sum()),border=int((yes&~core).sum()),largest_cluster=int(sizes.max()),max_duration_days=float(days.max()) if len(days) else 0.))\n   if (s,t,m)==PRIMARY:primary_label=label.copy();coreall[ids]=core\n  valid=np.flatnonzero(primary_label>=0);pick=np.sort(np.random.default_rng(SEED).choice(valid,min(1500,len(valid)),replace=False));score=None\n  if 2<=len(np.unique(primary_label[pick]))<len(pick):\n   xy=np.radians(g.loc[pick,['latitude','longitude']].to_numpy());h=g.loc[pick,'acq_datetime_utc'].astype('int64').to_numpy()/3.6e12\n   dist=np.maximum(haversine_distances(xy)*R_KM/PRIMARY[0],np.abs(h[:,None]-h[None,:])/PRIMARY[1]);np.fill_diagonal(dist,0)\n   score=float(silhouette_score(dist,primary_label[pick],metric='precomputed'))\n  sils.append(dict(partition=part,nonnoise_n=len(valid),sample_n=len(pick),silhouette=score,seed=SEED))\n  silrows.extend([{'partition':part,'row_id':g.row_id.iloc[i]} for i in pick])\n  filters={'confidence_ge30':g.confidence>=30,'confidence_ge80':g.confidence>=80,'Terra_only':g.satellite.eq('Terra'),'Aqua_only':g.satellite.eq('Aqua')}\n  if g.type.notna().any():filters['type0_only']=g.type.eq('0')\n  for name,mask in filters.items():\n   ix=np.flatnonzero(mask.to_numpy());q=g.iloc[ix].reset_index(drop=True)\n   if len(q):\n    ll,_,_=fit_edges(len(q),build_edges(q),*PRIMARY);yes=ll>=0;sizes=np.bincount(ll[yes]) if yes.any() else np.array([0])\n    qualities.append(dict(partition=part,scenario=name,n=len(q),clusters=int(ll.max()+1),noise=int((~yes).sum()),largest_cluster=int(sizes.max()),ARI_primary_on_same_rows=float(adjusted_rand_score(primary_label[ix],ll))))\n primary=labelsall[params(*PRIMARY)];result=d.copy();result['cluster_label']=primary\n result['cluster_id']=np.where(primary<0,'NOISE',[f'ST{x:05d}' for x in primary]);result['point_role']=np.where(primary<0,'noise',np.where(coreall,'core','border'))\n result.to_csv(out/'hasil_st_dbscan.csv',index=False)\n pd.DataFrame({'row_id':d.row_id,**labelsall}).to_csv(out/'keanggotaan_27_skenario.csv',index=False)\n per=pd.DataFrame(rows);per.to_csv(out/'sensitivitas_per_strata.csv',index=False)\n base_rows=per[per.config.eq(params(*PRIMARY))].copy();base_rows['noise_percent']=base_rows.noise/base_rows.n*100;base_rows.to_csv(out/'hasil_utama_per_strata.csv',index=False)\n totals=[]\n for s,t,m in configs:\n  key=params(s,t,m);a=per[per.config.eq(key)];ll=labelsall[key];both=(primary>=0)&(ll>=0)\n  totals.append(dict(config=key,eps_spatial_km=s,eps_temporal_hours=t,min_samples=m,**{k:int(a[k].sum()) for k in ['n','clusters','noise','core','border']},largest_cluster=int(a.largest_cluster.max()),max_duration_days=float(a.max_duration_days.max()),noise_percent=float((ll<0).mean()*100),ARI_including_noise=float(adjusted_rand_score(primary,ll)),ARI_common_nonnoise=float(adjusted_rand_score(primary[both],ll[both])) if both.any() else None,common_nonnoise_n=int(both.sum())))\n sensitivity=pd.DataFrame(totals);sensitivity.to_csv(out/'sensitivitas_27_skenario.csv',index=False)\n summary=[]\n for cluster,g in result[result.cluster_label>=0].groupby('cluster_id',sort=True):\n  lat=g.latitude.mean();lon=g.longitude.mean();radius=haversine_distances(np.radians([[lat,lon]]),np.radians(g[['latitude','longitude']].to_numpy()))[0]*R_KM\n  a=dict(cluster_id=cluster,partition=g.partition.iloc[0],detections=len(g),start_utc=str(g.acq_datetime_utc.min()),end_utc=str(g.acq_datetime_utc.max()),duration_days=(g.acq_datetime_utc.max()-g.acq_datetime_utc.min()).total_seconds()/86400,centroid_latitude=lat,centroid_longitude=lon,max_radius_km=radius.max(),dominant_province=g.province.mode().iloc[0],provinces=';'.join(sorted(g.province.unique())),confidence_mean=g.confidence.mean(),frp_mean_MW=g.frp.mean(),frp_max_MW=g.frp.max(),near_boundary_n=int(g.boundary_near_72h.sum()))\n  a.update({f'type_{v}':int(g.type.eq(str(v)).sum()) for v in range(4)});a['type_unknown']=int(g.type.isna().sum());summary.append(a)\n summary=pd.DataFrame(summary);summary.to_csv(out/'ringkasan_klaster.csv',index=False);summary.nlargest(15,'detections').to_csv(out/'klaster_terbesar_15.csv',index=False)\n pd.DataFrame(qualities).to_csv(out/'sensitivitas_kualitas_satelit_type.csv',index=False);pd.DataFrame(sils).to_csv(out/'silhouette_diagnostik.csv',index=False);pd.DataFrame(silrows).to_csv(out/'row_id_sampel_silhouette.csv',index=False)\n result.groupby(['year','version','province','point_role']).size().rename('detections').reset_index().to_csv(out/'keanggotaan_per_wilayah.csv',index=False)\n save_json(out/'ringkasan_eksperimen.json',dict(n=len(d),clusters=len(summary),noise=int((primary<0).sum()),noise_percent=float((primary<0).mean()*100),core=int(coreall.sum()),border=int(((primary>=0)&~coreall).sum()),largest_cluster=int(summary.detections.max()),max_duration_days=float(summary.duration_days.max()),strata=len(base_rows),configurations=len(configs),elapsed_seconds=round(time.monotonic()-start,2),classification_model_fitted=False))\n return result,summary,sensitivity\ndef validate_implementation(base,d):\n base=Path(base);out=base/'clustering';pool=d[(d.year==2015)&(d.month==9)].copy();center=pool[['latitude','longitude']].median().to_numpy()\n distance=haversine_distances(np.radians([center]),np.radians(pool[['latitude','longitude']].to_numpy()))[0]\n g=pool.iloc[np.argsort(distance,kind='stable')[:1000]].sort_values(['acq_datetime_utc','row_id']).reset_index(drop=True)\n ll,core,graph=fit_edges(len(g),build_edges(g),*PRIMARY);xy=np.radians(g[['latitude','longitude']].to_numpy());h=g.acq_datetime_utc.astype('int64').to_numpy()/3.6e12\n full=np.maximum(haversine_distances(xy)*R_KM/2,np.abs(h[:,None]-h[None,:])/48);np.fill_diagonal(full,0);dense=DBSCAN(eps=1,min_samples=5,metric='precomputed').fit(full)\n assert adjusted_rand_score(ll,dense.labels_)==1 and np.array_equal(np.flatnonzero(core),np.sort(dense.core_sample_indices_)) and (graph!=graph.T).nnz==0\n upstream=base/'sources/st_dbscan_upstream.py';spec=importlib.util.spec_from_file_location('reference_stdbscan',upstream);mod=importlib.util.module_from_spec(spec);spec.loader.exec_module(mod)\n lat,lon=xy.T;xyz=R_KM*np.column_stack([np.cos(lat)*np.cos(lon),np.cos(lat)*np.sin(lon),np.sin(lat)])\n ref=mod.ST_DBSCAN(eps1=2*R_KM*np.sin(2/(2*R_KM)),eps2=48,min_samples=5,metric='euclidean').fit(np.column_stack([h,xyz]));ari=float(adjusted_rand_score(ll,ref.labels));assert ari==1\n order=np.random.default_rng(SEED).permutation(len(g));shuffled,_,_=fit_edges(len(g),build_edges(g.iloc[order].reset_index(drop=True)),*PRIMARY);restored=np.empty(len(g),int);restored[order]=shuffled\n record=dict(actual_rows=len(g),dense_vs_sparse_ARI=1.,upstream_reference_ARI=ari,core_indices_identical=True,symmetric_neighborhood=True,permuted_order_ARI=float(adjusted_rand_score(ll,restored)),permuted_order_core_ARI=float(adjusted_rand_score(ll[core],restored[core])),permuted_order_noise_membership_equal=bool(np.array_equal(ll<0,restored<0)),cluster_count_in_sample=int(ll.max()+1),synthetic_data_used=False,upstream_sha256=sha(upstream))\n save_json(out/'validasi_implementasi.json',record);g[['row_id','latitude','longitude','acq_datetime_utc']].to_csv(out/'row_id_validasi_implementasi.csv',index=False)\n i=int(np.flatnonzero(core)[0]);ix=np.flatnonzero(full[i]<=1)[:10];ex=g.loc[ix,['row_id','latitude','longitude','acq_datetime_utc']].copy();ex.insert(0,'anchor_row_id',g.row_id.iloc[i]);ex['distance_km']=haversine_distances(xy[[i]],xy[ix])[0]*R_KM;ex['time_difference_hours']=abs(h[ix]-h[i]);ex['anchor_total_neighbors_including_self']=int((full[i]<=1).sum());ex.to_csv(out/'contoh_manual_tetangga_nyata.csv',index=False)\n return record\ndef classification_gate(base):\n base=Path(base);out=base/'clustering';p=pd.read_csv(base/'hasil/data_panel_wilayah_harian.csv');f=pd.read_csv(base/'hasil/data_fitur.csv')\n f['date']=pd.to_datetime(f.date,utc=True);f['target_date']=pd.to_datetime(f.target_date,utc=True)\n def split(s):return np.select([s.dt.year<=2023,s.dt.year==2024,s.dt.year==2025,s.dt.year==2026],['train','validation','test_2025','case_2026'],default='outside')\n f['origin_split']=split(f.date);f['target_split']=split(f.target_date);f['same_subset']=f.origin_split.eq(f.target_split);f['target_within_cutoff']=f.target_date.le(CUTOFF.normalize());f['calendar_lookback_30d']=f.date.ge(pd.Timestamp('2015-01-30',tz='UTC'));f['candidate_time_eligible']=f.same_subset&f.target_within_cutoff&f.calendar_lookback_30d;f['eligible_for_supervised_learning']=False;f['y_surge']=np.nan\n f.to_csv(out/'calon_fitur_dengan_gate_temporal.csv',index=False);rows=[]\n for key,g in f.groupby('target_split'):rows.append(dict(subset=key,calendar_rows=len(g),time_eligible_before_QA=int(g.candidate_time_eligible.sum()),complete_recorded_30d_feature=int(g.count_trailing_30d_recorded.notna().sum()),coverage_verified_rows=0,availability_verified_rows=0,eligible_labeled_rows=0,positive_class_count=None,negative_class_count=None,prevalence=None))\n pd.DataFrame(rows).to_csv(out/'kelayakan_classification_per_split.csv',index=False);p.recorded_detection_count.dropna().describe(percentiles=[.5,.8,.9,.95,.99]).to_csv(out/'distribusi_hitung_positif_bukan_target.csv')\n gate=dict(classification_feasible=False,reason_codes=['QA_NOT_AVAILABLE','AVAILABLE_AT_UNKNOWN','PROVENANCE_UNRESOLVED'],negative_labels_created=0,target_quantiles_fitted=False,model_fitted=False,test2025_evaluated=False,cluster_ids_used_as_features=False,cluster_noise_used_as_negative_labels=False,candidate_rows=len(p),region_days_without_records=int(p.recorded_detection_count.isna().sum()))\n save_json(out/'keputusan_classification.json',gate);versions={'python':platform.python_version()}\n for name in ['numpy','pandas','scipy','scikit-learn','matplotlib','shapely','pyproj','nbformat','ipython','xgboost','shap']:\n  try:versions[name]=meta.version(name)\n  except meta.PackageNotFoundError:versions[name]='NOT_INSTALLED'\n save_json(out/'versi_lingkungan_revisi.json',versions);return gate\n",
+    "outputs": []
+  },
+  {
+    "index": 5,
+    "type": "markdown",
+    "execution": null,
+    "source": "### 3 Audit ulang\n**Apa:** Membaca semua 13 CSV dan memeriksa hash/duplikasi.\n\n**Mengapa:** Raw harus sama dengan audit terdahulu.\n\n**Cara membaca:** Hash memastikan kesamaan byte; tidak mengautentikasi asal NASA. Version dipertahankan string.",
+    "outputs": []
+  },
+  {
+    "index": 6,
+    "type": "code",
+    "execution": 3,
+    "source": "d=audit_again(BASE)\ndisplay(pd.read_csv(BASE/'clustering/audit_ulang_13_csv.csv'))\ndisplay(pd.Series(json.loads((BASE/'clustering/audit_ulang_ringkas.json').read_text())))",
+    "outputs": [
+      {
+        "type": "stream",
+        "text": "<ipython-input-2-8483a8466724>:47: DeprecationWarning: The 'generic' unit for NumPy timedelta is deprecated, and will raise an error in the future. This includes implicit conversion of bare integers (e.g. `+ 1`). Please use a specific unit instead.\n  y=int(g.year.iloc[0]);v=g.version.iloc[0];lo=pd.Timestamp(f'{y}-01-01',tz='UTC');hi=min(pd.Timestamp(f'{y+1}-01-01',tz='UTC'),CUTOFF+pd.Timedelta(seconds=1))\n<ipython-input-2-8483a8466724>:47: DeprecationWarning: The 'generic' unit for NumPy timedelta is deprecated, and will raise an error in the future. This includes implicit conversion of bare integers (e.g. `+ 1`). Please use a specific unit instead.\n  y=int(g.year.iloc[0]);v=g.version.iloc[0];lo=pd.Timestamp(f'{y}-01-01',tz='UTC');hi=min(pd.Timestamp(f'{y+1}-01-01',tz='UTC'),CUTOFF+pd.Timedelta(seconds=1))\n<ipython-input-2-8483a8466724>:47: DeprecationWarning: The 'generic' unit for NumPy timedelta is deprecated, and will raise an error in the future. This includes implicit conversion of bare integers (e.g. `+ 1`). Please use a specific unit instead.\n  y=int(g.year.iloc[0]);v=g.version.iloc[0];lo=pd.Timestamp(f'{y}-01-01',tz='UTC');hi=min(pd.Timestamp(f'{y+1}-01-01',tz='UTC'),CUTOFF+pd.Timedelta(seconds=1))\n<ipython-input-2-8483a8466724>:47: DeprecationWarning: The 'generic' unit for NumPy timedelta is deprecated, and will raise an error in the future. This includes implicit conversion of bare integers (e.g. `+ 1`). Please use a specific unit instead.\n  y=int(g.year.iloc[0]);v=g.version.iloc[0];lo=pd.Timestamp(f'{y}-01-01',tz='UTC');hi=min(pd.Timestamp(f'{y+1}-01-01',tz='UTC'),CUTOFF+pd.Timedelta(seconds=1))\n<ipython-input-2-8483a8466724>:47: DeprecationWarning: The 'generic' unit for NumPy timedelta is deprecated, and will raise an error in the future. This includes implicit conversion of bare integers (e.g. `+ 1`). Please use a specific unit instead.\n  y=int(g.year.iloc[0]);v=g.version.iloc[0];lo=pd.Timestamp(f'{y}-01-01',tz='UTC');hi=min(pd.Timestamp(f'{y+1}-01-01',tz='UTC'),CUTOFF+pd.Timedelta(seconds=1))\n<ipython-input-2-8483a8466724>:47: DeprecationWarning: The 'generic' unit for NumPy timedelta is deprecated, and will raise an error in the future. This includes implicit conversion of bare integers (e.g. `+ 1`). Please use a specific unit instead.\n  y=int(g.year.iloc[0]);v=g.version.iloc[0];lo=pd.Timestamp(f'{y}-01-01',tz='UTC');hi=min(pd.Timestamp(f'{y+1}-01-01',tz='UTC'),CUTOFF+pd.Timedelta(seconds=1))\n<ipython-input-2-8483a8466724>:47: DeprecationWarning: The 'generic' unit for NumPy timedelta is deprecated, and will raise an error in the future. This includes implicit conversion of bare integers (e.g. `+ 1`). Please use a specific unit instead.\n  y=int(g.year.iloc[0]);v=g.version.iloc[0];lo=pd.Timestamp(f'{y}-01-01',tz='UTC');hi=min(pd.Timestamp(f'{y+1}-01-01',tz='UTC'),CUTOFF+pd.Timedelta(seconds=1))\n<ipython-input-2-8483a8466724>:47: DeprecationWarning: The 'generic' unit for NumPy timedelta is deprecated, and will raise an error in the future. This includes implicit conversion of bare integers (e.g. `+ 1`). Please use a specific unit instead.\n  y=int(g.year.iloc[0]);v=g.version.iloc[0];lo=pd.Timestamp(f'{y}-01-01',tz='UTC');hi=min(pd.Timestamp(f'{y+1}-01-01',tz='UTC'),CUTOFF+pd.Timedelta(seconds=1))\n<ipython-input-2-8483a8466724>:47: DeprecationWarning: The 'generic' unit for NumPy timedelta is deprecated, and will raise an error in the future. This includes implicit conversion of bare integers (e.g. `+ 1`). Please use a specific unit instead.\n  y=int(g.year.iloc[0]);v=g.version.iloc[0];lo=pd.Timestamp(f'{y}-01-01',tz='UTC');hi=min(pd.Timestamp(f'{y+1}-01-01',tz='UTC'),CUTOFF+pd.Timedelta(seconds=1))\n<ipython-input-2-8483a8466724>:47: DeprecationWarning: The 'generic' unit for NumPy timedelta is deprecated, and will raise an error in the future. This includes implicit conversion of bare integers (e.g. `+ 1`). Please use a specific unit instead.\n  y=int(g.year.iloc[0]);v=g.version.iloc[0];lo=pd.Timestamp(f'{y}-01-01',tz='UTC');hi=min(pd.Timestamp(f'{y+1}-01-01',tz='UTC'),CUTOFF+pd.Timedelta(seconds=1))\n<ipython-input-2-8483a8466724>:47: DeprecationWarning: The 'generic' unit for NumPy timedelta is deprecated, and will raise an error in the future. This includes implicit conversion of bare integers (e.g. `+ 1`). Please use a specific unit instead.\n  y=int(g.year.iloc[0]);v=g.version.iloc[0];lo=pd.Timestamp(f'{y}-01-01',tz='UTC');hi=min(pd.Timestamp(f'{y+1}-01-01',tz='UTC'),CUTOFF+pd.Timedelta(seconds=1))\n<ipython-input-2-8483a8466724>:47: DeprecationWarning: The 'generic' unit for NumPy timedelta is deprecated, and will raise an error in the future. This includes implicit conversion of bare integers (e.g. `+ 1`). Please use a specific unit instead.\n  y=int(g.year.iloc[0]);v=g.version.iloc[0];lo=pd.Timestamp(f'{y}-01-01',tz='UTC');hi=min(pd.Timestamp(f'{y+1}-01-01',tz='UTC'),CUTOFF+pd.Timedelta(seconds=1))\n<ipython-input-2-8483a8466724>:47: DeprecationWarning: The 'generic' unit for NumPy timedelta is deprecated, and will raise an error in the future. This includes implicit conversion of bare integers (e.g. `+ 1`). Please use a specific unit instead.\n  y=int(g.year.iloc[0]);v=g.version.iloc[0];lo=pd.Timestamp(f'{y}-01-01',tz='UTC');hi=min(pd.Timestamp(f'{y+1}-01-01',tz='UTC'),CUTOFF+pd.Timedelta(seconds=1))\n"
+      },
+      {
+        "type": "display_data",
+        "text": "                      source_file  ... original_access_time\n0   fire_archive_M-C61_834980.csv  ...      BELUM_DIBERIKAN\n1   fire_archive_M-C61_834981.csv  ...      BELUM_DIBERIKAN\n2   fire_archive_M-C61_834982.csv  ...      BELUM_DIBERIKAN\n3   fire_archive_M-C61_834984.csv  ...      BELUM_DIBERIKAN\n4   fire_archive_M-C61_834985.csv  ...      BELUM_DIBERIKAN\n5   fire_archive_M-C61_834986.csv  ...      BELUM_DIBERIKAN\n6   fire_archive_M-C61_834987.csv  ...      BELUM_DIBERIKAN\n7   fire_archive_M-C61_834988.csv  ...      BELUM_DIBERIKAN\n8   fire_archive_M-C61_834989.csv  ...      BELUM_DIBERIKAN\n9   fire_archive_M-C61_834990.csv  ...      BELUM_DIBERIKAN\n10  fire_archive_M-C61_834991.csv  ...      BELUM_DIBERIKAN\n11  fire_archive_M-C61_834992.csv  ...      BELUM_DIBERIKAN\n12      fire_nrt_M-C61_834992.csv  ...      BELUM_DIBERIKAN\n\n[13 rows x 13 columns]"
+      },
+      {
+        "type": "display_data",
+        "text": "csv_count                                                              13\nraw_rows                                                           630384\nexact_key_duplicates                                                    0\nunchanged_raw                                                        True\nraw_zip_sha256          8749435dfb96884cb30db501ac35f556fd1104b35e023f...\nretained_detections                                                154184\nprocessed_csv_sha256    cf505d81d257a80d1a7f7c766fb74afd9a6f780c7fdd4f...\nunresolved_version                                                  61.03\naccess_utc                               2026-11-01T07:17:26.298295+00:00\ndtype: object"
+      }
+    ]
+  },
+  {
+    "index": 7,
+    "type": "markdown",
+    "execution": null,
+    "source": "### 4 FireMask dan QA\n**Apa:** Membaca log akses raster dan metadata yang tersedia.\n\n**Mengapa:** Metadata katalog bukan raster QA.\n\n**Cara membaca:** Lihat status HTTP aktual; belum ada raster nyata yang digunakan.",
+    "outputs": []
+  },
+  {
+    "index": 8,
+    "type": "markdown",
+    "execution": null,
+    "source": "MOD14A1/MYD14A1 memiliki hingga delapan plane **harian**. Dates/DAYSOFYEAR menentukan tanggal; plane bisa hilang. FireMask 5=non-fire land, 7–9=fire, 4=cloud, 6=unknown, 0/1/2=unprocessed, 3=water. QA bit 0–1 water/coast/land/missing; bit 2 night/day. Komposit tidak sama dengan hitungan baris FIRMS atau bukti seluruh overpass lengkap. Helper decoder belum diuji pada HDF nyata.",
+    "outputs": []
+  },
+  {
+    "index": 9,
+    "type": "code",
+    "execution": 4,
+    "source": "display(pd.DataFrame(json.loads((BASE/'sources/percobaan_akses_hdf.json').read_text())))",
+    "outputs": [
+      {
+        "type": "display_data",
+        "text": "                                     granule  ...                        access_utc\n0  MOD14A1.A2026273.h27v09.061.2026286104424  ...  2026-11-01T07:15:05.806625+00:00\n1  MYD14A1.A2026273.h27v09.061.2026286104723  ...  2026-11-01T07:15:20.470025+00:00\n\n[2 rows x 5 columns]"
+      }
+    ]
+  },
+  {
+    "index": 10,
+    "type": "markdown",
+    "execution": null,
+    "source": "### 5 Gerbang classification\n**Apa:** Memeriksa kalender, t/t+1, lookback dan label.\n\n**Mengapa:** Tidak boleh menciptakan negatif dari hari tanpa rekaman.\n\n**Cara membaca:** Semua kelas/prevalensi tetap NA; eligible=0 bukan jumlah kelas negatif.",
+    "outputs": []
+  },
+  {
+    "index": 11,
+    "type": "code",
+    "execution": 5,
+    "source": "gate=classification_gate(BASE)\ndisplay(pd.read_csv(BASE/'clustering/kelayakan_classification_per_split.csv'))\ndisplay(pd.Series(gate))",
+    "outputs": [
+      {
+        "type": "display_data",
+        "text": "       subset  calendar_rows  ...  negative_class_count  prevalence\n0   case_2026           2432  ...                   NaN         NaN\n1   test_2025           2920  ...                   NaN         NaN\n2       train          26288  ...                   NaN         NaN\n3  validation           2928  ...                   NaN         NaN\n\n[4 rows x 10 columns]"
+      },
+      {
+        "type": "display_data",
+        "text": "classification_feasible                                                              False\nreason_codes                             [QA_NOT_AVAILABLE, AVAILABLE_AT_UNKNOWN, PROVE...\nnegative_labels_created                                                                  0\ntarget_quantiles_fitted                                                              False\nmodel_fitted                                                                         False\ntest2025_evaluated                                                                   False\ncluster_ids_used_as_features                                                         False\ncluster_noise_used_as_negative_labels                                                False\ncandidate_rows                                                                       34568\nregion_days_without_records                                                          23809\ndtype: object"
+      }
+    ]
+  },
+  {
+    "index": 12,
+    "type": "markdown",
+    "execution": null,
+    "source": "### 6 Protokol ST-DBSCAN\n**Apa:** Membekukan dua ambang dan strata.\n\n**Mengapa:** Parameter dapat dijelaskan dan sensitivitas tidak disembunyikan.\n\n**Cara membaca:** Utama 2 km/48 jam/minimum 5 termasuk diri. Pilihan eksploratif, bukan optimum.",
+    "outputs": []
+  },
+  {
+    "index": 13,
+    "type": "markdown",
+    "execution": null,
+    "source": "$$N(i)=\\{j:d_s(i,j)\\leq\\varepsilon_s,\\ |t_i-t_j|\\leq\\varepsilon_t,\\ z_i=z_j\\},\\qquad core(i)\\iff |N(i)|\\geq m.$$\nStrata z adalah tahun UTC dan version literal. Haversine memakai R=6371,0088 km. Grid 1/2/5 km × 24/48/72 jam × 3/5/10 = 27 konfigurasi. eps bukan diameter/durasi maksimum klaster. Semua confidence/type pada utama; filter diuji sebagai sensitivitas. Batas strata dapat memotong kelompok.",
+    "outputs": []
+  },
+  {
+    "index": 14,
+    "type": "code",
+    "execution": 6,
+    "source": "display(pd.Series(json.loads((BASE/'clustering/protokol_sebelum_eksperimen.json').read_text())))",
+    "outputs": [
+      {
+        "type": "display_data",
+        "text": "primary                                                [2.0, 48.0, 5]\nsensitivity_grid    [[1.0, 24.0, 3], [1.0, 24.0, 5], [1.0, 24.0, 1...\nseed                                                               42\npartition                               tahun UTC dan version literal\nmetric                               haversine and absolute UTC hours\nscope               all valid retained detections; not confirmed v...\nrationale           2 km beberapa piksel nominal; 48 jam lintasan ...\nrecovery_note       Parameter dipertahankan dari eksperimen sesi s...\ncreated_utc                          2026-11-01T07:14:34.085085+00:00\ndtype: object"
+      }
+    ]
+  },
+  {
+    "index": 15,
+    "type": "markdown",
+    "execution": null,
+    "source": "### 7 Validasi implementasi\n**Apa:** Membandingkan graf jarang, matriks penuh dan kode upstream pada 1.000 baris nyata.\n\n**Mengapa:** Kesalahan lingkungan tetangga akan mengubah hasil.\n\n**Cara membaca:** ARI=1 berarti kesamaan partisi sampel, bukan akurasi kebakaran. Urutan dapat memengaruhi border.",
+    "outputs": []
+  },
+  {
+    "index": 16,
+    "type": "code",
+    "execution": 7,
+    "source": "v=validate_implementation(BASE,d)\ndisplay(pd.Series(v))",
+    "outputs": [
+      {
+        "type": "display_data",
+        "text": "actual_rows                                                                           1000\ndense_vs_sparse_ARI                                                                    1.0\nupstream_reference_ARI                                                                 1.0\ncore_indices_identical                                                                True\nsymmetric_neighborhood                                                                True\npermuted_order_ARI                                                                 0.99981\npermuted_order_core_ARI                                                                1.0\npermuted_order_noise_membership_equal                                                 True\ncluster_count_in_sample                                                                 41\nsynthetic_data_used                                                                  False\nupstream_sha256                          128639c9b3b326395ab9fb3eaadcf1042f3039276c5877...\ndtype: object"
+      }
+    ]
+  },
+  {
+    "index": 17,
+    "type": "markdown",
+    "execution": null,
+    "source": "### 8 Eksekusi ST-DBSCAN\n**Apa:** Menjalankan semua konfigurasi dan sensitivitas input.\n\n**Mengapa:** Jumlah klaster/noise harus berasal dari eksekusi.\n\n**Cara membaca:** Noise bukan data salah atau non-fire. Tidak ada fit classifier.",
+    "outputs": []
+  },
+  {
+    "index": 18,
+    "type": "code",
+    "execution": 8,
+    "source": "result,clusters,sensitivity=run_clustering(BASE,d)\ndisplay(pd.Series(json.loads((BASE/'clustering/ringkasan_eksperimen.json').read_text())))\ndisplay(pd.read_csv(BASE/'clustering/hasil_utama_per_strata.csv'))",
+    "outputs": [
+      {
+        "type": "display_data",
+        "text": "n                                 154184\nclusters                            3678\nnoise                              74383\nnoise_percent                  48.243008\ncore                               73129\nborder                              6672\nlargest_cluster                     4478\nmax_duration_days              60.139583\nstrata                                13\nconfigurations                        27\nelapsed_seconds                    36.07\nclassification_model_fitted        False\ndtype: object"
+      },
+      {
+        "type": "display_data",
+        "text": "       partition     config  ...  max_duration_days  noise_percent\n0     2015__6.03  s2_h48_m5  ...          60.139583      35.065001\n1     2016__6.03  s2_h48_m5  ...          12.463194      76.099376\n2     2017__6.03  s2_h48_m5  ...           8.875000      87.665198\n3     2018__6.03  s2_h48_m5  ...          14.009028      63.969171\n4     2019__6.03  s2_h48_m5  ...          28.531250      35.010786\n5     2020__6.03  s2_h48_m5  ...           4.620139      85.951815\n6     2021__6.03  s2_h48_m5  ...           6.490278      90.083669\n7     2022__6.03  s2_h48_m5  ...           7.906944      92.118432\n8    2023__61.03  s2_h48_m5  ...          29.843056      59.950953\n9    2024__61.03  s2_h48_m5  ...           7.699306      84.512980\n10   2025__61.03  s2_h48_m5  ...           7.500000      81.612542\n11  2026__6.1NRT  s2_h48_m5  ...          39.992361      33.008893\n12   2026__61.03  s2_h48_m5  ...          13.515278      64.059622\n\n[13 rows x 13 columns]"
+      }
+    ]
+  },
+  {
+    "index": 19,
+    "type": "markdown",
+    "execution": null,
+    "source": "### 9 Stabilitas dan silhouette\n**Apa:** Menampilkan hasil 27 skenario, filter dan silhouette.\n\n**Mengapa:** Hasil tunggal dapat rapuh.\n\n**Cara membaca:** ARI semua dapat didominasi noise; ARI non-noise memakai irisan. Silhouette maksimal 1500 titik non-noise per strata, seed42, metrik max(jarak/eps ruang, waktu/eps waktu); musim dan eksklusi noise dapat menaikkan skor.",
+    "outputs": []
+  },
+  {
+    "index": 20,
+    "type": "code",
+    "execution": 9,
+    "source": "display(sensitivity)\ndisplay(pd.read_csv(BASE/'clustering/sensitivitas_kualitas_satelit_type.csv'))\ndisplay(pd.read_csv(BASE/'clustering/silhouette_diagnostik.csv'))",
+    "outputs": [
+      {
+        "type": "display_data",
+        "text": "        config  eps_spatial_km  ...  ARI_common_nonnoise  common_nonnoise_n\n0    s2_h48_m5             2.0  ...             1.000000              79801\n1    s1_h24_m3             1.0  ...             0.288856              59264\n2    s1_h24_m5             1.0  ...             0.262297              39787\n3   s1_h24_m10             1.0  ...             0.272715               7720\n4    s1_h48_m3             1.0  ...             0.874686              70738\n5    s1_h48_m5             1.0  ...             0.855242              59198\n6   s1_h48_m10             1.0  ...             0.464599              32063\n7    s1_h72_m3             1.0  ...             0.928334              71838\n8    s1_h72_m5             1.0  ...             0.923562              61975\n9   s1_h72_m10             1.0  ...             0.620391              38590\n10   s2_h24_m3             2.0  ...             0.446126              75323\n11   s2_h24_m5             2.0  ...             0.405318              68109\n12  s2_h24_m10             2.0  ...             0.384407              44608\n13   s2_h48_m3             2.0  ...             0.983548              79801\n14  s2_h48_m10             2.0  ...             0.967440              60147\n15   s2_h72_m3             2.0  ...             0.941531              79801\n16   s2_h72_m5             2.0  ...             0.953247              79801\n17  s2_h72_m10             2.0  ...             0.965785              62849\n18   s5_h24_m3             5.0  ...             0.661618              77456\n19   s5_h24_m5             5.0  ...             0.663538              73500\n20  s5_h24_m10             5.0  ...             0.689295              58221\n21   s5_h48_m3             5.0  ...             0.573099              79801\n22   s5_h48_m5             5.0  ...             0.594458              79801\n23  s5_h48_m10             5.0  ...             0.614409              70293\n24   s5_h72_m3             5.0  ...             0.490587              79801\n25   s5_h72_m5             5.0  ...             0.496562              79801\n26  s5_h72_m10             5.0  ...             0.580349              71957\n\n[27 rows x 15 columns]"
+      },
+      {
+        "type": "display_data",
+        "text": "      partition         scenario  ...  largest_cluster  ARI_primary_on_same_rows\n0    2015__6.03  confidence_ge30  ...             4224                  0.965498\n1    2015__6.03  confidence_ge80  ...             1949                  0.553042\n2    2015__6.03       Terra_only  ...             1185                  0.639320\n3    2015__6.03        Aqua_only  ...             2165                  0.780022\n4    2015__6.03       type0_only  ...             1158                  0.985285\n..          ...              ...  ...              ...                       ...\n59  2026__61.03  confidence_ge30  ...              292                  0.979246\n60  2026__61.03  confidence_ge80  ...              218                  0.640703\n61  2026__61.03       Terra_only  ...              151                  0.703285\n62  2026__61.03        Aqua_only  ...              149                  0.800596\n63  2026__61.03       type0_only  ...              301                  0.999554\n\n[64 rows x 7 columns]"
+      },
+      {
+        "type": "display_data",
+        "text": "       partition  nonnoise_n  sample_n  silhouette  seed\n0     2015__6.03       38261      1500    0.112726    42\n1     2016__6.03        1799      1500    0.760692    42\n2     2017__6.03         532       532    0.873214    42\n3     2018__6.03        2431      1500    0.699990    42\n4     2019__6.03       18377      1500    0.379081    42\n5     2020__6.03         414       414    0.815029    42\n6     2021__6.03         320       320    0.951252    42\n7     2022__6.03         189       189    0.723635    42\n8    2023__61.03        4246      1500    0.571362    42\n9    2024__61.03         698       698    0.828742    42\n10   2025__61.03         821       821    0.759584    42\n11  2026__6.1NRT        9567      1500    0.339730    42\n12   2026__61.03        2146      1500    0.783446    42"
+      }
+    ]
+  },
+  {
+    "index": 21,
+    "type": "markdown",
+    "execution": null,
+    "source": "### 10 Visualisasi\n**Apa:** Membuat tujuh grafik.\n\n**Mengapa:** Peta dan distribusi mendukung interpretasi.\n\n**Cara membaca:** Semua grafik aktual; outline disederhanakan hanya untuk tampilan.",
+    "outputs": []
+  },
+  {
+    "index": 22,
+    "type": "code",
+    "execution": 10,
+    "source": "from pathlib import Path\nimport json\nimport numpy as np\nimport pandas as pd\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nfrom shapely.geometry import shape\ndef plot_all(base):\n base=Path(base);out=base/'clustering/grafik';out.mkdir(exist_ok=True)\n a=pd.read_csv(base/'clustering/hasil_st_dbscan.csv',dtype={'version':str,'type':str});s=pd.read_csv(base/'clustering/sensitivitas_27_skenario.csv');c=pd.read_csv(base/'clustering/ringkasan_klaster.csv');p=pd.read_csv(base/'clustering/hasil_utama_per_strata.csv')\n plt.rcParams.update({'font.size':10,'axes.spines.top':False,'axes.spines.right':False})\n source='Sumber: 13 CSV FIRMS unggahan; olah ST-DBSCAN; mask BIG. Bukan jumlah kejadian atau luas kebakaran.'\n def save(fig,name,title):\n  fig.suptitle(title);fig.text(.015,.015,source,fontsize=8)\n  # Reserve extra bottom space for square heatmaps and their x-axis labels.\n  bottom = .14 if name == '02_sensitivitas_noise.png' else .055\n  fig.tight_layout(rect=[0,bottom,1,.94]);fig.savefig(out/name,dpi=170);plt.close(fig)\n fig,ax=plt.subplots(2,1,figsize=(10,7),sharex=True);ax[0].bar(p.partition,p.clusters,color='.25');ax[0].set_ylabel('Jumlah klaster');ax[1].bar(p.partition,p.noise_percent,color='.6');ax[1].set_ylabel('Noise (%)');ax[1].tick_params(axis='x',rotation=55)\n save(fig,'01_klaster_noise_per_strata.png','Hasil utama menurut tahun dan version literal')\n fig,axes=plt.subplots(1,3,figsize=(11,4.4))\n for ax,m in zip(axes,[3,5,10]):\n  mat=s[s.min_samples.eq(m)].pivot(index='eps_temporal_hours',columns='eps_spatial_km',values='noise_percent').sort_index()\n  ax.imshow(mat,origin='lower',cmap='Greys',vmin=20,vmax=100);ax.set_xticks(range(3),[1,2,5]);ax.set_yticks(range(3),[24,48,72]);ax.set_title(f'min_samples = {m}');ax.set_xlabel('Jarak spasial (km)')\n  for i in range(3):\n   for j in range(3):ax.text(j,i,f'{mat.iloc[i,j]:.1f}%',ha='center',va='center',color='white' if mat.iloc[i,j]>58 else 'black')\n axes[0].set_ylabel('Jarak waktu (jam)');save(fig,'02_sensitivitas_noise.png','Sensitivitas noise pada 27 konfigurasi')\n geo=json.loads((base/'hasil/sumatera_daratan_utama.geojson').read_text());fig,axes=plt.subplots(1,3,figsize=(10,6.5),sharex=True,sharey=True)\n for ax,year in zip(axes,[2015,2025,2026]):\n  for feat in geo['features']:\n   g=shape(feat['geometry']).simplify(.01);parts=list(g.geoms) if g.geom_type=='MultiPolygon' else [g]\n   for x in parts:ax.plot(*x.exterior.xy,color='.65',lw=.4)\n  for role,color,size in [('noise','.8',2),('border','.4',3),('core','black',3)]:\n   b=a[(a.year==year)&a.point_role.eq(role)];ax.scatter(b.longitude,b.latitude,s=size,c=color,label=role,alpha=.6)\n  ax.set_aspect('equal');ax.set_title(str(year)+(' parsial' if year==2026 else ''));ax.set_xlabel('Bujur (derajat)')\n axes[0].set_ylabel('Lintang (derajat)');axes[1].legend(loc='lower left',fontsize=8);save(fig,'03_peta_peran_titik.png','Sebaran core border dan noise; 2026 sampai 30 Oktober')\n fig,axes=plt.subplots(1,2,figsize=(10,4.5));axes[0].hist(c.duration_days,bins=40,color='.35');axes[0].axvline(2,ls='--',c='black',label='eps waktu 2 hari');axes[0].legend();axes[0].set_ylabel('Jumlah klaster');axes[1].scatter(c.duration_days,c.detections,s=9,c='black',alpha=.4);axes[1].set_yscale('log');axes[1].set_ylabel('Deteksi (skala log)')\n for ax in axes:ax.set_xlabel('Durasi klaster (hari)')\n save(fig,'04_durasi_ukuran_klaster.png','Efek rantai ketetanggaan pada durasi klaster')\n top=c.nlargest(6,'detections').iloc[::-1];fig,ax=plt.subplots(figsize=(10,4.5));left=np.zeros(len(top))\n for key,color in [('type_0','.8'),('type_1','.6'),('type_2','.25'),('type_3','black'),('type_unknown','.95')]:\n  ax.barh(top.cluster_id,top[key],left=left,color=color,edgecolor='.4',label=key.replace('_',' '));left+=top[key]\n ax.set_xlabel('Jumlah deteksi');ax.legend(loc='lower right',fontsize=8);save(fig,'05_type_klaster_terbesar.png','Komposisi type pada enam klaster terbesar')\n big=c.nlargest(1,'detections').iloc[0];b=a[a.cluster_id.eq(big.cluster_id)];fig,axes=plt.subplots(1,2,figsize=(10,4.8));axes[0].scatter(b.longitude,b.latitude,s=3,c='black',alpha=.3);axes[0].set_xlabel('Bujur');axes[0].set_ylabel('Lintang');t=b.groupby('acq_date').size();axes[1].plot(pd.to_datetime(t.index),t.values,c='black');axes[1].tick_params(axis='x',rotation=45);axes[1].set_ylabel('Deteksi per tanggal tercatat')\n save(fig,'06_rincian_klaster_terbesar.png',f'{big.cluster_id}: {big.detections} deteksi; {big.duration_days:.2f} hari')\n fig,axes=plt.subplots(1,2,figsize=(10,4.5));axes[0].hist(a.confidence,bins=20,color='.4');axes[0].set_xlabel('Confidence MODIS');axes[1].hist(np.log1p(a.frp),bins=35,color='.4');axes[1].set_xlabel('log(1 + FRP dalam MW)')\n for ax in axes:ax.set_ylabel('Jumlah deteksi')\n save(fig,'07_distribusi_confidence_frp.png','Distribusi confidence dan FRP deteksi terpilih')\n return out\n\nplot_all(BASE)\nfrom IPython.display import Image,display\nfor image_path in sorted((BASE/'clustering/grafik').glob('*.png')):\n    display(Image(filename=str(image_path)))\n",
+    "outputs": [
+      {
+        "type": "display_data",
+        "text": "<IPython.core.display.Image object>"
+      },
+      {
+        "type": "display_data",
+        "text": "<IPython.core.display.Image object>"
+      },
+      {
+        "type": "display_data",
+        "text": "<IPython.core.display.Image object>"
+      },
+      {
+        "type": "display_data",
+        "text": "<IPython.core.display.Image object>"
+      },
+      {
+        "type": "display_data",
+        "text": "<IPython.core.display.Image object>"
+      },
+      {
+        "type": "display_data",
+        "text": "<IPython.core.display.Image object>"
+      },
+      {
+        "type": "display_data",
+        "text": "<IPython.core.display.Image object>"
+      }
+    ]
+  },
+  {
+    "index": 23,
+    "type": "markdown",
+    "execution": null,
+    "source": "### 11 Geografi dan 2026 provisional\n**Apa:** Membaca klaster terbesar dan jendela waktu sebanding.\n\n**Mengapa:** Sumber statis dan NRT tanpa type membatasi klaim.\n\n**Cara membaca:** Centroid bukan asal api; durasi panjang dapat berasal dari chaining. 2026 bukan setahun penuh.",
+    "outputs": []
+  },
+  {
+    "index": 24,
+    "type": "code",
+    "execution": 11,
+    "source": "display(clusters.nlargest(10,'detections'))\ndisplay(pd.read_csv(BASE/'hasil/tabel/perbandingan_1Jan_30Okt.csv'))",
+    "outputs": [
+      {
+        "type": "display_data",
+        "text": "     cluster_id     partition  detections  ... type_2 type_3  type_unknown\n901     ST00901    2015__6.03        4478  ...   4351      0             0\n319     ST00319    2015__6.03        2806  ...   2324      0             0\n621     ST00621    2015__6.03        2459  ...   2304      0             0\n2085    ST02085    2019__6.03        1661  ...      0      0             0\n3254    ST03254  2026__6.1NRT        1464  ...      0      0          1464\n923     ST00923    2015__6.03        1158  ...      0      0             0\n2035    ST02035    2019__6.03         746  ...      0      0             0\n324     ST00324    2015__6.03         697  ...    628      0             0\n393     ST00393    2015__6.03         642  ...    640      0             0\n2087    ST02087    2019__6.03         600  ...      0      0             0\n\n[10 rows x 20 columns]"
+      },
+      {
+        "type": "display_data",
+        "text": "   year  detections  dates_with_rows  ...  frp_median_MW  nrt_rows  type_missing\n0  2024        4268              236  ...          12.10         0             0\n1  2025        4203              207  ...          11.90         0             0\n2  2026       20252              255  ...          15.21     14281         14281\n\n[3 rows x 8 columns]"
+      }
+    ]
+  },
+  {
+    "index": 25,
+    "type": "markdown",
+    "execution": null,
+    "source": "### 12 Perhitungan manual\n**Apa:** Memperlihatkan paling banyak 10 tetangga nyata dan hitungan CART terdahulu.\n\n**Mengapa:** Dosen dapat menelusuri row_id.\n\n**Cara membaca:** Tetangga berlaku pada sampel validasi, bukan seluruh data. CART memakai type asli sebagai latihan, bukan label lonjakan.",
+    "outputs": []
+  },
+  {
+    "index": 26,
+    "type": "code",
+    "execution": 12,
+    "source": "display(pd.read_csv(BASE/'clustering/contoh_manual_tetangga_nyata.csv'))\ndisplay(pd.read_csv(BASE/'hasil/contoh_manual_10_baris.csv'))\ndisplay(pd.Series(json.loads((BASE/'hasil/perhitungan_manual.json').read_text())))",
+    "outputs": [
+      {
+        "type": "display_data",
+        "text": "                          anchor_row_id  ... anchor_total_neighbors_including_self\n0  fire_archive_M-C61_834980.csv:L47211  ...                                    10\n1  fire_archive_M-C61_834980.csv:L47211  ...                                    10\n2  fire_archive_M-C61_834980.csv:L47211  ...                                    10\n3  fire_archive_M-C61_834980.csv:L47211  ...                                    10\n4  fire_archive_M-C61_834980.csv:L47211  ...                                    10\n5  fire_archive_M-C61_834980.csv:L47211  ...                                    10\n6  fire_archive_M-C61_834980.csv:L47211  ...                                    10\n7  fire_archive_M-C61_834980.csv:L47211  ...                                    10\n8  fire_archive_M-C61_834980.csv:L47211  ...                                    10\n9  fire_archive_M-C61_834980.csv:L47211  ...                                    10\n\n[10 rows x 8 columns]"
+      },
+      {
+        "type": "display_data",
+        "text": "                              row_id                    source_file  ...   frp type\n0  fire_archive_M-C61_834980.csv:L18  fire_archive_M-C61_834980.csv  ...  28.5    0\n1  fire_archive_M-C61_834980.csv:L25  fire_archive_M-C61_834980.csv  ...  48.1    0\n2  fire_archive_M-C61_834980.csv:L26  fire_archive_M-C61_834980.csv  ...  38.0    0\n3  fire_archive_M-C61_834980.csv:L27  fire_archive_M-C61_834980.csv  ...  23.3    0\n4  fire_archive_M-C61_834980.csv:L30  fire_archive_M-C61_834980.csv  ...  17.9    1\n5  fire_archive_M-C61_834980.csv:L31  fire_archive_M-C61_834980.csv  ...  18.8    1\n6  fire_archive_M-C61_834980.csv:L39  fire_archive_M-C61_834980.csv  ...  10.1    0\n7  fire_archive_M-C61_834980.csv:L40  fire_archive_M-C61_834980.csv  ...  40.1    0\n8  fire_archive_M-C61_834980.csv:L41  fire_archive_M-C61_834980.csv  ...  15.7    0\n9  fire_archive_M-C61_834980.csv:L42  fire_archive_M-C61_834980.csv  ...   8.4    0\n\n[10 rows x 11 columns]"
+      },
+      {
+        "type": "display_data",
+        "text": "purpose                   Latihan CART pada type asli; BUKAN hasil klasi...\nselection                 10 deteksi pertama daratan utama Sumatera tahu...\nn                                                                        10\nclass_counts                                               {'0': 8, '1': 2}\nsplit_attribute                                                  confidence\nsplit_threshold                                                        70.0\nparent_entropy_bits                                                0.721928\nparent_gini                                                            0.32\nleft_n                                                                    5\nleft_counts                                                {'0': 3, '1': 2}\nright_n                                                                   5\nright_counts                                                       {'0': 5}\nweighted_child_entropy                                             0.485475\ninformation_gain_bits                                              0.236453\nweighted_child_gini                                                    0.24\ngini_decrease                                                          0.08\ndtype: object"
+      }
+    ]
+  },
+  {
+    "index": 27,
+    "type": "markdown",
+    "execution": null,
+    "source": "### 13 Audit akhir\n**Apa:** Memastikan keunikan ID, cutoff dan tidak ada classifier.\n\n**Mengapa:** Keluaran harus sesuai status ilmiah.\n\n**Cara membaca:** Classification tetap BELUM MEMENUHI. Run All berhasil tidak berarti label telah sah.",
+    "outputs": []
+  },
+  {
+    "index": 28,
+    "type": "code",
+    "execution": 13,
+    "source": "assert not gate['classification_feasible'] and not gate['model_fitted']\nassert len(result)==154184 and result.row_id.is_unique\nassert result.acq_datetime_utc.max()<=CUTOFF\nassert set(result.point_role)=={'core','border','noise'}\nsave_json(BASE/'clustering/assertions_revisi.json',dict(raw_hash_preserved=True,unique_row_ids=True,cutoff_respected=True,no_classifier_fit=True,no_negative_labels_fabricated=True))\nprint('Audit dan clustering selesai; classification BELUM MEMENUHI.')\nprint('Waktu proses detik:',round(time.monotonic()-START,2))",
+    "outputs": [
+      {
+        "type": "stream",
+        "text": "Audit dan clustering selesai; classification BELUM MEMENUHI.\nWaktu proses detik: 51.11\n"
+      }
+    ]
+  },
+  {
+    "index": 29,
+    "type": "markdown",
+    "execution": null,
+    "source": "### Classification setelah syarat data dipenuhi\nTraining 2015–2023, expanding-window internal, validation2024, final test2025 sekali, 2026 tanpa tuning. Kuantil positif training p=0,90; alternatif0,80/0,95. Fit semua preprocessing dan class weight pada training fold; Pipeline. DummyClassifier, baseline temporal, CART, Random Forest dan XGBoost bersyarat. Laporkan precision/recall/F1 per kelas, macroF1, balanced accuracy, AP/PR-AUC dengan prevalence baseline, ROC-AUC bila sah dan kalibrasi. Tidak ada model/metric palsu. ST-DBSCAN retrospektif bukan fitur forecast.\n\n### Sumber\nTujuh materi dosen/e-learning: lihat manifest_materi.csv dan peta_kesesuaian_materi.csv.\n\nGiglio, L., Schroeder, W., Hall, J. V., & Justice, C. O. (2021). *MODIS Collection 6 and Collection 6.1 Active Fire Product User’s Guide* (V1.0). https://lpdaac.usgs.gov/documents/1005/MOD14_User_Guide_V61.pdf\n\nBirant, D., & Kut, A. (2007). ST-DBSCAN: An algorithm for clustering spatial–temporal data. *Data & Knowledge Engineering,60*(1),208–221. https://doi.org/10.1016/j.datak.2006.01.013 . Metadata/abstrak; seluruh ekstensi tidak diklaim direplikasi.\n\nCakmak, E., & Plank, M. (n.d.). *st_dbscan* [Kode MIT]. https://github.com/eren-ck/st_dbscan\n\nscikit-learn developers. (n.d.). *DBSCAN; Clustering*. https://scikit-learn.org/stable/modules/generated/sklearn.cluster.DBSCAN.html ; https://scikit-learn.org/stable/modules/clustering.html\n\nNASA GIBS. (n.d.). *Accessing via Python*. https://nasa-gibs.github.io/gibs-api-docs/python-usage/\n\nBIG. (n.d.). *Batas Administrasi Provinsi*. https://geoservices.big.go.id/gis/rest/services/STIG/Batas_Provinsi/MapServer/0\n",
+    "outputs": []
+  }
+]

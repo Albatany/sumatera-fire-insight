@@ -1,0 +1,34 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> sumafire-insight@1.0.0 test:api
+> node scripts/test-api.mjs
+
+PASS research count
+PASS classification not fitted
+PASS KPI matches import
+PASS annual balances
+PASS monthly balances
+PASS regions balances
+PASS satellites balances
+PASS daynight balances
+PASS confidence balances
+PASS frp balances
+PASS heatmap balances
+PASS cluster count
+PASS noise count
+PASS 2026 count
+PASS combined filters
+PASS bounded map
+PASS point cap
+PASS matched cutoff
+PASS 2025 matched count
+PASS rejected kind=stats&confidence=101
+PASS rejected kind=stats&from=2025-02-30
+PASS rejected kind=stats&from=2026-01-01&to=2025-01-01
+PASS rejected kind=map&bbox=0,0,NaN,1
+PASS rejected kind=stats&frpMin=100&frpMax=5
+PASS rejected kind=export
+PASS bound parameters
+PASS prediction gate
+PASS CSV export
+{"status":"PASS","passed":28,"snapshot":"20261105T145517-85dacf18","mode":"in-process route handler"}

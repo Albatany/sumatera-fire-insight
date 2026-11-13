@@ -1,0 +1,11 @@
+{
+  "python": "3.12.14",
+  "packages": {
+    "python-docx": "1.2.0",
+    "lxml": "6.1.1",
+    "PyMuPDF": "1.26.6",
+    "reportlab": "4.4.9"
+  },
+  "nbformat": "unavailable in final editorial runtime; prior validation preserved",
+  "note": "Lingkungan penyuntingan, bukan perubahan lingkungan penelitian lama."
+}

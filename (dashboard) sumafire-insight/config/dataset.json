@@ -1,0 +1,26 @@
+{
+  "name": "NASA FIRMS MODIS observations",
+  "input": "incoming/raw",
+  "cutoff_utc": "2026-10-30T23:59:59Z",
+  "boundary": null,
+  "region_property": "name",
+  "boundary_source": "Not supplied",
+  "allow_unbounded": false,
+  "duplicate_policy": "error",
+  "mapping": {},
+  "source_metadata": {},
+  "version_evidence": {},
+  "provisional_years": [],
+  "artifacts": {},
+  "scope": "Supply and document a Sumatra polygon",
+  "downloaded_at": null,
+  "boundary": "incoming/boundaries/sumatera.geojson",
+  "region_property": "WADMPR",
+  "boundary_source": "URL dan tanggal sumber yang nyata",
+  "allow_unbounded": false
+  "limitations": [
+    "Thermal anomaly detections are not confirmed wildfires.",
+    "No-record dates are not verified non-fire observations.",
+    "Acquisition time is not first availability time."
+  ]
+}

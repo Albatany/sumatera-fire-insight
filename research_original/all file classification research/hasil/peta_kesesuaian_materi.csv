@@ -1,0 +1,12 @@
+Nama file asli,Halaman,Materi yang ditemukan,Implikasi
+Classification Decision Tree(2).pdf,"6, 13, 16",Supervised learning dan data uji terpisah,Pasangan fitur dan label yang sah
+Classification Decision Tree(2).pdf,19–27,"CART, binary split, Gini dan entropy",Baseline sesuai materi
+Classification Decision Tree(2).pdf,29–45,Contoh hitungan dan pembentukan pohon,Latihan manual data nyata
+Classification Decision Tree(2).pdf,"57–59, 61, 64","Hyperparameter, missing values, keterbatasan",Tuning training dan audit overfitting
+[11a] KNN-Exercise Key-LR(2).pdf,2–10,"Target, one-hot, jarak Manhattan/Euclidean",Pembanding konsep supervised
+[11a] KNN-Exercise Key-LR(2).pdf,11–18,Label encoding dan perubahan tetangga,Encoding harus dibenarkan
+Clustering KMeans(2).pdf,"5, 26–28",Pengelompokan tanpa label,Pembeda dari klasifikasi
+Clustering Hierarchical(2).pdf,"3–5, 36–38",Hierarki dan evaluasi clustering,Silhouette bukan metrik target ini
+03 - Data Visualization and EDA - PPT.pdf,"4–6, 11–16, 29–35",Statistik dan grafik; missing/duplikasi; EDA,Gunakan konsep relevan; tidak memaksakan regresi/random split pada deret waktu
+04 - Supervised Learning – Regression (I).pdf,"4–6, 17–20, 29–30",Supervised/unsupervised; holdout dan overfitting,Gunakan konsep relevan; tidak memaksakan regresi/random split pada deret waktu
+05 - Supervised Learning – Regression (II) - PPT.pdf,"4–11, 16–20",Bias variance; validation untuk pemilihan konfigurasi,Gunakan konsep relevan; tidak memaksakan regresi/random split pada deret waktu

@@ -1,0 +1,12 @@
+{
+  "nbformat_validate": "PASS",
+  "sequential_run_all": "PASS_AUDIT_AND_STDBSCAN",
+  "execution_method": "IPython InteractiveShell in-process; all code cells executed in order with persistent namespace",
+  "native_nbclient_kernel": "NOT_AVAILABLE: environment denied TCP and IPC socket binding",
+  "code_cells": 13,
+  "executed_code_cells": 13,
+  "error_outputs": 0,
+  "seconds": 51.15,
+  "model_fit": "NOT_EXECUTED_MISSING_VALID_TARGET",
+  "final_plot_layout_check": "PASS: plotting cell re-executed after bottom-margin adjustment; analysis cells unchanged"
+}

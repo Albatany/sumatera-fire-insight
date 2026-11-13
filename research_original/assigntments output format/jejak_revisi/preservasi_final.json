@@ -1,0 +1,12 @@
+{
+  "source_hashes_checked": 133,
+  "changed_source_files": [],
+  "trace_entries": 185,
+  "missing_relocated_text_blocks": [],
+  "equations_native_xml_identical": 9,
+  "embedded_media_byte_identical": 10,
+  "research_notebook_sha256": "9845736c213ce9b618ff6d24ab626ac9cd559f7adf8b2b1fefde04810da7c4bb",
+  "research_notebook_modified": false,
+  "research_rerun_in_revision": false,
+  "new_research_models_or_metrics": false
+}

@@ -1,0 +1,5 @@
+# Belum diperlukan untuk audit dan belum dipakai melatih model.
+scikit-learn
+joblib
+xgboost
+# shap opsional, bukan persyaratan minimum

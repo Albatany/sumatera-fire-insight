@@ -1,0 +1,5 @@
+step,input_rows,removed_rows,output_rows
+baca semua CSV,630384,0,630384
+karantina nilai tidak valid,630384,0,630384
+cutoff 30 Oktober 2026 UTC,630384,100,630284
+spatial join daratan utama Sumatera; tepat satu polygon,630284,476100,154184

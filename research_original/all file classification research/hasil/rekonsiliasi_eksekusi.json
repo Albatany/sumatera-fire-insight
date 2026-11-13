@@ -1,0 +1,190 @@
+{
+  "status": "PASS",
+  "comparisons": [
+    {
+      "file": "assertions.json",
+      "sha256_equal": true,
+      "note": ""
+    },
+    {
+      "file": "audit_geometri.csv",
+      "sha256_equal": true,
+      "note": ""
+    },
+    {
+      "file": "audit_kelengkapan.csv",
+      "sha256_equal": true,
+      "note": ""
+    },
+    {
+      "file": "audit_ringkas.json",
+      "sha256_equal": true,
+      "note": ""
+    },
+    {
+      "file": "baris_batas_ambigu.csv",
+      "sha256_equal": true,
+      "note": ""
+    },
+    {
+      "file": "baris_di_luar_cutoff.csv",
+      "sha256_equal": true,
+      "note": ""
+    },
+    {
+      "file": "baris_tidak_valid.csv",
+      "sha256_equal": true,
+      "note": ""
+    },
+    {
+      "file": "contoh_5_baris_sebelum.csv",
+      "sha256_equal": true,
+      "note": ""
+    },
+    {
+      "file": "contoh_5_baris_sesudah.csv",
+      "sha256_equal": true,
+      "note": ""
+    },
+    {
+      "file": "contoh_manual_10_baris.csv",
+      "sha256_equal": true,
+      "note": ""
+    },
+    {
+      "file": "data_fitur.csv",
+      "sha256_equal": true,
+      "note": ""
+    },
+    {
+      "file": "data_fitur_tanpa_target_bocor.csv",
+      "sha256_equal": true,
+      "note": ""
+    },
+    {
+      "file": "data_panel_wilayah_harian.csv",
+      "sha256_equal": true,
+      "note": ""
+    },
+    {
+      "file": "data_sesudah_diolah.csv",
+      "sha256_equal": true,
+      "note": ""
+    },
+    {
+      "file": "grafik/01_deteksi_tahunan_versi.png",
+      "sha256_equal": true,
+      "note": ""
+    },
+    {
+      "file": "grafik/02_bulanan_sebanding.png",
+      "sha256_equal": true,
+      "note": ""
+    },
+    {
+      "file": "grafik/03_komposisi_satelit.png",
+      "sha256_equal": true,
+      "note": ""
+    },
+    {
+      "file": "grafik/04_peta_deteksi.png",
+      "sha256_equal": true,
+      "note": ""
+    },
+    {
+      "file": "kandidat_duplikasi.csv",
+      "sha256_equal": true,
+      "note": ""
+    },
+    {
+      "file": "label_definisi.json",
+      "sha256_equal": true,
+      "note": ""
+    },
+    {
+      "file": "log_pembersihan.csv",
+      "sha256_equal": true,
+      "note": ""
+    },
+    {
+      "file": "manifest_sumber.csv",
+      "sha256_equal": false,
+      "note": "Hanya audit_access_utc berbeda karena dua eksekusi nyata."
+    },
+    {
+      "file": "perhitungan_manual.json",
+      "sha256_equal": true,
+      "note": ""
+    },
+    {
+      "file": "status_eksekusi.json",
+      "sha256_equal": true,
+      "note": ""
+    },
+    {
+      "file": "sumatera_daratan_utama.geojson",
+      "sha256_equal": true,
+      "note": ""
+    },
+    {
+      "file": "tabel/jumlah_bulan_versi.csv",
+      "sha256_equal": true,
+      "note": ""
+    },
+    {
+      "file": "tabel/jumlah_tahun_provinsi.csv",
+      "sha256_equal": true,
+      "note": ""
+    },
+    {
+      "file": "tabel/jumlah_tahun_satelit.csv",
+      "sha256_equal": true,
+      "note": ""
+    },
+    {
+      "file": "tabel/jumlah_tahun_siang_malam.csv",
+      "sha256_equal": true,
+      "note": ""
+    },
+    {
+      "file": "tabel/jumlah_tahun_type.csv",
+      "sha256_equal": true,
+      "note": ""
+    },
+    {
+      "file": "tabel/jumlah_tahun_versi.csv",
+      "sha256_equal": true,
+      "note": ""
+    },
+    {
+      "file": "tabel/perbandingan_1Jan_30Okt.csv",
+      "sha256_equal": true,
+      "note": ""
+    },
+    {
+      "file": "tabel/perbandingan_bulanan_1Jan_30Okt.csv",
+      "sha256_equal": true,
+      "note": ""
+    },
+    {
+      "file": "tabel/perbandingan_spasial_1Jan_30Okt.csv",
+      "sha256_equal": true,
+      "note": ""
+    },
+    {
+      "file": "tabel/ringkasan_confidence_frp.csv",
+      "sha256_equal": true,
+      "note": ""
+    },
+    {
+      "file": "tanggal_tanpa_baris_per_file.csv",
+      "sha256_equal": true,
+      "note": ""
+    },
+    {
+      "file": "versi_lingkungan.json",
+      "sha256_equal": true,
+      "note": ""
+    }
+  ]
+}

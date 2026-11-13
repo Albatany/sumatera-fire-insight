@@ -1,0 +1,11 @@
+{
+  "csv_count": 13,
+  "raw_rows": 630384,
+  "exact_key_duplicates": 0,
+  "unchanged_raw": true,
+  "raw_zip_sha256": "8749435dfb96884cb30db501ac35f556fd1104b35e023fcdd6eb375a85e636d4",
+  "retained_detections": 154184,
+  "processed_csv_sha256": "cf505d81d257a80d1a7f7c766fb74afd9a6f780c7fdd4fceb643186d314a7cb5",
+  "unresolved_version": "61.03",
+  "access_utc": "2026-11-08T11:31:03.555294+00:00"
+}

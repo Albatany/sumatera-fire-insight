@@ -1,0 +1,28 @@
+{
+  "algorithm": "ST-DBSCAN two-threshold variant",
+  "parameters": {
+    "spatial_km": 2.0,
+    "temporal_hours": 48.0,
+    "minimum_samples": 5,
+    "strata": "tahun UTC dan version literal"
+  },
+  "noise_label": "NOISE",
+  "limitations": [
+    "Clusters group thermal detections, not confirmed wildfire incidents.",
+    "Density chaining and year/version partitions affect interpretation."
+  ],
+  "reference_summary": {
+    "n": 154184,
+    "clusters": 3678,
+    "noise": 74383,
+    "noise_percent": 48.24300835365538,
+    "core": 73129,
+    "border": 6672,
+    "largest_cluster": 4478,
+    "max_duration_days": 60.139583333333334,
+    "strata": 13,
+    "configurations": 27,
+    "elapsed_seconds": 138.32,
+    "classification_model_fitted": false
+  }
+}

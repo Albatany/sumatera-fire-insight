@@ -1,0 +1,53 @@
+{
+  "name": "Sumatra MODIS research snapshot 2015–2026",
+  "input": "/home/albatany/Downloads/Penambangan Data [Aziz]/sumafire-insight/incoming/research-copy/data_sesudah_diolah.csv",
+  "cutoff_utc": "2026-10-30T23:59:59+00:00",
+  "boundary": "/home/albatany/Downloads/Penambangan Data [Aziz]/sumafire-insight/incoming/research-copy/sumatera_daratan_utama.geojson",
+  "region_property": "WADMPR",
+  "boundary_source": "BIG STIG through the original research package",
+  "allow_unbounded": false,
+  "duplicate_policy": "error",
+  "mapping": {},
+  "source_metadata": {},
+  "version_evidence": {
+    "6.03": {
+      "status": "Documented C6 standard code; export provenance unresolved",
+      "evidence": "Original NASA GIBS code mapping; M-C61 filename conflict and export metadata remain unresolved"
+    },
+    "61.03": {
+      "status": "Unresolved",
+      "evidence": "Literal code unresolved in original audit"
+    },
+    "6.1NRT": {
+      "status": "NRT",
+      "evidence": "Documented literal code in original NASA audit"
+    }
+  },
+  "provisional_years": [
+    2026
+  ],
+  "artifacts": {
+    "clustering": {
+      "file": "/home/albatany/Downloads/Penambangan Data [Aziz]/sumafire-insight/incoming/research-copy/hasil_st_dbscan.csv",
+      "metadata": "/home/albatany/Downloads/Penambangan Data [Aziz]/sumafire-insight/incoming/research-copy/cluster_metadata.json",
+      "rename": {
+        "row_id": "observation_id"
+      }
+    }
+  },
+  "scope": "Largest mainland polygon of eight Sumatra provinces; offshore islands excluded",
+  "downloaded_at": null,
+  "limitations": [
+    "The dashboard input is already processed data; original raw counts are shown separately.",
+    "Observation coverage and first availability are not verified. Classification was not fitted.",
+    "2026 is partial/provisional; missing type in NRT is not filled."
+  ],
+  "expected_rows": 154184,
+  "original_research_audit": {
+    "raw_files": 13,
+    "raw_rows": 630384,
+    "retained_rows": 154184,
+    "evidence": "hasil/audit_paket_final.json",
+    "sha256": "96d32e1fe6a62fb031586ea645925f911581a4aff4ab5f646d33bd0d3280dd07"
+  }
+}

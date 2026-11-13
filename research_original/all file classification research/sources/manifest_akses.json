@@ -1,0 +1,58 @@
+[
+  {
+    "file": "MOD14_User_Guide_V61.pdf",
+    "url": "https://lpdaac.usgs.gov/documents/1005/MOD14_User_Guide_V61.pdf",
+    "access_utc": "2026-10-31T22:09:33.864629+00:00",
+    "status": 200,
+    "content_type": "application/pdf",
+    "bytes": 1459584,
+    "sha256": "2124ac650d19e229009bb8f7b1334d21ea95f81f329621ace7d7284a960e4520"
+  },
+  {
+    "file": "st_dbscan_upstream.py",
+    "url": "https://raw.githubusercontent.com/eren-ck/st_dbscan/master/src/st_dbscan/st_dbscan.py",
+    "access_utc": "2026-10-31T22:09:39.826019+00:00",
+    "status": 200,
+    "content_type": "text/plain; charset=utf-8",
+    "bytes": 9900,
+    "sha256": "128639c9b3b326395ab9fb3eaadcf1042f3039276c5877ad785264d657e424c8"
+  },
+  {
+    "file": "cmr_MOD14A1.json",
+    "url": "https://cmr.earthdata.nasa.gov/search/granules.json?short_name=MOD14A1&version=061&bounding_box=95%2C-6%2C106%2C6&temporal=2026-10-01T00%3A00%3A00Z%2C2026-10-30T23%3A59%3A59Z&page_size=1",
+    "access_utc": "2026-10-31T22:09:46.975235+00:00",
+    "status": 200,
+    "content_type": "application/json;charset=utf-8",
+    "bytes": 8781,
+    "sha256": "b2341f3c21e57e9efc09fd686dd23330ac85f7f2e4f3bb1ee5f1735c53ad5604"
+  },
+  {
+    "file": "cmr_MYD14A1.json",
+    "url": "https://cmr.earthdata.nasa.gov/search/granules.json?short_name=MYD14A1&version=061&bounding_box=95%2C-6%2C106%2C6&temporal=2026-10-01T00%3A00%3A00Z%2C2026-10-30T23%3A59%3A59Z&page_size=1",
+    "access_utc": "2026-10-31T22:09:52.670943+00:00",
+    "status": 200,
+    "content_type": "application/json;charset=utf-8",
+    "bytes": 8782,
+    "sha256": "a116ba843bca2068b3133b54f837bff50cdb963a929fb53bacdc7556c00b246d"
+  },
+  {
+    "file": "LICENSE_st_dbscan.txt",
+    "url": "https://raw.githubusercontent.com/eren-ck/st_dbscan/master/LICENSE.txt",
+    "access_utc": null,
+    "local_verification_utc": "2026-11-01T12:22:43.586835+00:00",
+    "status": "LOCAL_SNAPSHOT_VERIFIED",
+    "bytes": 1078,
+    "sha256": "096bdc5000fac9b0005f042fb2890fd0cf0b1ebc9b310564c83408931c375131",
+    "note": "Exact network access timestamp was not retained for this snapshot; not replaced with filesystem time."
+  },
+  {
+    "file": "crossref_STDBSCAN.json",
+    "url": "https://api.crossref.org/works/10.1016/j.datak.2006.01.013",
+    "access_utc": null,
+    "local_verification_utc": "2026-11-01T12:22:43.586835+00:00",
+    "status": "LOCAL_SNAPSHOT_VERIFIED",
+    "bytes": 10822,
+    "sha256": "9d34fd373fe7f3487f42a1ec95502de7224ba1621491ff52b556516ce9f6b37c",
+    "note": "Exact network access timestamp was not retained for this snapshot; not replaced with filesystem time."
+  }
+]

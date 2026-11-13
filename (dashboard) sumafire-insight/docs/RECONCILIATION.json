@@ -1,0 +1,29 @@
+{
+  "status": "PASS",
+  "snapshot": "20261105T145517-85dacf18",
+  "original_raw_rows": 630384,
+  "original_csv_files": 13,
+  "retained": 154184,
+  "clusters": 3678,
+  "noise": 74383,
+  "matched_jan1_oct30": [
+    [
+      2024,
+      4268
+    ],
+    [
+      2025,
+      4203
+    ],
+    [
+      2026,
+      20252
+    ]
+  ],
+  "aggregate_totals": {
+    "daily": 154184,
+    "monthly": 154184,
+    "annual": 154184
+  },
+  "classification_fitted": false
+}

@@ -1,0 +1,6 @@
+{
+  "sum_daily_matches_detections": true,
+  "zero_eligible_rows": true,
+  "no_fabricated_labels": true,
+  "cutoff_ok": true
+}

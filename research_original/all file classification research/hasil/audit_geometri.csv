@@ -1,0 +1,9 @@
+province_id,province,components_original,method,valid_before,valid_after,area_km2_before,area_km2_after,removed_dimensions,derived_geometry_type
+11,Aceh,403,largest_geodesic_area_component_per_province,True,True,54487.12264351777,54487.12264351777,Z/M; horizontal coordinates retained,Polygon
+12,Sumatera Utara,239,largest_geodesic_area_component_per_province,True,True,67006.13222604559,67006.13222604559,Z/M; horizontal coordinates retained,Polygon
+13,Sumatera Barat,379,largest_geodesic_area_component_per_province,True,True,36117.34243570652,36117.34243570652,Z/M; horizontal coordinates retained,Polygon
+14,Riau,76,largest_geodesic_area_component_per_province,True,True,83339.17606128212,83339.17606128212,Z/M; horizontal coordinates retained,Polygon
+15,Jambi,10,largest_geodesic_area_component_per_province,True,True,49010.36961996902,49010.36961996902,Z/M; horizontal coordinates retained,Polygon
+16,Sumatera Selatan,9,largest_geodesic_area_component_per_province,True,True,86569.85287364639,86569.85287364639,Z/M; horizontal coordinates retained,Polygon
+17,Bengkulu,10,largest_geodesic_area_component_per_province,True,True,19727.019210068607,19727.019210068607,Z/M; horizontal coordinates retained,Polygon
+18,Lampung,457,largest_geodesic_area_component_per_province,True,True,33420.38747345496,33420.38747345496,Z/M; horizontal coordinates retained,Polygon

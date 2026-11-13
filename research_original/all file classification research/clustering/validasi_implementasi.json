@@ -1,0 +1,13 @@
+{
+  "actual_rows": 1000,
+  "dense_vs_sparse_ARI": 1.0,
+  "upstream_reference_ARI": 1.0,
+  "core_indices_identical": true,
+  "symmetric_neighborhood": true,
+  "permuted_order_ARI": 0.9998099796230916,
+  "permuted_order_core_ARI": 1.0,
+  "permuted_order_noise_membership_equal": true,
+  "cluster_count_in_sample": 41,
+  "synthetic_data_used": false,
+  "upstream_sha256": "128639c9b3b326395ab9fb3eaadcf1042f3039276c5877ad785264d657e424c8"
+}

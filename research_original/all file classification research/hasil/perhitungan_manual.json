@@ -1,0 +1,26 @@
+{
+  "purpose": "Latihan CART pada type asli; BUKAN hasil klasifikasi lonjakan atau penentuan target utama",
+  "selection": "10 deteksi pertama daratan utama Sumatera tahun 2015; urut waktu UTC lalu source_row",
+  "n": 10,
+  "class_counts": {
+    "0": 8,
+    "1": 2
+  },
+  "split_attribute": "confidence",
+  "split_threshold": 70.0,
+  "parent_entropy_bits": 0.7219280948873623,
+  "parent_gini": 0.31999999999999984,
+  "left_n": 5,
+  "left_counts": {
+    "0": 3,
+    "1": 2
+  },
+  "right_n": 5,
+  "right_counts": {
+    "0": 5
+  },
+  "weighted_child_entropy": 0.4854752972273343,
+  "information_gain_bits": 0.23645279766002802,
+  "weighted_child_gini": 0.24,
+  "gini_decrease": 0.07999999999999985
+}

@@ -1,0 +1,3108 @@
+[
+  {
+    "id": "R000",
+    "idx": 0,
+    "tag": "p",
+    "style": [
+      "Title"
+    ],
+    "text": "LAPORAN UTS PENAMBANGAN DATA",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R001",
+    "idx": 1,
+    "tag": "p",
+    "style": [
+      "Title"
+    ],
+    "text": "Rancangan Klasifikasi Lonjakan Deteksi Hotspot MODIS dengan Analisis Pendukung Klaster Spasio Temporal di Daratan Utama Sumatera",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R002",
+    "idx": 2,
+    "tag": "p",
+    "style": [],
+    "text": "Periode 2015–2025 dan studi kasus 2026 provisional",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R003",
+    "idx": 3,
+    "tag": "p",
+    "style": [],
+    "text": "",
+    "images": 1,
+    "math": 0
+  },
+  {
+    "id": "R004",
+    "idx": 4,
+    "tag": "p",
+    "style": [],
+    "text": "Muhammad Aziz Syah Dani",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R005",
+    "idx": 5,
+    "tag": "p",
+    "style": [],
+    "text": "NIM F1E325063",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R006",
+    "idx": 6,
+    "tag": "p",
+    "style": [],
+    "text": "Program Studi Informatika | Kelas R-002",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R007",
+    "idx": 7,
+    "tag": "p",
+    "style": [],
+    "text": "Dosen pengampu",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R008",
+    "idx": 8,
+    "tag": "p",
+    "style": [],
+    "text": "Ulfa Khaira S.Komp, M.Kom",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R009",
+    "idx": 9,
+    "tag": "p",
+    "style": [],
+    "text": "Akhiyar Waladi S.Komp",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R010",
+    "idx": 10,
+    "tag": "p",
+    "style": [],
+    "text": "Fakultas Sains dan Teknologi",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R011",
+    "idx": 11,
+    "tag": "p",
+    "style": [],
+    "text": "Universitas Jambi",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R012",
+    "idx": 12,
+    "tag": "p",
+    "style": [],
+    "text": "UTS | Semester dan Tahun Akademik 2026/2027",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R013",
+    "idx": 13,
+    "tag": "p",
+    "style": [],
+    "text": "Revisi 1 November 2026",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R014",
+    "idx": 14,
+    "tag": "p",
+    "style": [
+      "Heading1"
+    ],
+    "text": "ABSTRAK",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R015",
+    "idx": 15,
+    "tag": "p",
+    "style": [],
+    "text": "Penelitian ini menilai kelayakan klasifikasi lonjakan deteksi hotspot MODIS hari berikutnya dan menjalankan clustering sebagai analisis pendukung di daratan utama Sumatera. Audit ulang seluruh 13 CSV untuk 2015–2026 mengonfirmasi 630.384 baris mentah dan kesamaan hash dengan audit sebelumnya. Filter polygon BIG dan cutoff 30 Oktober 2026 menghasilkan 154.184 deteksi. Kalender audit memuat 34.568 wilayah–hari, termasuk 23.809 tanpa rekaman yang belum dapat diartikan sebagai nol dengan pengamatan memadai. Versi 6.03, 61.03 dan 6.1NRT dipertahankan sebagai string; provenance 61.03 belum tuntas. Metadata MOD14A1/MYD14A1 berhasil diperiksa, tetapi dua akses raster menghasilkan HTTP 401 sehingga FireMask dan QA belum diperoleh. Karena itu classification, ambang label dan metrik prediksi belum dihitung. ST-DBSCAN dua ambang dijalankan terpisah menurut tahun dan versi pada jarak 2 km, waktu 48 jam dan minimum lima rekaman. Hasilnya 3.678 klaster dan 74.383 noise (48,24%). Sensitivitas 27 konfigurasi menghasilkan noise 28,72%–94,99%. Klaster terbesar didominasi type 2 dan memperlihatkan efek rantai, sehingga tidak ditafsirkan sebagai satu kejadian karhutla. Hasil menyediakan audit dan pola pengelompokan retrospektif yang dapat direproduksi. Pemodelan supervised tetap membutuhkan cakupan pengamatan, kesebandingan produk dan waktu ketersediaan informasi yang terverifikasi.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R016",
+    "idx": 16,
+    "tag": "p",
+    "style": [],
+    "text": "Kata kunci: classification, MODIS, deteksi hotspot, validasi temporal, audit data.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R017",
+    "idx": 17,
+    "tag": "p",
+    "style": [],
+    "text": "Status dokumen",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R018",
+    "idx": 18,
+    "tag": "p",
+    "style": [],
+    "text": "Audit, EDA dan clustering berisi hasil eksekusi nyata. Target, model dan evaluasi classification masih rancangan bersyarat. Dokumen belum merupakan laporan classifier final.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R019",
+    "idx": 19,
+    "tag": "p",
+    "style": [
+      "Heading1"
+    ],
+    "text": "DAFTAR ISI",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R020",
+    "idx": 20,
+    "tag": "p",
+    "style": [],
+    "text": "ABSTRAK  ·  2",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R021",
+    "idx": 21,
+    "tag": "p",
+    "style": [],
+    "text": "BAB I PENDAHULUAN  ·  5",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R022",
+    "idx": 22,
+    "tag": "p",
+    "style": [],
+    "text": "BAB II LANDASAN TEORI DAN MATERI  ·  6",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R023",
+    "idx": 23,
+    "tag": "p",
+    "style": [],
+    "text": "KAMUS ATRIBUT DAN BATAS MAKNA DATA  ·  7",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R024",
+    "idx": 24,
+    "tag": "p",
+    "style": [],
+    "text": "BAB III RANCANGAN PENELITIAN  ·  8",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R025",
+    "idx": 25,
+    "tag": "p",
+    "style": [],
+    "text": "VALIDASI TEMPORAL DAN PENCEGAHAN LEAKAGE  ·  9",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R026",
+    "idx": 26,
+    "tag": "p",
+    "style": [],
+    "text": "RANCANGAN MODEL DAN EVALUASI  ·  10",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R027",
+    "idx": 27,
+    "tag": "p",
+    "style": [],
+    "text": "BAB IV HASIL AUDIT DAN PEMBAHASAN  ·  11",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R028",
+    "idx": 28,
+    "tag": "p",
+    "style": [],
+    "text": "GEOMETRI DAN PEMERIKSAAN KELENGKAPAN  ·  12",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R029",
+    "idx": 29,
+    "tag": "p",
+    "style": [],
+    "text": "EKSPLORASI DATA HISTORIS  ·  13",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R030",
+    "idx": 30,
+    "tag": "p",
+    "style": [],
+    "text": "STUDI KASUS TAHUN 2026 PROVISIONAL  ·  14",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R031",
+    "idx": 31,
+    "tag": "p",
+    "style": [],
+    "text": "SEBARAN SPASIAL DAN STATUS EVALUASI  ·  15",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R032",
+    "idx": 32,
+    "tag": "p",
+    "style": [],
+    "text": "PERHITUNGAN MANUAL DARI DATA NYATA  ·  16",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R033",
+    "idx": 33,
+    "tag": "p",
+    "style": [],
+    "text": "MATERI TAMBAHAN DAN POSISI CLUSTERING  ·  17",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R034",
+    "idx": 34,
+    "tag": "p",
+    "style": [],
+    "text": "AUDIT ULANG DAN GERBANG CLASSIFICATION  ·  18",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R035",
+    "idx": 35,
+    "tag": "p",
+    "style": [],
+    "text": "FIREMASK DAN QA MOD14A1 MYD14A1  ·  19",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R036",
+    "idx": 36,
+    "tag": "p",
+    "style": [],
+    "text": "METODE ST DBSCAN DUA AMBANG  ·  20",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R037",
+    "idx": 37,
+    "tag": "p",
+    "style": [],
+    "text": "HASIL UTAMA CLUSTERING  ·  21",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R038",
+    "idx": 38,
+    "tag": "p",
+    "style": [],
+    "text": "SENSITIVITAS PARAMETER CLUSTERING  ·  22",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R039",
+    "idx": 39,
+    "tag": "p",
+    "style": [],
+    "text": "VALIDASI IMPLEMENTASI DAN KUALITAS  ·  23",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R040",
+    "idx": 40,
+    "tag": "p",
+    "style": [],
+    "text": "POLA GEOGRAFIS DAN BATAS KLAIM  ·  24",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R041",
+    "idx": 41,
+    "tag": "p",
+    "style": [],
+    "text": "TYPE DAN RANTAI KETETANGGAAN  ·  25",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R042",
+    "idx": 42,
+    "tag": "p",
+    "style": [],
+    "text": "KLASTER BESAR DAN STUDI 2026  ·  26",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R043",
+    "idx": 43,
+    "tag": "p",
+    "style": [],
+    "text": "RENCANA SPESIFIK PERBAIKAN TARGET  ·  27",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R044",
+    "idx": 44,
+    "tag": "p",
+    "style": [],
+    "text": "HITUNG MANUAL TETANGGA NYATA  ·  28",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R045",
+    "idx": 45,
+    "tag": "p",
+    "style": [],
+    "text": "BAB V KESIMPULAN DAN SARAN  ·  29",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R046",
+    "idx": 46,
+    "tag": "p",
+    "style": [],
+    "text": "DAFTAR PUSTAKA  ·  30",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R047",
+    "idx": 47,
+    "tag": "p",
+    "style": [],
+    "text": "DAFTAR PUSTAKA LANJUTAN 2  ·  31",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R048",
+    "idx": 48,
+    "tag": "p",
+    "style": [],
+    "text": "DAFTAR PUSTAKA LANJUTAN 3  ·  32",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R049",
+    "idx": 49,
+    "tag": "p",
+    "style": [],
+    "text": "CATATAN VERIFIKASI SUMBER  ·  33",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R050",
+    "idx": 50,
+    "tag": "p",
+    "style": [],
+    "text": "LAMPIRAN AUDIT AKHIR  ·  34",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R051",
+    "idx": 51,
+    "tag": "p",
+    "style": [],
+    "text": "LAMPIRAN KEBUTUHAN DATA DAN PAKET  ·  35",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R052",
+    "idx": 52,
+    "tag": "p",
+    "style": [
+      "Heading1"
+    ],
+    "text": "DAFTAR GAMBAR DAN TABEL",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R053",
+    "idx": 53,
+    "tag": "p",
+    "style": [
+      "Heading2"
+    ],
+    "text": "GAMBAR",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R054",
+    "idx": 54,
+    "tag": "p",
+    "style": [],
+    "text": "Gambar 1 Deteksi tahunan menurut version literal  ·  13",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R055",
+    "idx": 55,
+    "tag": "p",
+    "style": [],
+    "text": "Gambar 2 Komposisi deteksi menurut satelit  ·  13",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R056",
+    "idx": 56,
+    "tag": "p",
+    "style": [],
+    "text": "Gambar 3 Jumlah deteksi bulanan pada jendela yang sama  ·  14",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R057",
+    "idx": 57,
+    "tag": "p",
+    "style": [],
+    "text": "Gambar 4 Sebaran deteksi pada jendela tanggal yang sebanding  ·  15",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R058",
+    "idx": 58,
+    "tag": "p",
+    "style": [],
+    "text": "Gambar 5 Sensitivitas noise pada 27 konfigurasi  ·  22",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R059",
+    "idx": 59,
+    "tag": "p",
+    "style": [],
+    "text": "Gambar 6 Peta core border dan noise  ·  24",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R060",
+    "idx": 60,
+    "tag": "p",
+    "style": [],
+    "text": "Gambar 7 Komposisi type pada klaster terbesar  ·  25",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R061",
+    "idx": 61,
+    "tag": "p",
+    "style": [],
+    "text": "Gambar 8 Durasi klaster dan efek rantai  ·  25",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R062",
+    "idx": 62,
+    "tag": "p",
+    "style": [],
+    "text": "Gambar 9 Ruang dan waktu ST00901  ·  26",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R063",
+    "idx": 63,
+    "tag": "p",
+    "style": [
+      "Heading2"
+    ],
+    "text": "TABEL",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R064",
+    "idx": 64,
+    "tag": "p",
+    "style": [],
+    "text": "Tabel 1 Peta kesesuaian materi dan penelitian  ·  6",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R065",
+    "idx": 65,
+    "tag": "p",
+    "style": [],
+    "text": "Tabel 2 Kamus atribut dan satuan  ·  7",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R066",
+    "idx": 66,
+    "tag": "p",
+    "style": [],
+    "text": "Tabel 3 Garis waktu eksperimen yang direncanakan  ·  9",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R067",
+    "idx": 67,
+    "tag": "p",
+    "style": [],
+    "text": "Tabel 4 Model yang direncanakan dan statusnya  ·  10",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R068",
+    "idx": 68,
+    "tag": "p",
+    "style": [],
+    "text": "Tabel 5 Inventaris CSV asli sebelum filter wilayah dan cutoff  ·  11",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R069",
+    "idx": 69,
+    "tag": "p",
+    "style": [],
+    "text": "Tabel 6 Hasil pemeriksaan geometri terpilih  ·  12",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R070",
+    "idx": 70,
+    "tag": "p",
+    "style": [],
+    "text": "Tabel 7 Perbandingan 1 Januari sampai 30 Oktober  ·  14",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R071",
+    "idx": 71,
+    "tag": "p",
+    "style": [],
+    "text": "Tabel 8 Status evaluasi model  ·  15",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R072",
+    "idx": 72,
+    "tag": "p",
+    "style": [],
+    "text": "Tabel 9 Sepuluh baris untuk latihan impurity  ·  16",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R073",
+    "idx": 73,
+    "tag": "p",
+    "style": [],
+    "text": "Tabel 10 Pemetaan tiga materi e-learning tambahan  ·  17",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R074",
+    "idx": 74,
+    "tag": "p",
+    "style": [],
+    "text": "Tabel 11 Gerbang classification berdasarkan tanggal target  ·  18",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R075",
+    "idx": 75,
+    "tag": "p",
+    "style": [],
+    "text": "Tabel 12 Interpretasi kategori pengamatan  ·  19",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R076",
+    "idx": 76,
+    "tag": "p",
+    "style": [],
+    "text": "Tabel 13 Hasil utama menurut strata  ·  21",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R077",
+    "idx": 77,
+    "tag": "p",
+    "style": [],
+    "text": "Tabel 14 Konfigurasi sekitar parameter utama  ·  22",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R078",
+    "idx": 78,
+    "tag": "p",
+    "style": [],
+    "text": "Tabel 15 Sensitivitas filter kualitas satelit dan type  ·  23",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R079",
+    "idx": 79,
+    "tag": "p",
+    "style": [],
+    "text": "Tabel 16 Tetangga nyata pada sampel validasi  ·  28",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R080",
+    "idx": 80,
+    "tag": "p",
+    "style": [],
+    "text": "Tabel 17 Pemeriksaan wajib dan rekomendasi  ·  34",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R081",
+    "idx": 81,
+    "tag": "p",
+    "style": [],
+    "text": "Tabel 18 Kebutuhan tambahan sebelum klasifikasi  ·  35",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R082",
+    "idx": 82,
+    "tag": "p",
+    "style": [],
+    "text": "",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R083",
+    "idx": 83,
+    "tag": "p",
+    "style": [
+      "Heading1"
+    ],
+    "text": "BAB I PENDAHULUAN",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R084",
+    "idx": 84,
+    "tag": "p",
+    "style": [
+      "Heading2"
+    ],
+    "text": "1.1 Latar belakang",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R085",
+    "idx": 85,
+    "tag": "p",
+    "style": [],
+    "text": "Deteksi anomali termal dari satelit dapat digunakan untuk mempelajari pola perubahan sinyal panas dari waktu ke waktu. Untuk tugas Penambangan Data, pertanyaan yang diajukan adalah apakah jumlah deteksi pada suatu wilayah akan melampaui ambang historis pada hari berikutnya. Pertanyaan ini membutuhkan pasangan data masukan dan label yang dapat dipertanggungjawabkan.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R086",
+    "idx": 86,
+    "tag": "p",
+    "style": [],
+    "text": "Materi Decision Tree menjelaskan pembelajaran dari pasangan input dan output serta penggunaan data uji yang terpisah (Waladi, n.d., hlm. 6 dan 13). Dalam data berurutan waktu, pemisahan juga harus mempertahankan arah waktu. Tantangan awal bukan memilih algoritma paling kompleks, melainkan memastikan bahwa target hari berikutnya memang dapat diamati.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R087",
+    "idx": 87,
+    "tag": "p",
+    "style": [
+      "Heading2"
+    ],
+    "text": "1.2 Rumusan masalah dan tujuan",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R088",
+    "idx": 88,
+    "tag": "p",
+    "style": [],
+    "text": "1. Apakah berkas unggahan konsisten dalam cakupan waktu, sensor, produk, dan wilayah?",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R089",
+    "idx": 89,
+    "tag": "p",
+    "style": [],
+    "text": "2. Apakah hari tanpa deteksi memiliki bukti pemantauan yang cukup untuk membentuk kelas tidak lonjakan?",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R090",
+    "idx": 90,
+    "tag": "p",
+    "style": [],
+    "text": "3. Jika syarat tersebut terpenuhi, apakah model klasifikasi melampaui baseline pada uji temporal 2025?",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R091",
+    "idx": 91,
+    "tag": "p",
+    "style": [],
+    "text": "Tujuan tahap ini adalah menghasilkan audit, filter geografi, eksplorasi, dan rancangan eksperimen yang dapat diperiksa ulang. Tujuan prediksi belum dinyatakan tercapai.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R092",
+    "idx": 92,
+    "tag": "p",
+    "style": [
+      "Heading2"
+    ],
+    "text": "1.3 Ruang lingkup",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R093",
+    "idx": 93,
+    "tag": "p",
+    "style": [],
+    "text": "Wilayah adalah daratan utama Sumatera, dibagi menjadi bagian provinsi. Periode utama adalah 2015 sampai 2025; 2026 merupakan studi deskriptif parsial hingga cutoff. Istilah faktor meteorologi dan nama XGBoost dihapus dari judul hasil tahap ini karena tidak ada model yang memakainya. Tidak dilakukan prediksi luas terbakar, lokasi api yang presisi, atau peringatan dini operasional.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R094",
+    "idx": 94,
+    "tag": "p",
+    "style": [
+      "Heading1"
+    ],
+    "text": "BAB II LANDASAN TEORI DAN MATERI",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R095",
+    "idx": 95,
+    "tag": "p",
+    "style": [],
+    "text": "Empat PDF awal ditinjau; tiga materi tambahan dipetakan pada bagian lanjutan, termasuk OCR materi Decision Tree. Nomor pada Tabel 1 merujuk halaman PDF, bukan nomor slide.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R096",
+    "idx": 96,
+    "tag": "p",
+    "style": [
+      "Caption"
+    ],
+    "text": "Tabel 1 Peta kesesuaian materi dan penelitian",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R097",
+    "idx": 97,
+    "tag": "tbl",
+    "style": [],
+    "text": "Berkas singkat Halaman Materi yang ditemukan Implikasi Decision Tree 6, 13, 16 Supervised learning dan data uji terpisah Pasangan fitur dan label yang sah Decision Tree 19–27 CART, binary split, Gini dan entropy Baseline sesuai materi Decision Tree 29–45 Contoh hitungan dan pembentukan pohon Latihan manual data nyata Decision Tree 57–59, 61, 64 Hyperparameter, missing values, keterbatasan Tuning training dan audit overfitting KNN Exercise 2–10 Target, one-hot, jarak Manhattan/Euclidean Pembanding konsep supervised KNN Exercise 11–18 Label encoding dan perubahan tetangga Encoding harus dibenarkan KMeans 5, 26–28 Pengelompokan tanpa label Pembeda dari klasifikasi Hierarchical 3–5, 36–38 Hierarki dan evaluasi clustering Silhouette bukan metrik target ini",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R098",
+    "idx": 98,
+    "tag": "p",
+    "style": [],
+    "text": "",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R099",
+    "idx": 99,
+    "tag": "p",
+    "style": [],
+    "text": "Nama lengkap dan hash setiap PDF tersedia dalam manifest_materi.csv.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R100",
+    "idx": 100,
+    "tag": "p",
+    "style": [],
+    "text": "Rubrik UTS resmi belum ditemukan pada tujuh materi yang tersedia. KMeans halaman 56 dan Hierarchical halaman 20 memuat latihan. Identitas dan format laporan mengikuti instruksi mahasiswa.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R101",
+    "idx": 101,
+    "tag": "p",
+    "style": [],
+    "text": "[METODE TAMBAHAN DI LUAR MATERI]",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R102",
+    "idx": 102,
+    "tag": "p",
+    "style": [],
+    "text": "Random Forest, XGBoost, kuantil target, validasi temporal, PR-AUC, kalibrasi, dan permutation importance merupakan tambahan. Random Forest hanya disebut dalam kredit referensi slide.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R103",
+    "idx": 103,
+    "tag": "p",
+    "style": [
+      "Heading1"
+    ],
+    "text": "KAMUS ATRIBUT DAN BATAS MAKNA DATA",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R104",
+    "idx": 104,
+    "tag": "p",
+    "style": [
+      "Caption"
+    ],
+    "text": "Tabel 2 Kamus atribut dan satuan",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R105",
+    "idx": 105,
+    "tag": "tbl",
+    "style": [],
+    "text": "Atribut Satuan atau bentuk Makna dan penggunaan latitude, longitude Derajat geografis WGS84 Pusat piksel deteksi; bukan lokasi api yang presisi brightness Kelvin Suhu kecerahan kanal 21/22; bukan suhu udara scan, track km Ukuran piksel pada arah pindai dan lintasan acq_date Tanggal Tanggal akuisisi; analisis memakai UTC acq_time HHMM UTC String empat digit, termasuk nol di depan satellite Terra atau Aqua Platform; lintasan dan jumlah deteksi dapat berbeda instrument MODIS Seluruh baris unggahan menyebut MODIS confidence 0 sampai 100 Indikator keyakinan deteksi; bukan label lonjakan version String Kode dipertahankan apa adanya; lihat audit versi bright_t31 Kelvin Suhu kecerahan kanal 31 frp MW Daya radiasi terintegrasi piksel; bukan hektare daynight D atau N Siang atau malam pada akuisisi type 0, 1, 2, 3 Dugaan vegetasi, gunung api, sumber statis lain, lepas pantai row_id File dan nomor baris ID audit tambahan; bukan fitur model",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R106",
+    "idx": 106,
+    "tag": "p",
+    "style": [],
+    "text": "",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R107",
+    "idx": 107,
+    "tag": "p",
+    "style": [],
+    "text": "Definisi fisik mengacu pada NASA MODAPS (n.d.) dan NASA FIRMS (n.d.). type merupakan inferensi sumber panas. Nilai 0 tidak sama dengan verifikasi lapangan bahwa terjadi karhutla. Data NRT tidak memiliki kolom type; missing struktural ini dipertahankan, bukan diisi nol.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R108",
+    "idx": 108,
+    "tag": "p",
+    "style": [],
+    "text": "Satu lokasi dapat terdeteksi pada beberapa lintasan. Satu baris tidak berarti satu kejadian kebakaran yang independen.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R109",
+    "idx": 109,
+    "tag": "p",
+    "style": [
+      "Heading1"
+    ],
+    "text": "BAB III RANCANGAN PENELITIAN",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R110",
+    "idx": 110,
+    "tag": "p",
+    "style": [
+      "Heading2"
+    ],
+    "text": "3.1 Unit analisis dan informasi waktu",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R111",
+    "idx": 111,
+    "tag": "p",
+    "style": [],
+    "text": "Unit kandidat adalah bagian daratan utama provinsi per hari UTC. Delapan unit menggunakan batas resmi, mengurangi fragmentasi dibanding grid kecil. Origin direncanakan pada akhir hari t untuk target seluruh hari t+1.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R112",
+    "idx": 112,
+    "tag": "p",
+    "style": [],
+    "text": "Waktu akuisisi berbeda dari waktu informasi tersedia. acq_datetime_utc hanya menunjukkan akuisisi. Arsip science-quality dapat terbit belakangan. Menganggapnya tersedia pada hari t dapat menimbulkan leakage, walaupun perhitungan lag benar.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R113",
+    "idx": 113,
+    "tag": "p",
+    "style": [
+      "Heading2"
+    ],
+    "text": "3.2 Definisi label yang belum difit",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R114",
+    "idx": 114,
+    "tag": "p",
+    "style": [],
+    "text": "[METODE TAMBAHAN DI LUAR MATERI]",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R115",
+    "idx": 115,
+    "tag": "p",
+    "style": [],
+    "text": "",
+    "images": 0,
+    "math": 1
+  },
+  {
+    "id": "R116",
+    "idx": 116,
+    "tag": "p",
+    "style": [],
+    "text": "",
+    "images": 0,
+    "math": 1
+  },
+  {
+    "id": "R117",
+    "idx": 117,
+    "tag": "p",
+    "style": [],
+    "text": "C bernilai 1 hanya bila cakupan dan kelengkapan ekspor sah; jika tidak, y tetap NA. Kuantil utama yang direncanakan adalah 0,90 dengan metode higher, per wilayah. Sensitivitas memakai 0,80 dan 0,95; seluruh ambang dihitung dari training fold saja. Kelas asli tidak diseimbangkan menjadi 50:50. Belum ada nilai ambang atau prevalensi kelas yang dihitung karena status pengamatan belum cukup.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R118",
+    "idx": 118,
+    "tag": "p",
+    "style": [],
+    "text": "Definisi kuantil mengenali jumlah deteksi tinggi, bukan selalu kenaikan tajam dari hari sebelumnya. Jika mempertahankan arti kenaikan, syarat selisih terhadap baseline historis harus ditetapkan terlebih dahulu. Label tidak boleh diganti hanya karena memberikan skor lebih besar.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R119",
+    "idx": 119,
+    "tag": "p",
+    "style": [
+      "Heading2"
+    ],
+    "text": "3.3 Alternatif yang lebih layak",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R120",
+    "idx": 120,
+    "tag": "p",
+    "style": [],
+    "text": "Lengkapi QA dan provenance untuk mempertahankan target harian. Agregasi mingguan tetap memerlukan bukti cakupan. Klasifikasi type menjawab pertanyaan lain. Membatasi evaluasi hanya pada hari target dengan deteksi berisiko bias seleksi karena deteksi esok belum diketahui saat prediksi.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R121",
+    "idx": 121,
+    "tag": "p",
+    "style": [
+      "Heading1"
+    ],
+    "text": "VALIDASI TEMPORAL DAN PENCEGAHAN LEAKAGE",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R122",
+    "idx": 122,
+    "tag": "p",
+    "style": [
+      "Caption"
+    ],
+    "text": "Tabel 3 Garis waktu eksperimen yang direncanakan",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R123",
+    "idx": 123,
+    "tag": "tbl",
+    "style": [],
+    "text": "Tanggal target Peran Aturan 2015–2023 Training Fit model dan seluruh transformasi yang belajar dari data 2024 Validation Pemilihan konfigurasi dan ambang probabilitas 2025 Final test Satu evaluasi setelah konfigurasi dibekukan 2026 hingga cutoff Studi kasus Tidak untuk tuning; kini deskriptif saja",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R124",
+    "idx": 124,
+    "tag": "p",
+    "style": [],
+    "text": "",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R125",
+    "idx": 125,
+    "tag": "p",
+    "style": [],
+    "text": "Baris origin 31 Desember yang memiliki label di tahun berikutnya dikeluarkan pada batas subset. Pembagian diperiksa berdasarkan tanggal target, bukan urutan baris. Riwayat sebelum batas boleh digunakan untuk fitur periode selanjutnya selama informasinya telah tersedia. Fitur 30 hari memerlukan masa pemanasan; tanpa data 2014, awal 2015 belum memiliki riwayat lengkap.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R126",
+    "idx": 126,
+    "tag": "p",
+    "style": [],
+    "text": "Untuk expanding-window internal, tahun-tahun awal menjadi training dan tahun historis sesudahnya menjadi validation fold, seluruhnya di dalam 2015–2023. Semua wilayah pada tanggal yang sama ditempatkan di subset yang sama. Ambang label, imputasi, encoding, seleksi fitur, dan bobot kelas difit ulang dari training setiap fold.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R127",
+    "idx": 127,
+    "tag": "p",
+    "style": [
+      "Heading2"
+    ],
+    "text": "Fitur historis yang disiapkan",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R128",
+    "idx": 128,
+    "tag": "p",
+    "style": [],
+    "text": "Kalender audit memuat hitungan rekaman trailing 1, 3, 7, 14, dan 30 hari sampai t, perubahan satu hari, ringkasan confidence dan FRP, proporsi Aqua dan malam, serta bulan origin. Tidak ada atribut deteksi t+1 sebagai masukan. Rolling membutuhkan semua tanggal yang dibutuhkan; NA tidak diubah menjadi nol.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R129",
+    "idx": 129,
+    "tag": "p",
+    "style": [],
+    "text": "Fitur ini masih retrospektif dan seluruh baris ditandai tidak layak untuk supervised learning. Metadata available_at diperlukan sebelum fitur dapat dipakai untuk prediksi yang benar-benar tersedia tepat waktu. Pipeline mencegah kebocoran fit preprocessing, tetapi tidak dapat memperbaiki target yang tidak teramati (scikit-learn developers, n.d.-b).",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R130",
+    "idx": 130,
+    "tag": "p",
+    "style": [
+      "Heading1"
+    ],
+    "text": "RANCANGAN MODEL DAN EVALUASI",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R131",
+    "idx": 131,
+    "tag": "p",
+    "style": [
+      "Caption"
+    ],
+    "text": "Tabel 4 Model yang direncanakan dan statusnya",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R132",
+    "idx": 132,
+    "tag": "tbl",
+    "style": [],
+    "text": "Model Peran Status sekarang DummyClassifier Kelas terbanyak Belum dilatih Baseline temporal Status lonjakan pada 7 hari sebelumnya Belum dihitung Decision Tree CART Baseline utama sesuai materi Belum dilatih Random Forest Metode tambahan Belum dilatih XGBoost Metode tambahan bila paket tersedia Belum dipasang atau dilatih HistGradientBoosting Classifier Alternatif bernama jelas bila XGBoost tidak tersedia Belum dilatih",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R133",
+    "idx": 133,
+    "tag": "p",
+    "style": [],
+    "text": "",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R134",
+    "idx": 134,
+    "tag": "p",
+    "style": [],
+    "text": "[METODE TAMBAHAN DI LUAR MATERI]",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R135",
+    "idx": 135,
+    "tag": "p",
+    "style": [],
+    "text": "Tuning dibatasi pada kandidat yang ditulis sebelum evaluasi. CART memakai Gini dengan kandidat kedalaman 3 dan 5, serta minimum 10 atau 30 sampel per daun. Seed adalah 42. Random Forest dan boosting tidak diutamakan hanya karena lebih kompleks. Bobot kelas dihitung dari training, dan hasil dibandingkan terhadap kedua baseline pada subset identik.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R136",
+    "idx": 136,
+    "tag": "p",
+    "style": [],
+    "text": "Metrik wajib adalah confusion matrix, precision dan recall kelas lonjakan, F1 tiap kelas, macro F1, balanced accuracy, average precision bersama prevalensi positif, serta ROC-AUC bila kedua kelas ada. AP dinyatakan sebagai ringkasan kurva precision–recall; tidak disamakan diam-diam dengan integrasi trapezoid. Kalibrasi memerlukan Brier score dan reliability plot jika probabilitas dilaporkan.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R137",
+    "idx": 137,
+    "tag": "p",
+    "style": [],
+    "text": "Model dan ambang probabilitas dipilih pada 2024, lalu dibekukan bersama fitur dan preprocessing sebelum satu evaluasi 2025. Tahun 2026 tidak memengaruhi pilihan. Analisis kesalahan dilakukan menurut wilayah dan bulan; importance bukan bukti kausal.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R138",
+    "idx": 138,
+    "tag": "p",
+    "style": [],
+    "text": "Angka evaluasi: [ISI DARI OUTPUT NYATA]. Pemodelan belum dijalankan.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R139",
+    "idx": 139,
+    "tag": "p",
+    "style": [
+      "Heading1"
+    ],
+    "text": "BAB IV HASIL AUDIT DAN PEMBAHASAN",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R140",
+    "idx": 140,
+    "tag": "p",
+    "style": [],
+    "text": "Seluruh CSV dalam ZIP dibaca. Ditemukan 13 file untuk 12 tahun, karena 2026 terbagi menjadi archive Januari–Agustus dan NRT September–Oktober. Tabel 5 menampilkan rentang tanggal rekaman, bukan jaminan kelengkapan pemantauan.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R141",
+    "idx": 141,
+    "tag": "p",
+    "style": [
+      "Caption"
+    ],
+    "text": "Tabel 5 Inventaris CSV asli sebelum filter wilayah dan cutoff",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R142",
+    "idx": 142,
+    "tag": "tbl",
+    "style": [],
+    "text": "ID berkas Baris Tanggal awal Tanggal akhir version A 834980 179.921 2015-01-01 2015-12-31 6.03 A 834981 24.866 2016-01-01 2016-12-31 6.03 A 834982 18.454 2017-01-01 2017-12-31 6.03 A 834984 39.276 2018-01-01 2018-12-31 6.03 A 834985 91.936 2019-01-01 2019-12-31 6.03 A 834986 16.980 2020-01-01 2020-12-31 6.03 A 834987 14.479 2021-01-31 2021-12-31 6.03 A 834988 11.745 2022-01-03 2022-12-31 6.03 A 834989 53.128 2023-01-01 2023-12-31 61.03 A 834990 23.542 2024-01-01 2024-12-30 61.03 A 834991 17.847 2025-01-01 2025-12-31 61.03 A 834992 46.513 2026-01-01 2026-08-31 61.03 N 834992 91.697 2026-09-01 2026-10-31 6.1NRT",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R143",
+    "idx": 143,
+    "tag": "p",
+    "style": [],
+    "text": "",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R144",
+    "idx": 144,
+    "tag": "p",
+    "style": [],
+    "text": "A = fire_archive_M-C61_; N = fire_nrt_M-C61_; akhiran semua berkas .csv. Nama lengkap dan SHA-256 tersedia dalam manifest_sumber.csv. Total seluruh file adalah 630.384 baris.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R145",
+    "idx": 145,
+    "tag": "p",
+    "style": [],
+    "text": "Kode 6.03 muncul pada 397.657 baris, 61.03 pada 141.030 baris, dan 6.1NRT pada 91.697 baris. NASA GIBS memetakan 6.03 sebagai Collection 6 Standard processing. Kode 61.03 belum ditemukan pemetaan resminya pada dokumentasi yang diverifikasi. Label archive dan adanya type mendukung indikasi produk arsip, tetapi tidak menyelesaikan verifikasi kode atau asal ekspor.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R146",
+    "idx": 146,
+    "tag": "p",
+    "style": [
+      "Heading1"
+    ],
+    "text": "GEOMETRI DAN PEMERIKSAAN KELENGKAPAN",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R147",
+    "idx": 147,
+    "tag": "p",
+    "style": [],
+    "text": "Polygon BIG memakai EPSG:4326. Respons mentah disimpan; dimensi Z/M null dilepas tanpa mengubah longitude/latitude. Komponen terluas secara geodesik tiap provinsi dipilih sebagai daratan utama. Semua komponen sudah valid; make_valid tidak mengubah luas.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R148",
+    "idx": 148,
+    "tag": "p",
+    "style": [
+      "Caption"
+    ],
+    "text": "Tabel 6 Hasil pemeriksaan geometri terpilih",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R149",
+    "idx": 149,
+    "tag": "tbl",
+    "style": [],
+    "text": "Provinsi Komponen awal Valid terpilih Aceh 403 Ya Sumatera Utara 239 Ya Sumatera Barat 379 Ya Riau 76 Ya Jambi 10 Ya Sumatera Selatan 9 Ya Bengkulu 10 Ya Lampung 457 Ya",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R150",
+    "idx": 150,
+    "tag": "p",
+    "style": [],
+    "text": "",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R151",
+    "idx": 151,
+    "tag": "p",
+    "style": [],
+    "text": "Terdapat 630.284 baris setelah cutoff. Spatial join menyisakan 154.184 deteksi. Sebanyak 476.100 baris berada di luar mask daratan utama; tidak ada titik yang cocok dengan lebih dari satu polygon. Pulau kecil terpisah tidak termasuk lingkup ini. Batas snapshot yang sama dipakai untuk seluruh tahun.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R152",
+    "idx": 152,
+    "tag": "p",
+    "style": [],
+    "text": "Tidak ditemukan duplikasi kunci koordinat, waktu UTC, satelit dan instrument, maupun nilai tanggal, koordinat, confidence atau FRP yang melanggar rentang pemeriksaan. Ini tidak membuktikan cakupan satelit lengkap.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R153",
+    "idx": 153,
+    "tag": "p",
+    "style": [],
+    "text": "Berkas 2021 mulai 31 Januari, 2022 mulai 3 Januari, dan 2024 berakhir 30 Desember. Tanpa parameter permintaan unduh, penyebab tanggal kosong tidak dapat dipastikan. Missing type pada 91.697 baris NRT adalah perbedaan skema. Tidak ada filter confidence atau type yang dibebankan sepihak pada salah satu periode.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R154",
+    "idx": 154,
+    "tag": "p",
+    "style": [
+      "Heading1"
+    ],
+    "text": "EKSPLORASI DATA HISTORIS",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R155",
+    "idx": 155,
+    "tag": "p",
+    "style": [],
+    "text": "Gambar 1 menggambarkan jumlah rekaman yang lolos mask. Perbedaan versi, kelengkapan, dan sensor harus ditinjau sebelum menafsirkan perubahan sebagai tren fenomena fisik. Gambar 2 menunjukkan bahwa komposisi deteksi kedua satelit juga berubah.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R156",
+    "idx": 156,
+    "tag": "p",
+    "style": [
+      "Caption"
+    ],
+    "text": "Gambar 1 Deteksi tahunan menurut version literal",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R157",
+    "idx": 157,
+    "tag": "p",
+    "style": [],
+    "text": "",
+    "images": 1,
+    "math": 0
+  },
+  {
+    "id": "R158",
+    "idx": 158,
+    "tag": "p",
+    "style": [
+      "Caption"
+    ],
+    "text": "Gambar 2 Komposisi deteksi menurut satelit",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R159",
+    "idx": 159,
+    "tag": "p",
+    "style": [],
+    "text": "",
+    "images": 1,
+    "math": 0
+  },
+  {
+    "id": "R160",
+    "idx": 160,
+    "tag": "p",
+    "style": [],
+    "text": "Tabel digital merinci provinsi, bulan, satelit, siang/malam, confidence, FRP, type dan version. Statistik tersebut bersifat deskriptif dan tidak digunakan untuk memilih model memakai 2025 atau 2026.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R161",
+    "idx": 161,
+    "tag": "p",
+    "style": [
+      "Heading1"
+    ],
+    "text": "STUDI KASUS TAHUN 2026 PROVISIONAL",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R162",
+    "idx": 162,
+    "tag": "p",
+    "style": [],
+    "text": "Studi Kasus Penerapan Model pada Data Hotspot Tahun 2026 (Provisional)",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R163",
+    "idx": 163,
+    "tag": "p",
+    "style": [],
+    "text": "Belum ada penerapan model pada bab ini. Yang dapat dilaporkan adalah rekaman deteksi sampai cutoff konservatif. Deteksi Sumatera terakhir yang ada berwaktu 30 Oktober 2026 pukul 01.58 UTC; ini tidak membuktikan cakupan sepanjang 30 Oktober telah lengkap.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R164",
+    "idx": 164,
+    "tag": "p",
+    "style": [
+      "Caption"
+    ],
+    "text": "Tabel 7 Perbandingan 1 Januari sampai 30 Oktober",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R165",
+    "idx": 165,
+    "tag": "tbl",
+    "style": [],
+    "text": "Tahun Deteksi Hari ada rekaman NRT FRP median MW 2024 4.268 236 0 12,10 2025 4.203 207 0 11,90 2026 20.252 255 14.281 15,21",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R166",
+    "idx": 166,
+    "tag": "p",
+    "style": [],
+    "text": "",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R167",
+    "idx": 167,
+    "tag": "p",
+    "style": [
+      "Caption"
+    ],
+    "text": "Gambar 3 Jumlah deteksi bulanan pada jendela yang sama",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R168",
+    "idx": 168,
+    "tag": "p",
+    "style": [],
+    "text": "",
+    "images": 1,
+    "math": 0
+  },
+  {
+    "id": "R169",
+    "idx": 169,
+    "tag": "p",
+    "style": [],
+    "text": "Rekaman 2026 berjumlah 726 pada Juli, 3.675 pada Agustus, 7.432 pada September dan 6.849 pada Oktober sampai tanggal 30. Peningkatan September bertepatan dengan peralihan produk ke NRT; penyebab fisiknya belum dapat disimpulkan.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R170",
+    "idx": 170,
+    "tag": "p",
+    "style": [],
+    "text": "Dari 20.252 deteksi 2026 dalam mask, 14.281 merupakan 6.1NRT dan tidak mempunyai type. Rata-rata confidence adalah 71,12. Confidence bukan probabilitas lonjakan. Validasi ulang menunggu standard lengkap.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R171",
+    "idx": 171,
+    "tag": "p",
+    "style": [
+      "Heading1"
+    ],
+    "text": "SEBARAN SPASIAL DAN STATUS EVALUASI",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R172",
+    "idx": 172,
+    "tag": "p",
+    "style": [
+      "Caption"
+    ],
+    "text": "Gambar 4 Sebaran deteksi pada jendela tanggal yang sebanding",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R173",
+    "idx": 173,
+    "tag": "p",
+    "style": [],
+    "text": "",
+    "images": 1,
+    "math": 0
+  },
+  {
+    "id": "R174",
+    "idx": 174,
+    "tag": "p",
+    "style": [],
+    "text": "Gambar 4 menampilkan semua titik yang lolos filter, bukan titik prediksi atau luas area yang terbakar. Penumpukan titik menunjukkan rekaman berulang dan kepadatan visual. Tidak dilakukan klaim sebab-akibat ataupun validasi kejadian lapangan dari gambar ini.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R175",
+    "idx": 175,
+    "tag": "p",
+    "style": [
+      "Caption"
+    ],
+    "text": "Tabel 8 Status evaluasi model",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R176",
+    "idx": 176,
+    "tag": "tbl",
+    "style": [],
+    "text": "Subset Hasil performa Training BELUM DIEKSEKUSI Validation 2024 BELUM DIEKSEKUSI Final test 2025 BELUM DIEKSEKUSI Studi 2026 Deskriptif; tidak ada evaluasi prediksi",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R177",
+    "idx": 177,
+    "tag": "p",
+    "style": [],
+    "text": "",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R178",
+    "idx": 178,
+    "tag": "p",
+    "style": [],
+    "text": "Recall, precision, F1, AP/PR-AUC, ROC-AUC, confusion matrix, kalibrasi, overfitting, dan importance model belum dapat dihitung. Tidak tersedia prediksi benar/salah untuk dipetakan. Pernyataan bahwa model mengungguli baseline juga belum dapat dibuat.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R179",
+    "idx": 179,
+    "tag": "p",
+    "style": [
+      "Heading1"
+    ],
+    "text": "PERHITUNGAN MANUAL DARI DATA NYATA",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R180",
+    "idx": 180,
+    "tag": "p",
+    "style": [],
+    "text": "Sepuluh deteksi pertama Sumatera tahun 2015 dipakai untuk latihan CART halaman 23–25. Labelnya type asli, bukan lonjakan t+1. Contoh ini bukan evaluasi model utama.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R181",
+    "idx": 181,
+    "tag": "p",
+    "style": [
+      "Caption"
+    ],
+    "text": "Tabel 9 Sepuluh baris untuk latihan impurity",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R182",
+    "idx": 182,
+    "tag": "tbl",
+    "style": [],
+    "text": "Baris sumber Tanggal UTC confidence type L18 2015-01-02 27 0 L25 2015-01-03 80 0 L26 2015-01-03 75 0 L27 2015-01-03 61 0 L30 2015-01-03 50 1 L31 2015-01-03 69 1 L39 2015-01-05 50 0 L40 2015-01-05 92 0 L41 2015-01-05 80 0 L42 2015-01-05 71 0",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R183",
+    "idx": 183,
+    "tag": "p",
+    "style": [],
+    "text": "",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R184",
+    "idx": 184,
+    "tag": "p",
+    "style": [],
+    "text": "Seluruh baris berasal dari fire_archive_M-C61_834980.csv. Row ID lengkap disimpan pada contoh_manual_10_baris.csv; L18 berarti baris ke-18 dengan header sebagai baris 1.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R185",
+    "idx": 185,
+    "tag": "p",
+    "style": [],
+    "text": "",
+    "images": 0,
+    "math": 1
+  },
+  {
+    "id": "R186",
+    "idx": 186,
+    "tag": "p",
+    "style": [],
+    "text": "",
+    "images": 0,
+    "math": 1
+  },
+  {
+    "id": "R187",
+    "idx": 187,
+    "tag": "p",
+    "style": [],
+    "text": "Dengan split demonstrasi confidence ≤ 70, kelompok kiri berisi tiga type 0 dan dua type 1, sedangkan kelompok kanan berisi lima type 0. Gini tertimbang adalah 0,24 dan penurunan Gini adalah 0,08. Entropy tertimbang adalah 0,485475 bit; information gain adalah 0,236453 bit.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R188",
+    "idx": 188,
+    "tag": "p",
+    "style": [],
+    "text": "Batas 70 adalah median confidence contoh, bukan split terbaik atau ambang lonjakan. Kelas tidak diseimbangkan. Latihan ini tidak menjelaskan sebab sumber panas.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R189",
+    "idx": 189,
+    "tag": "p",
+    "style": [
+      "Heading1"
+    ],
+    "text": "MATERI TAMBAHAN DAN POSISI CLUSTERING",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R190",
+    "idx": 190,
+    "tag": "p",
+    "style": [],
+    "text": "Classification tetap tujuan utama yang belum memenuhi prasyarat. Clustering merupakan analisis pendukung yang sudah dijalankan. Hasil klaster tidak menggantikan label lonjakan atau kewajiban classification menurut rubrik UTS.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R191",
+    "idx": 191,
+    "tag": "p",
+    "style": [
+      "Caption"
+    ],
+    "text": "Tabel 10 Pemetaan tiga materi e-learning tambahan",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R192",
+    "idx": 192,
+    "tag": "tbl",
+    "style": [],
+    "text": "Berkas Halaman PDF Penerapan 03 Data Visualization and EDA 4–6, 11–16, 29–35 Statistik, grafik, missing, duplikasi, EDA 04 Supervised Learning Regression I 4–6, 17–20, 29–30 Supervised/unsupervised, holdout dan overfitting 05 Supervised Learning Regression II 4–11, 16–20 Bias–variance, regularisasi dan pemilihan validation",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R193",
+    "idx": 193,
+    "tag": "p",
+    "style": [],
+    "text": "",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R194",
+    "idx": 194,
+    "tag": "p",
+    "style": [],
+    "text": "Empat materi sebelumnya tetap menjadi acuan utama. Kini tujuh PDF telah diperiksa; nama, halaman dan SHA-256 disimpan. Materi regresi dipakai untuk prinsip supervised, holdout dan overfitting, bukan memaksakan RMSE pada target biner. Contoh random split tidak diterapkan pada deret waktu.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R195",
+    "idx": 195,
+    "tag": "p",
+    "style": [],
+    "text": "[METODE TAMBAHAN DI LUAR MATERI]",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R196",
+    "idx": 196,
+    "tag": "p",
+    "style": [],
+    "text": "ST-DBSCAN dipilih karena mempertimbangkan ruang dan waktu serta tidak memerlukan jumlah klaster terlebih dahulu. Haversine, ARI, validasi temporal, RF dan XGBoost tetap tambahan. Justifikasi ini belum menggantikan persetujuan rubrik resmi.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R197",
+    "idx": 197,
+    "tag": "p",
+    "style": [],
+    "text": "Catatan audit materi: halaman 5 EDA menulis (6 + 7)/2 = 7,5; hasil aritmetika yang benar adalah 6,5. Contoh tersebut tidak digunakan sebagai hasil penelitian.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R198",
+    "idx": 198,
+    "tag": "p",
+    "style": [
+      "Heading1"
+    ],
+    "text": "AUDIT ULANG DAN GERBANG CLASSIFICATION",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R199",
+    "idx": 199,
+    "tag": "p",
+    "style": [],
+    "text": "Audit ulang seluruh 13 CSV mengonfirmasi hash dan jumlah baris identik dengan audit sebelumnya. Duplikasi persis dalam file dan duplikasi kunci koordinat–waktu–satelit–instrument lintas file tidak ditemukan. Raw tidak diubah. Temuan geometri, cutoff, versi dan tanggal kosong tetap berlaku.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R200",
+    "idx": 200,
+    "tag": "p",
+    "style": [],
+    "text": "Panduan NASA menjelaskan pola nama MCD14ML yang memisahkan collection dan product version (Giglio et al., 2021, hlm. 40). Ini hanya mendukung hipotesis makna 61.03. Belum ada bukti resmi yang memetakan literal kolom tersebut pada snapshot FIRMS ini. Kode tetap string dan tidak diseragamkan.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R201",
+    "idx": 201,
+    "tag": "p",
+    "style": [
+      "Caption"
+    ],
+    "text": "Tabel 11 Gerbang classification berdasarkan tanggal target",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R202",
+    "idx": 202,
+    "tag": "tbl",
+    "style": [],
+    "text": "Subset Kalender Lolos waktu Histori 30 hari Label sah case_2026 2.432 2.416 86 0 test_2025 2.920 2.912 0 0 train 26.288 26.056 296 0 validation 2.928 2.920 0 0",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R203",
+    "idx": 203,
+    "tag": "p",
+    "style": [],
+    "text": "",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R204",
+    "idx": 204,
+    "tag": "p",
+    "style": [],
+    "text": "Lolos waktu mensyaratkan origin dan target di subset yang sama, lookback dan cutoff terpenuhi. Perbaikan guard ada di calon_fitur_dengan_gate_temporal.csv. Histori tercatat tidak membuktikan QA atau available_at; angka kalender dikelompokkan menurut tanggal target, sehingga origin 31 Desember masuk kandidat subset berikutnya lalu ditolak guard.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R205",
+    "idx": 205,
+    "tag": "p",
+    "style": [],
+    "text": "Seluruh jumlah kelas dan prevalensi tetap NA. Ketimpangan target belum dapat diukur. No-record tidak otomatis nol; hari positif pun belum membuktikan pengamatan wilayah lengkap. ID klaster dan noise tidak dipakai sebagai target/fitur forecasting. Status ini bukan kegagalan algoritma ML.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R206",
+    "idx": 206,
+    "tag": "p",
+    "style": [
+      "Heading1"
+    ],
+    "text": "FIREMASK DAN QA MOD14A1 MYD14A1",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R207",
+    "idx": 207,
+    "tag": "p",
+    "style": [
+      "Caption"
+    ],
+    "text": "Tabel 12 Interpretasi kategori pengamatan",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R208",
+    "idx": 208,
+    "tag": "tbl",
+    "style": [],
+    "text": "Komponen Kode Arti dan perlakuan FireMask 5 Non-fire land teramati; bukan nihil api pasti FireMask 7, 8, 9 Fire low, nominal, high confidence FireMask 4; 6 Cloud; unknown. Jangan jadikan negatif FireMask 0, 1, 2 Missing input, obsolete, other unprocessed FireMask 3 Non-fire water; bukan denominator daratan QA bit 0–1 0, 1, 2, 3 Water, coast, land, missing QA bit 2 0, 1 Night, day; bukan bukti semua overpass",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R209",
+    "idx": 209,
+    "tag": "p",
+    "style": [],
+    "text": "",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R210",
+    "idx": 210,
+    "tag": "p",
+    "style": [],
+    "text": "Produk A1 Level 3 berisi sampai delapan plane harian dalam satu berkas; bukan satu citra yang diulang delapan hari. Dates atau DAYSOFYEAR menentukan tanggal, dan plane yang seluruhnya missing dapat tidak tersedia. Ukuran grid nominal 1 km sekitar 926,625 m (Giglio et al., 2021, hlm. 22, 27, 54–55).",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R211",
+    "idx": 211,
+    "tag": "p",
+    "style": [],
+    "text": "Metadata CMR dua contoh granule berhasil diperoleh. Dua percobaan HDF mengembalikan HTTP 401, sehingga raster FireMask/QA belum didapat. Log aktual disimpan. Metadata contoh bukan inventory lengkap. Decoder lokal disediakan tetapi belum diuji pada raster nyata; alignment mask/grid juga belum dilakukan.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R212",
+    "idx": 212,
+    "tag": "p",
+    "style": [],
+    "text": "Komposit A1 dapat membedakan sebagian kondisi pengamatan, tetapi tidak merekonstruksi jumlah baris FIRMS atau membuktikan seluruh overpass memadai. Definisi target harus dipilih secara konsisten sebelum model dilatih.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R213",
+    "idx": 213,
+    "tag": "p",
+    "style": [
+      "Heading1"
+    ],
+    "text": "METODE ST DBSCAN DUA AMBANG",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R214",
+    "idx": 214,
+    "tag": "p",
+    "style": [],
+    "text": "[METODE TAMBAHAN DI LUAR MATERI]",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R215",
+    "idx": 215,
+    "tag": "p",
+    "style": [],
+    "text": "",
+    "images": 0,
+    "math": 1
+  },
+  {
+    "id": "R216",
+    "idx": 216,
+    "tag": "p",
+    "style": [],
+    "text": "",
+    "images": 0,
+    "math": 1
+  },
+  {
+    "id": "R217",
+    "idx": 217,
+    "tag": "p",
+    "style": [],
+    "text": "z adalah strata tahun UTC dan version literal. Core memenuhi minimum tetangga termasuk diri; border dekat core tanpa memenuhi minimum sendiri; noise di luar klaster. Koneksi antartitik core membentuk kelompok, sedangkan penempatan border dapat bergantung urutan.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R218",
+    "idx": 218,
+    "tag": "p",
+    "style": [],
+    "text": "",
+    "images": 0,
+    "math": 1
+  },
+  {
+    "id": "R219",
+    "idx": 219,
+    "tag": "p",
+    "style": [],
+    "text": "",
+    "images": 0,
+    "math": 1
+  },
+  {
+    "id": "R220",
+    "idx": 220,
+    "tag": "p",
+    "style": [],
+    "text": "Lintang φ dan bujur λ dalam radian; R = 6.371,0088 km. BallTree haversine membentuk kandidat spasial, kemudian disaring beda jam UTC. Graf jarang memasukkan sisi diri secara eksplisit, termasuk bila lokasi berulang.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R221",
+    "idx": 221,
+    "tag": "p",
+    "style": [],
+    "text": "Utama: 2 km, 48 jam, minimum 5 termasuk diri. Pilihan eksploratif berkaitan dengan beberapa piksel nominal dan lintasan berulang; bukan parameter optimum. Sensitivitas 1/2/5 km × 24/48/72 jam × 3/5/10 memberi 27 konfigurasi. Parameter dipertahankan dari eksperimen sebelumnya ketika berkas sesi dipulihkan, bukan dipilih ulang.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R222",
+    "idx": 222,
+    "tag": "p",
+    "style": [],
+    "text": "Varian dua ambang dibandingkan dengan Cakmak/Plank. Tidak diklaim mengimplementasikan seluruh density factor dan atribut nonspasial Birant–Kut (2007). Pemisahan tahun/version memotong koneksi di batas; anggota dalam 72 jam ditandai. eps bukan batas diameter/durasi klaster.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R223",
+    "idx": 223,
+    "tag": "p",
+    "style": [
+      "Heading1"
+    ],
+    "text": "HASIL UTAMA CLUSTERING",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R224",
+    "idx": 224,
+    "tag": "p",
+    "style": [],
+    "text": "Pada 154.184 deteksi, parameter utama menghasilkan 3.678 klaster, 73.129 core, 6.672 border dan 74.383 noise (48,24%). Semua confidence dan type yang lolos audit masuk analisis utama. Valid di sini berarti lolos pemeriksaan struktur/geografi, bukan kebakaran vegetasi terkonfirmasi.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R225",
+    "idx": 225,
+    "tag": "p",
+    "style": [
+      "Caption"
+    ],
+    "text": "Tabel 13 Hasil utama menurut strata",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R226",
+    "idx": 226,
+    "tag": "tbl",
+    "style": [],
+    "text": "Tahun / versi Deteksi Klaster Noise Noise % 2015 / 6.03 58.922 1.463 20.661 35,07 2016 / 6.03 7.527 151 5.728 76,10 2017 / 6.03 4.313 62 3.781 87,67 2018 / 6.03 6.747 139 4.316 63,97 2019 / 6.03 28.277 801 9.900 35,01 2020 / 6.03 2.947 38 2.533 85,95 2021 / 6.03 3.227 31 2.907 90,08 2022 / 6.03 2.398 22 2.209 92,12 2023 / 61.03 10.602 279 6.356 59,95 2024 / 61.03 4.507 65 3.809 84,51 2025 / 61.03 4.465 70 3.644 81,61 2026 / 6.1NRT 14.281 411 4.714 33,01 2026 / 61.03 5.971 146 3.825 64,06",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R227",
+    "idx": 227,
+    "tag": "p",
+    "style": [],
+    "text": "",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R228",
+    "idx": 228,
+    "tag": "p",
+    "style": [],
+    "text": "Noise bukan kesalahan sensor atau kelas tidak lonjakan. Jumlah klaster bukan jumlah kebakaran. Perbedaan tahun mencerminkan juga peluang pengamatan, platform, produk dan kelengkapan. Tabel 13 tidak membuktikan perubahan luas atau insidensi kebakaran.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R229",
+    "idx": 229,
+    "tag": "p",
+    "style": [
+      "Heading1"
+    ],
+    "text": "SENSITIVITAS PARAMETER CLUSTERING",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R230",
+    "idx": 230,
+    "tag": "p",
+    "style": [
+      "Caption"
+    ],
+    "text": "Gambar 5 Sensitivitas noise pada 27 konfigurasi",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R231",
+    "idx": 231,
+    "tag": "p",
+    "style": [],
+    "text": "",
+    "images": 1,
+    "math": 0
+  },
+  {
+    "id": "R232",
+    "idx": 232,
+    "tag": "p",
+    "style": [],
+    "text": "Proporsi noise berkisar 28,72%–94,99%; jumlah klaster 407–9.581. Radius/waktu lebih besar dapat menggabungkan kelompok; minimum lebih besar dapat menghilangkan core. Jumlah klaster tidak selalu monoton.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R233",
+    "idx": 233,
+    "tag": "p",
+    "style": [
+      "Caption"
+    ],
+    "text": "Tabel 14 Konfigurasi sekitar parameter utama",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R234",
+    "idx": 234,
+    "tag": "tbl",
+    "style": [],
+    "text": "km / jam / m Klaster Noise % ARI semua ARI non-noise 2/48/5 3.678 48,24 1,000 1,000 1/48/5 2.652 61,61 0,662 0,855 2/24/5 4.117 55,83 0,799 0,405 2/72/5 3.630 46,68 0,957 0,953 5/48/5 3.493 39,79 0,759 0,594",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R235",
+    "idx": 235,
+    "tag": "p",
+    "style": [],
+    "text": "",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R236",
+    "idx": 236,
+    "tag": "p",
+    "style": [],
+    "text": "ARI mengukur kesamaan partisi, bukan akurasi. ARI semua dapat didominasi noise; ARI non-noise memakai irisan titik dengan denominator berbeda yang dicatat pada CSV. Sensitivitas bukan tuning terhadap 2025/2026. Tidak dipilih konfigurasi berdasarkan silhouette tertinggi.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R237",
+    "idx": 237,
+    "tag": "p",
+    "style": [
+      "Heading1"
+    ],
+    "text": "VALIDASI IMPLEMENTASI DAN KUALITAS",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R238",
+    "idx": 238,
+    "tag": "p",
+    "style": [],
+    "text": "Pada 1.000 rekaman nyata, graf jarang identik dengan matriks jarak penuh dan kode upstream pada partisi sampel (ARI = 1). Core identik dan lingkungan simetris. Pembanding upstream memakai koordinat bola 3D dengan ambang chord yang ekuivalen dengan haversine.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R239",
+    "idx": 239,
+    "tag": "p",
+    "style": [],
+    "text": "Uji urutan menghasilkan ARI 0,999810; partisi core dan keanggotaan noise tetap sama, sementara sedikit border dapat berubah. Urutan timestamp/row_id ditetapkan untuk reproduksi. Ini validasi implementasi, bukan kejadian kebakaran.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R240",
+    "idx": 240,
+    "tag": "p",
+    "style": [],
+    "text": "Silhouette dihitung pada maksimal 1.500 anggota non-noise per strata dengan seed 42, memakai max(jarak/eps ruang, beda waktu/eps waktu). Pada 2015 sekitar 0,113; beberapa strata lebih tinggi. Pemisahan musim dan pengabaian noise dapat menaikkan skor. Seluruh skor dan sampel row_id disimpan, tidak hanya yang terbaik.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R241",
+    "idx": 241,
+    "tag": "p",
+    "style": [
+      "Caption"
+    ],
+    "text": "Tabel 15 Sensitivitas filter kualitas satelit dan type",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R242",
+    "idx": 242,
+    "tag": "tbl",
+    "style": [],
+    "text": "Filter Deteksi Klaster Noise % Aqua_only 90.842 2.153 62,31 Terra_only 63.342 1.654 49,17 confidence_ge30 143.197 3.495 48,95 confidence_ge80 50.374 1.375 35,72 type0_only 122.721 3.147 55,20",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R243",
+    "idx": 243,
+    "tag": "p",
+    "style": [],
+    "text": "",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R244",
+    "idx": 244,
+    "tag": "p",
+    "style": [],
+    "text": "type0_only mengecualikan NRT tanpa type. Denominator filter berbeda; perbedaan jumlah tidak diinterpretasikan sebagai manfaat kausal. Confidence ≥30/≥80 dan Terra/Aqua tunggal adalah uji sensitivitas, bukan verifikasi lapangan.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R245",
+    "idx": 245,
+    "tag": "p",
+    "style": [
+      "Heading1"
+    ],
+    "text": "POLA GEOGRAFIS DAN BATAS KLAIM",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R246",
+    "idx": 246,
+    "tag": "p",
+    "style": [
+      "Caption"
+    ],
+    "text": "Gambar 6 Peta core border dan noise",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R247",
+    "idx": 247,
+    "tag": "p",
+    "style": [],
+    "text": "",
+    "images": 1,
+    "math": 0
+  },
+  {
+    "id": "R248",
+    "idx": 248,
+    "tag": "p",
+    "style": [],
+    "text": "Gambar 6 menunjukkan struktur sebaran titik, dengan konsentrasi anggota pada sebagian Sumatera bagian timur dan selatan dalam tahun yang ditampilkan. Semua provinsi tetap dalam mask resmi yang sama. Outline disederhanakan untuk tampilan; spatial join memakai geometri audit.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R249",
+    "idx": 249,
+    "tag": "p",
+    "style": [],
+    "text": "2015 dan 2025 mencakup setahun, sedangkan 2026 sampai cutoff. Panel ini bukan perbandingan intensitas pada jendela setara. Tidak ada titik benar/salah classification karena target belum sah. Centroid klaster bukan lokasi asal api; klaster dapat melewati batas provinsi.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R250",
+    "idx": 250,
+    "tag": "p",
+    "style": [
+      "Heading1"
+    ],
+    "text": "TYPE DAN RANTAI KETETANGGAAN",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R251",
+    "idx": 251,
+    "tag": "p",
+    "style": [
+      "Caption"
+    ],
+    "text": "Gambar 7 Komposisi type pada klaster terbesar",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R252",
+    "idx": 252,
+    "tag": "p",
+    "style": [],
+    "text": "",
+    "images": 1,
+    "math": 0
+  },
+  {
+    "id": "R253",
+    "idx": 253,
+    "tag": "p",
+    "style": [
+      "Caption"
+    ],
+    "text": "Gambar 8 Durasi klaster dan efek rantai",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R254",
+    "idx": 254,
+    "tag": "p",
+    "style": [],
+    "text": "",
+    "images": 1,
+    "math": 0
+  },
+  {
+    "id": "R255",
+    "idx": 255,
+    "tag": "p",
+    "style": [],
+    "text": "ST00901 memuat 4.478 deteksi: 4.351 type 2 dan 127 type 0. Durasi sekitar 55,13 hari dan radius maksimum centroid 33,34 km. Klaster utama terlama sekitar 60,14 hari. Jarak 2 km dan waktu 48 jam berlaku pada pasangan tetangga; rantainya dapat menghubungkan kelompok lebih luas/panjang. Ini bukan satu kejadian karhutla.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R256",
+    "idx": 256,
+    "tag": "p",
+    "style": [
+      "Heading1"
+    ],
+    "text": "KLASTER BESAR DAN STUDI 2026",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R257",
+    "idx": 257,
+    "tag": "p",
+    "style": [
+      "Caption"
+    ],
+    "text": "Gambar 9 Ruang dan waktu ST00901",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R258",
+    "idx": 258,
+    "tag": "p",
+    "style": [],
+    "text": "",
+    "images": 1,
+    "math": 0
+  },
+  {
+    "id": "R259",
+    "idx": 259,
+    "tag": "p",
+    "style": [],
+    "text": "Pusat ST00901 sekitar 2,874° LS dan 105,651° BT di Sumatera Selatan. Banyaknya type 2 menuntut pemeriksaan sumber panas dan provenance, bukan langsung menyebut kebakaran vegetasi. ST02085 (2019) memuat 1.661 type 0 selama sekitar 20,89 hari, melintasi Jambi–Sumatera Selatan; type 0 tetap belum merupakan konfirmasi lapangan.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R260",
+    "idx": 260,
+    "tag": "p",
+    "style": [],
+    "text": "2026 dipisahkan menjadi archive 61.03 (5.971 deteksi, 146 klaster, 3.825 noise) dan 6.1NRT (14.281 deteksi, 411 klaster, 4.714 noise). Klaster ST03254 NRT memuat 1.464 deteksi selama sekitar 39,99 hari; type tidak tersedia. Batas produk dapat memotong kelompok.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R261",
+    "idx": 261,
+    "tag": "p",
+    "style": [],
+    "text": "Perbandingan hitungan 2024/2025/2026 tetap memakai 1 Januari–30 Oktober sebagaimana Tabel 7 dan Gambar 3. Klaster bukan penerapan classifier. Validasi ulang 2026 menunggu data standard lengkap dan kesebandingan yang dapat dibuktikan.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R262",
+    "idx": 262,
+    "tag": "p",
+    "style": [
+      "Heading1"
+    ],
+    "text": "RENCANA SPESIFIK PERBAIKAN TARGET",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R263",
+    "idx": 263,
+    "tag": "p",
+    "style": [
+      "Heading2"
+    ],
+    "text": "Jalur A mempertahankan hitungan FIRMS",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R264",
+    "idx": 264,
+    "tag": "p",
+    "style": [],
+    "text": "Peroleh metadata ekspor lengkap dan inventory per-overpass MOD14/MYD14, geolokasi serta QA/cloud/fire untuk mengevaluasi peluang observasi. MOD14A1/MYD14A1 dapat mendukung coverage, tetapi hitungan sel tidak disamakan dengan jumlah baris FIRMS.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R265",
+    "idx": 265,
+    "tag": "p",
+    "style": [
+      "Heading2"
+    ],
+    "text": "Jalur B target sel fire harian",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R266",
+    "idx": 266,
+    "tag": "p",
+    "style": [],
+    "text": "Jika menggunakan A1, ubah target secara eksplisit menjadi jumlah/proporsi sel fire pada grid native dan mask daratan tetap. Gabungkan Terra/Aqua per sel agar tidak dihitung ganda bila target sel unik. Non-fire berasal dari clear land teramati; cloud/missing/unknown tetap NA.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R267",
+    "idx": 267,
+    "tag": "p",
+    "style": [],
+    "text": "",
+    "images": 0,
+    "math": 1
+  },
+  {
+    "id": "R268",
+    "idx": 268,
+    "tag": "p",
+    "style": [],
+    "text": "Ambang coverage 0,80/0,90/0,95 adalah usulan sensitivitas training, bukan standar NASA. Laporkan tanggal gugur dan bias musim awan. Coverage parsial masih dapat menyembunyikan api. Bila harian tidak memadai, pertimbangkan delapan harian dengan perubahan horizon yang dinyatakan terbuka.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R269",
+    "idx": 269,
+    "tag": "p",
+    "style": [],
+    "text": "Tile rencana dari mask adalah h27v08, h27v09, h28v08, h28v09 untuk kedua sensor, seluruh tanggal target dan warm-up. Ini rencana geometri, bukan inventory unduhan. Dates/QA dan alignment harus diuji. CMR updated atau production time bukan available_at pertama. Tanpa snapshot historis, klaim prediksi as-of belum sah.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R270",
+    "idx": 270,
+    "tag": "p",
+    "style": [
+      "Heading1"
+    ],
+    "text": "HITUNG MANUAL TETANGGA NYATA",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R271",
+    "idx": 271,
+    "tag": "p",
+    "style": [],
+    "text": "Tabel 16 menampilkan maksimal sepuluh tetangga nyata pada sampel validasi 1.000 rekaman. Semua memenuhi jarak ≤2 km dan beda waktu ≤48 jam. Minimum lima termasuk diri digunakan untuk menentukan core.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R272",
+    "idx": 272,
+    "tag": "p",
+    "style": [
+      "Caption"
+    ],
+    "text": "Tabel 16 Tetangga nyata pada sampel validasi",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R273",
+    "idx": 273,
+    "tag": "tbl",
+    "style": [],
+    "text": "Row ID singkat km Jam A 834980.csv:L47211 0,0000 0,000 A 834980.csv:L47216 0,7436 0,000 A 834980.csv:L47987 0,4262 9,433 A 834980.csv:L47989 1,0947 9,433 A 834980.csv:L47990 0,6223 9,433 A 834980.csv:L47991 1,2902 9,433 A 834980.csv:L47994 1,5790 9,433 A 834980.csv:L48887 1,0096 12,383 A 834980.csv:L49285 0,3737 21,817 A 834980.csv:L49793 0,8481 24,717",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R274",
+    "idx": 274,
+    "tag": "p",
+    "style": [],
+    "text": "",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R275",
+    "idx": 275,
+    "tag": "p",
+    "style": [],
+    "text": "Anchor: fire_archive_M-C61_834980.csv:L47211. Total tetangga termasuk diri pada sampel: 10. A berarti fire_archive_M-C61_. Angka berlaku pada sampel, bukan derajat seluruh dataset.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R276",
+    "idx": 276,
+    "tag": "p",
+    "style": [],
+    "text": "Seluruh row_id dan jarak tersedia di CSV. Contoh CART terdahulu tetap memakai type asli, bukan lonjakan. Tidak dibuat confusion matrix classifier dengan angka contoh palsu.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R277",
+    "idx": 277,
+    "tag": "p",
+    "style": [],
+    "text": "Notebook revisi lolos nbformat.validate dan semua 13 sel kode dijalankan berurutan melalui IPython dalam satu proses. Kernel terpisah dibatasi socket; aplikasi Colab/VS Code belum diuji langsung. Semua fungsi dan versi paket disertakan. Pemulihan berkas sementara dilakukan dengan eksekusi ulang yang kembali menghasilkan angka sama.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R278",
+    "idx": 278,
+    "tag": "p",
+    "style": [
+      "Heading1"
+    ],
+    "text": "BAB V KESIMPULAN DAN SARAN",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R279",
+    "idx": 279,
+    "tag": "p",
+    "style": [
+      "Heading2"
+    ],
+    "text": "5.1 Kesimpulan yang didukung hasil",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R280",
+    "idx": 280,
+    "tag": "p",
+    "style": [],
+    "text": "Audit ulang mempertahankan 13 CSV dan raw identik, dengan 154.184 deteksi terpilih. ST-DBSCAN menghasilkan 3.678 klaster dan 48,24% noise. Hasil sensitif terhadap parameter, sumber panas dan chaining; tidak mengidentifikasi kejadian kebakaran terkonfirmasi. Kalender dan fitur tetap tidak diberi target negatif yang tidak sah.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R281",
+    "idx": 281,
+    "tag": "p",
+    "style": [],
+    "text": "Kalender kandidat mempunyai 34.568 pasangan wilayah-hari. Sebanyak 23.809 pasangan tidak mempunyai baris deteksi dan tetap NA. Cakupan pengamatan semua unit belum terverifikasi. Karena itu, belum ada sampel yang dinyatakan layak untuk pelatihan target harian. Tidak ada model atau metrik prediksi yang dapat disimpulkan.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R282",
+    "idx": 282,
+    "tag": "p",
+    "style": [
+      "Heading2"
+    ],
+    "text": "5.2 Keterbatasan",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R283",
+    "idx": 283,
+    "tag": "p",
+    "style": [],
+    "text": "Provenance unduhan asli, kode 61.03, konsistensi koleksi, QA pengamatan, serta waktu ketersediaan informasi masih belum lengkap. Perbandingan 2026 dibatasi peralihan NRT, missing type, dan cutoff parsial. Mask hanya merepresentasikan daratan utama; titik pada pulau kecil yang terpisah dikeluarkan. Tidak ada verifikasi luas terbakar atau kejadian lapangan.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R284",
+    "idx": 284,
+    "tag": "p",
+    "style": [
+      "Heading2"
+    ],
+    "text": "5.3 Tindak lanjut yang dapat diuji",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R285",
+    "idx": 285,
+    "tag": "p",
+    "style": [],
+    "text": "Prioritaskan metadata ekspor, QA, coverage wilayah–hari dan available_at. Setelah sah, fit ambang pada training, periksa prevalensi serta sensitivitas, lalu jalankan baseline, CART dan pembanding. Jika periode awal tidak dapat disetarakan, ubah desain secara beralasan sebelum membuka final test.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R286",
+    "idx": 286,
+    "tag": "p",
+    "style": [],
+    "text": "Dampak sosial saat ini terbatas pada pemahaman pola deteksi untuk kajian akademik. Keluaran belum layak untuk evakuasi, menuduh pihak penyebab, atau memberi peringatan keselamatan.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R287",
+    "idx": 287,
+    "tag": "p",
+    "style": [
+      "Heading1"
+    ],
+    "text": "DAFTAR PUSTAKA",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R288",
+    "idx": 288,
+    "tag": "p",
+    "style": [],
+    "text": "Badan Informasi Geospasial. (n.d.).  Batas administrasi provinsi  [Layanan fitur WGS84]. https://geoservices.big.go.id/gis/rest/services/SIG/Batas_Provinsi/MapServer/0",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R289",
+    "idx": 289,
+    "tag": "p",
+    "style": [],
+    "text": "Birant, D., & Kut, A. (2007). ST-DBSCAN: An algorithm for clustering spatial–temporal data.  Data & Knowledge Engineering, 60 (1), 208–221. https://doi.org/10.1016/j.datak.2006.01.013",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R290",
+    "idx": 290,
+    "tag": "p",
+    "style": [],
+    "text": "Cakmak, E., & Plank, M. (n.d.).  st_dbscan  [Kode sumber berlisensi MIT]. GitHub. https://github.com/eren-ck/st_dbscan",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R291",
+    "idx": 291,
+    "tag": "p",
+    "style": [],
+    "text": "Clustering hierarchical . (n.d.). [Slide perkuliahan; berkas Clustering Hierarchical(2).pdf].",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R292",
+    "idx": 292,
+    "tag": "p",
+    "style": [],
+    "text": "Clustering KMeans . (n.d.). [Slide perkuliahan; berkas Clustering KMeans(2).pdf].",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R293",
+    "idx": 293,
+    "tag": "p",
+    "style": [],
+    "text": "Data visualization and EDA . (n.d.). [Materi e-learning berlogo DQLab; berkas 03 - Data Visualization and EDA - PPT.pdf].",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R294",
+    "idx": 294,
+    "tag": "p",
+    "style": [
+      "Heading1"
+    ],
+    "text": "DAFTAR PUSTAKA LANJUTAN 2",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R295",
+    "idx": 295,
+    "tag": "p",
+    "style": [],
+    "text": "Giglio, L., Schroeder, W., Hall, J. V., & Justice, C. O. (2021).  MODIS Collection 6 and Collection 6.1 active fire product user’s guide  (Version 1.0). https://lpdaac.usgs.gov/documents/1005/MOD14_User_Guide_V61.pdf",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R296",
+    "idx": 296,
+    "tag": "p",
+    "style": [],
+    "text": "KNN exercise . (n.d.). [Latihan perkuliahan; berkas [11a] KNN-Exercise Key-LR(2).pdf].",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R297",
+    "idx": 297,
+    "tag": "p",
+    "style": [],
+    "text": "NASA Earthdata. (n.d.).  Common Metadata Repository  [Metadata granule MOD14A1 dan MYD14A1]. https://cmr.earthdata.nasa.gov/search/granules.json",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R298",
+    "idx": 298,
+    "tag": "p",
+    "style": [],
+    "text": "NASA FIRMS. (n.d.-a).  Archive download . https://firms.modaps.eosdis.nasa.gov/download/",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R299",
+    "idx": 299,
+    "tag": "p",
+    "style": [],
+    "text": "NASA FIRMS. (n.d.-b).  Fire alerts important notes . https://firms.modaps.eosdis.nasa.gov/alerts/notes.php",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R300",
+    "idx": 300,
+    "tag": "p",
+    "style": [],
+    "text": "NASA GIBS. (n.d.).  Accessing via Python . https://nasa-gibs.github.io/gibs-api-docs/python-usage/",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R301",
+    "idx": 301,
+    "tag": "p",
+    "style": [],
+    "text": "NASA MODAPS. (n.d.).  MODIS Aqua and Terra thermal anomalies and fire locations MCD14DL NRT . https://modaps.modaps.eosdis.nasa.gov/services/about/products/c61-nrt/MCD14DL-NRT.html",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R302",
+    "idx": 302,
+    "tag": "p",
+    "style": [
+      "Heading1"
+    ],
+    "text": "DAFTAR PUSTAKA LANJUTAN 3",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R303",
+    "idx": 303,
+    "tag": "p",
+    "style": [],
+    "text": "NASA POWER. (n.d.).  Data FAQs . https://power.larc.nasa.gov/docs/faqs/data/",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R304",
+    "idx": 304,
+    "tag": "p",
+    "style": [],
+    "text": "scikit-learn developers. (n.d.-a).  Clustering . https://scikit-learn.org/stable/modules/clustering.html",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R305",
+    "idx": 305,
+    "tag": "p",
+    "style": [],
+    "text": "scikit-learn developers. (n.d.-b).  Common pitfalls and recommended practices . https://scikit-learn.org/stable/common_pitfalls.html",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R306",
+    "idx": 306,
+    "tag": "p",
+    "style": [],
+    "text": "Supervised learning – Regression (I) . (n.d.). [Materi e-learning; berkas 04 - Supervised Learning – Regression (I).pdf].",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R307",
+    "idx": 307,
+    "tag": "p",
+    "style": [],
+    "text": "Supervised learning – Regression (II) . (n.d.). [Materi e-learning; berkas 05 - Supervised Learning – Regression (II) - PPT.pdf].",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R308",
+    "idx": 308,
+    "tag": "p",
+    "style": [],
+    "text": "Waladi, A. (n.d.).  Decision tree CART  [Slide perkuliahan Penambangan Data]. Universitas Jambi.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R309",
+    "idx": 309,
+    "tag": "p",
+    "style": [
+      "Heading1"
+    ],
+    "text": "CATATAN VERIFIKASI SUMBER",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R310",
+    "idx": 310,
+    "tag": "p",
+    "style": [],
+    "text": "Sumber web awal diverifikasi pada 31 Oktober 2026; sumber tambahan pada 31 Oktober–1 November 2026. Waktu akses UTC yang tercatat disimpan dalam manifest. n.d. berarti tahun publikasi belum terverifikasi. Penulis materi yang tidak teridentifikasi tidak ditebak; judul ditempatkan pada posisi penulis.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R311",
+    "idx": 311,
+    "tag": "p",
+    "style": [],
+    "text": "URL unduhan langsung dan waktu unduh asli NASA tidak dilampirkan pengguna. URL FIRMS pada manifest adalah halaman sumber resmi, bukan rekonstruksi tautan transaksi unduh. SHA-256 membuktikan kesamaan byte snapshot lokal, bukan autentikasi asal file terhadap NASA.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R312",
+    "idx": 312,
+    "tag": "p",
+    "style": [],
+    "text": "Dokumentasi MODAPS memberi arti kode 6.1NRT dan contoh 6.1. NASA GIBS secara eksplisit memetakan 6.03 ke Collection 6 Standard processing. Belum ada bukti primer yang menyelesaikan kode 61.03 dalam berkas unggahan. Kesimpulan koleksi homogen ditahan.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R313",
+    "idx": 313,
+    "tag": "p",
+    "style": [],
+    "text": "NASA POWER dapat diakses pada uji satu titik dan dua hari, tetapi seri meteorologi penelitian tidak diunduh atau disejajarkan. Parameter daily POWER umumnya memiliki jeda publikasi, sehingga observasi cuaca hari t tidak otomatis tersedia pada akhir t. Meteorologi tidak menjadi fitur pada paket ini.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R314",
+    "idx": 314,
+    "tag": "p",
+    "style": [],
+    "text": "Metadata Crossref dan abstrak memverifikasi bibliografi Birant–Kut; teks lengkap tidak digunakan untuk mengklaim seluruh ekstensi algoritma direplikasi. Snapshot kode pembanding beserta lisensi MIT disertakan. Daftar rujukan pada slide tidak dianggap sebagai sumber yang telah dibaca langsung.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R315",
+    "idx": 315,
+    "tag": "p",
+    "style": [
+      "Heading1"
+    ],
+    "text": "LAMPIRAN AUDIT AKHIR",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R316",
+    "idx": 316,
+    "tag": "p",
+    "style": [
+      "Caption"
+    ],
+    "text": "Tabel 17 Pemeriksaan wajib dan rekomendasi",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R317",
+    "idx": 317,
+    "tag": "tbl",
+    "style": [],
+    "text": "Item Status Bukti atau perbaikan Identitas MEMENUHI Nama, NIM, kelas, dosen dan UTS konsisten Seluruh berkas MEMENUHI 13 CSV untuk 12 tahun; bukan 12 CSV Hash dan raw MEMENUHI ZIP asli dan SHA-256 tiap CSV disimpan Cutoff UTC MEMENUHI 100 baris 31 Oktober dipisahkan Sensor MEMENUHI TERBATAS Kolom MODIS konsisten; waktu lintasan berbeda Polygon MEMENUHI BIG WGS84, delapan komponen terluas valid Koleksi dan provenance BELUM MEMENUHI Verifikasi 61.03 dan konflik nama M-C61 Coverage dan label BELUM MEMENUHI Peroleh QA dan bukti kelengkapan unduhan Ketersediaan fitur BELUM MEMENUHI Perlu available_at dan audit latensi Baseline dan model BELUM MEMENUHI Belum ada target sah untuk fit Final test dan 2026 BELUM MEMENUHI 2025 belum dievaluasi; 2026 deskriptif Rubrik resmi BELUM MEMENUHI Lampirkan instruksi penilaian UTS Notebook MEMENUHI TERBATAS Seluruh sel kode dieksekusi berurutan in-process Font PDF MEMENUHI TERBATAS DOCX TNR 12; PDF memakai substitusi Nimbus Roman",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R318",
+    "idx": 318,
+    "tag": "p",
+    "style": [],
+    "text": "",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R319",
+    "idx": 319,
+    "tag": "p",
+    "style": [],
+    "text": "Keberhasilan audit tidak mengubah item BELUM MEMENUHI menjadi lulus. Ketersediaan model, metrik, atau dataset latih berlabel tidak diklaim hanya karena nama berkas output telah direncanakan.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R320",
+    "idx": 320,
+    "tag": "p",
+    "style": [
+      "Heading1"
+    ],
+    "text": "LAMPIRAN KEBUTUHAN DATA DAN PAKET",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R321",
+    "idx": 321,
+    "tag": "p",
+    "style": [
+      "Caption"
+    ],
+    "text": "Tabel 18 Kebutuhan tambahan sebelum klasifikasi",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R322",
+    "idx": 322,
+    "tag": "tbl",
+    "style": [],
+    "text": "Data atau bukti Kegunaan Metadata ekspor FIRMS Wilayah permintaan, rentang tanggal, koleksi, produk, URL dan waktu akses asli QA pengamatan yang sesuai Membedakan clear observation, awan dan no-data pada unit wilayah-hari Timestamp ketersediaan Membuktikan bahwa masukan sudah diketahui saat origin prediksi Rubrik UTS Memastikan algoritma tambahan dan format laporan diperbolehkan Cuaca opsional Hanya ditambahkan setelah seri nyata, resolusi dan latensinya disejajarkan",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R323",
+    "idx": 323,
+    "tag": "p",
+    "style": [],
+    "text": "",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R324",
+    "idx": 324,
+    "tag": "p",
+    "style": [],
+    "text": "Paket berisi raw identik, audit/spatial join terdahulu, notebook revisi, hasil ST-DBSCAN, 27 sensitivitas, validasi, QA yang belum tersedia, grafik, laporan dan panduan. Tidak ada model classifier atau prediksi palsu.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R325",
+    "idx": 325,
+    "tag": "p",
+    "style": [],
+    "text": "data_latih.csv, data_validasi.csv, data_uji_2025.csv, data_studi_2026.csv berlabel, hasil_prediksi_uji_2025.csv, prediksi 2026 dan model joblib belum dibuat. Berkas status_keluaran.csv menjelaskan setiap keluaran yang ditahan. Ini mencegah berkas kosong atau rekaman deteksi disalahartikan sebagai dataset supervised yang sudah sah.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R326",
+    "idx": 326,
+    "tag": "p",
+    "style": [],
+    "text": "Notebook lolos nbformat.validate. Semua 13 sel kode dijalankan berurutan melalui IPython in-process dengan namespace yang sama dan tanpa error. Kernel Jupyter berbasis socket tidak dapat dimulai dalam lingkungan eksekusi ini. Uji ini setara eksekusi berurutan kode notebook, tetapi bukan uji antarmuka Colab/VS Code. Pemodelan tetap BELUM DIEKSEKUSI.",
+    "images": 0,
+    "math": 0
+  },
+  {
+    "id": "R327",
+    "idx": 327,
+    "tag": "sectPr",
+    "style": [],
+    "text": "",
+    "images": 0,
+    "math": 0
+  }
+]

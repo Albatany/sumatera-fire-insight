@@ -1,0 +1,34 @@
+{
+  "status": "PASS_FOR_AUDIT_AND_EDA_DELIVERABLES",
+  "scientific_classification_status": "BELUM_MEMENUHI",
+  "notebook_schema_validation": "PASS",
+  "executed_code_cells": 14,
+  "source_zip_byte_identical": true,
+  "raw_csv_count": 13,
+  "raw_rows": 630384,
+  "retained_detections_mainland_sumatra": 154184,
+  "candidate_region_days": 34568,
+  "region_days_without_record_left_missing": 23809,
+  "model_trained": false,
+  "model_metrics_created": false,
+  "documents": [
+    {
+      "file": "Laporan_UTS_PenambanganData_Klasifikasi_F1E325063.pdf",
+      "pages": 20,
+      "visual_review": "ALL_PAGES_REVIEWED",
+      "font_note": "Nimbus Roman substitusi TNR pada renderer; DOCX memakai TNR."
+    },
+    {
+      "file": "Panduan_Presentasi_Klasifikasi_F1E325063.pdf",
+      "pages": 13,
+      "visual_review": "ALL_PAGES_REVIEWED",
+      "font_note": "Nimbus Roman substitusi TNR pada renderer; DOCX memakai TNR."
+    }
+  ],
+  "pending": [
+    "coverage/QA",
+    "available_at",
+    "provenance dan kesebandingan koleksi",
+    "rubrik resmi"
+  ]
+}

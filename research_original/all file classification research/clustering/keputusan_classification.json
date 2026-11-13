@@ -1,0 +1,16 @@
+{
+  "classification_feasible": false,
+  "reason_codes": [
+    "QA_NOT_AVAILABLE",
+    "AVAILABLE_AT_UNKNOWN",
+    "PROVENANCE_UNRESOLVED"
+  ],
+  "negative_labels_created": 0,
+  "target_quantiles_fitted": false,
+  "model_fitted": false,
+  "test2025_evaluated": false,
+  "cluster_ids_used_as_features": false,
+  "cluster_noise_used_as_negative_labels": false,
+  "candidate_rows": 34568,
+  "region_days_without_records": 23809
+}

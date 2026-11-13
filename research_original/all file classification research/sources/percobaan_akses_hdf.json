@@ -1,0 +1,16 @@
+[
+  {
+    "granule": "MOD14A1.A2026273.h27v09.061.2026286104424",
+    "url": "https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-protected/MOD14A1.061/MOD14A1.A2026273.h27v09.061.2026286104424/MOD14A1.A2026273.h27v09.061.2026286104424.hdf",
+    "status": 401,
+    "reason": "Unauthorized",
+    "access_utc": "2026-11-01T07:15:05.806625+00:00"
+  },
+  {
+    "granule": "MYD14A1.A2026273.h27v09.061.2026286104723",
+    "url": "https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-protected/MYD14A1.061/MYD14A1.A2026273.h27v09.061.2026286104723/MYD14A1.A2026273.h27v09.061.2026286104723.hdf",
+    "status": 401,
+    "reason": "Unauthorized",
+    "access_utc": "2026-11-01T07:15:20.470025+00:00"
+  }
+]

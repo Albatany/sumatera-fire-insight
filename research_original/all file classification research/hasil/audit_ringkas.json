@@ -1,0 +1,32 @@
+{
+  "csv_count": 13,
+  "years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "raw_rows": 630384,
+  "retained_before_spatial": 630284,
+  "excluded_cutoff": 100,
+  "invalid_rows": 0,
+  "duplicate_key_rows": 0,
+  "zip_sha256": "8749435dfb96884cb30db501ac35f556fd1104b35e023fcdd6eb375a85e636d4",
+  "versions_raw": {
+    "6.03": 397657,
+    "61.03": 141030,
+    "6.1NRT": 91697
+  },
+  "cutoff_requested_utc": "2026-10-30 23:59:59+00:00",
+  "max_actual_timestamp_before_cutoff": "2026-10-30 23:24:00+00:00",
+  "coverage_verified": false,
+  "availability_at_prediction_time_verified": false
+}

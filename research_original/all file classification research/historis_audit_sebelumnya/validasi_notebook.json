@@ -1,0 +1,11 @@
+{
+  "nbformat_validate": "PASS",
+  "sequential_run_all": "PASS_AUDIT_EDA_ONLY",
+  "execution_method": "IPython InteractiveShell in-process; all code cells executed in order with persistent namespace",
+  "native_nbclient_kernel": "NOT_AVAILABLE: environment denied TCP and IPC socket binding",
+  "code_cells": 14,
+  "executed_code_cells": 14,
+  "error_outputs": 0,
+  "seconds": 27.02,
+  "model_fit": "NOT_EXECUTED_MISSING_VALID_TARGET"
+}

@@ -1,0 +1,13 @@
+{
+  "source": "Badan Informasi Geospasial",
+  "url": "https://geoservices.big.go.id/gis/rest/services/STIG/Batas_Provinsi/MapServer/0/query?where=KDPPUM+IN+%28%2711%27%2C%2712%27%2C%2713%27%2C%2714%27%2C%2715%27%2C%2716%27%2C%2717%27%2C%2718%27%29&outFields=KDPPUM%2CWADMPR&outSR=4326&returnGeometry=true&f=geojson",
+  "retrieved_utc": "2026-10-31T12:45:52Z",
+  "bytes": 66822581,
+  "sha256": "0a3ac0a57935d5a622934cd2e2a0899cba8d93a60fd1d4e272a256a8d104e45f",
+  "layer_crs": "EPSG:4326",
+  "feature_count": 8,
+  "mainland_definition": "largest geodesic polygon per province; eight mainland provinces; separate small islands excluded",
+  "metadata_url": "https://geoservices.big.go.id/gis/rest/services/STIG/Batas_Provinsi/MapServer/0",
+  "source_release_date": "not supplied in retrieved layer metadata",
+  "applied_to_historical_years_as_fixed_geography": true
+}

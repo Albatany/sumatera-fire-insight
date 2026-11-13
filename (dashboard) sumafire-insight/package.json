@@ -1,0 +1,56 @@
+{
+  "name": "sumafire-insight",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "next build --webpack",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "format": "prettier --write src scripts config *.json *.mjs *.ts",
+    "test:data": "node scripts/python.mjs test",
+    "test:api": "node scripts/test-api.mjs",
+    "data:validate": "node scripts/python.mjs validate",
+    "data:build": "node scripts/python.mjs build",
+    "data:verify": "node scripts/python.mjs verify",
+    "data:rollback": "node scripts/python.mjs rollback",
+    "data:reset": "node scripts/python.mjs reset",
+    "data:watch": "node scripts/python.mjs watch",
+    "data:connect-research": "node scripts/python.mjs connect-research",
+    "data:install-snapshot": "node scripts/python.mjs install-snapshot"
+  },
+  "dependencies": {
+    "@duckdb/node-api": "2.0.0-r.1",
+    "@fontsource/inter": "5.3.0",
+    "@radix-ui/react-dialog": "1.3.1",
+    "@radix-ui/react-slot": "1.5.0",
+    "@radix-ui/react-tooltip": "1.4.1",
+    "class-variance-authority": "0.7.1",
+    "clsx": "2.1.1",
+    "lucide-react": "1.68.0",
+    "maplibre-gl": "6.16.0",
+    "motion": "14.9.1",
+    "next": "16.4.5",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "recharts": "3.10.1",
+    "tailwind-merge": "3.7.0",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "4.3.4",
+    "@types/geojson": "7946.0.16",
+    "@types/node": "26.6.6",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^15.5.29",
+    "prettier": "3.9.10",
+    "tailwindcss": "4.3.4",
+    "typescript": "6.0.3"
+  }
+}

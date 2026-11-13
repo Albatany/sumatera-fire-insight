@@ -1,0 +1,30 @@
+{
+  "substantive_source_blocks": 183,
+  "retained_blocks": 182,
+  "legacy_heading_replaced_and_quoted": [
+    "R162"
+  ],
+  "missing": [],
+  "equations_numbered": 9,
+  "original_images_preserved": 9,
+  "old_table_mapping": {
+    "1": 14,
+    "2": 2,
+    "3": 6,
+    "4": 7,
+    "5": 3,
+    "6": 4,
+    "7": 10,
+    "8": 9,
+    "9": 16,
+    "10": 15,
+    "11": 8,
+    "12": 5,
+    "13": 11,
+    "14": 12,
+    "15": 13,
+    "16": 17,
+    "17": 18,
+    "18": 19
+  }
+}

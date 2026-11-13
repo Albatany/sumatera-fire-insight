@@ -1,0 +1,7 @@
+{
+  "raw_hash_preserved": true,
+  "unique_row_ids": true,
+  "cutoff_respected": true,
+  "no_classifier_fit": true,
+  "no_negative_labels_fabricated": true
+}

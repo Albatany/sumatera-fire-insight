@@ -1,0 +1,49 @@
+{
+  "status": "PASS_FOR_AUDIT_EDA_AND_STDBSCAN_DELIVERABLES",
+  "scientific_classification_status": "BELUM_MEMENUHI",
+  "audit_utc": "2026-11-01T12:23:25.454136+00:00",
+  "notebook_schema_validation": "PASS",
+  "executed_code_cells": 13,
+  "source_zip_byte_identical": true,
+  "raw_csv_count": 13,
+  "raw_rows": 630384,
+  "retained_detections_mainland_sumatra": 154184,
+  "candidate_region_days": 34568,
+  "region_days_without_record_left_missing": 23809,
+  "clustering": {
+    "n": 154184,
+    "clusters": 3678,
+    "noise": 74383,
+    "noise_percent": 48.24300835365538,
+    "core": 73129,
+    "border": 6672,
+    "largest_cluster": 4478,
+    "max_duration_days": 60.139583333333334,
+    "strata": 13,
+    "configurations": 27,
+    "elapsed_seconds": 36.07,
+    "classification_model_fitted": false
+  },
+  "model_trained": false,
+  "model_metrics_created": false,
+  "abstract_words": 179,
+  "documents": [
+    {
+      "file": "Laporan_UTS_PenambanganData_Klasifikasi_F1E325063.pdf",
+      "pages": 35,
+      "visual_review": "ALL_PAGES_REVIEWED; unchanged-page PNG hashes matched after final edits"
+    },
+    {
+      "file": "Panduan_Presentasi_Klasifikasi_F1E325063.pdf",
+      "pages": 17,
+      "visual_review": "ALL_PAGES_REVIEWED; unchanged-page PNG hashes matched after final edits"
+    }
+  ],
+  "pending": [
+    "coverage/QA",
+    "available_at",
+    "provenance dan kesebandingan koleksi",
+    "rubrik resmi"
+  ],
+  "source_timestamp_note": "Two added source snapshots lack exact network access timestamps; manifest retains null honestly."
+}

@@ -1,0 +1,5 @@
+{
+  "url": "https://geoservices.big.go.id/gis/rest/services/STIG/Batas_Provinsi/MapServer/0/query?where=KDPPUM+IN+%28%2711%27%2C%2712%27%2C%2713%27%2C%2714%27%2C%2715%27%2C%2716%27%2C%2717%27%2C%2718%27%29&outFields=KDPPUM%2CWADMPR&outSR=4326&returnGeometry=true&f=geojson",
+  "retrieved_utc": "2026-10-31T12:45:52Z",
+  "features": 8
+}

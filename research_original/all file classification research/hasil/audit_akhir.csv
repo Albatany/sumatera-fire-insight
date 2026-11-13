@@ -1,0 +1,15 @@
+Item,Status,Bukti atau perbaikan
+Identitas,MEMENUHI,"Nama, NIM, kelas, dosen dan UTS konsisten"
+Seluruh berkas,MEMENUHI,13 CSV untuk 12 tahun; bukan 12 CSV
+Hash dan raw,MEMENUHI,ZIP asli dan SHA-256 tiap CSV disimpan
+Cutoff UTC,MEMENUHI,100 baris 31 Oktober dipisahkan
+Sensor,MEMENUHI TERBATAS,Kolom MODIS konsisten; waktu lintasan berbeda
+Polygon,MEMENUHI,"BIG WGS84, delapan komponen terluas valid"
+Koleksi dan provenance,BELUM MEMENUHI,Verifikasi 61.03 dan konflik nama M-C61
+Coverage dan label,BELUM MEMENUHI,Peroleh QA dan bukti kelengkapan unduhan
+Ketersediaan fitur,BELUM MEMENUHI,Perlu available_at dan audit latensi
+Baseline dan model,BELUM MEMENUHI,Belum ada target sah untuk fit
+Final test dan 2026,BELUM MEMENUHI,2025 belum dievaluasi; 2026 deskriptif
+Rubrik resmi,BELUM MEMENUHI,Lampirkan instruksi penilaian UTS
+Notebook,MEMENUHI TERBATAS,Seluruh sel kode dieksekusi berurutan in-process
+Font PDF,MEMENUHI TERBATAS,DOCX TNR 12; PDF memakai substitusi Nimbus Roman

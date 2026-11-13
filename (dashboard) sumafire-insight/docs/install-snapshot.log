@@ -1,0 +1,10 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> sumafire-insight@1.0.0 data:install-snapshot
+> node scripts/python.mjs install-snapshot data --data-dir ../work/sumafire_restore_test
+
+{
+  "status": "PASS",
+  "snapshot": "20261105T145517-85dacf18",
+  "retained_rows": 154184
+}

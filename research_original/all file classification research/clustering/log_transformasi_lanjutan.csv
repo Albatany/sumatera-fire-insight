@@ -1,0 +1,9 @@
+step,input_rows,removed_rows,output_rows,scope
+stable sort by year/version/timestamp/row_id,154184,0,154184,primary; raw unchanged
+partition by year UTC and version literal,154184,0,154184,13 strata; boundary flags retained
+ST-DBSCAN membership and point role,154184,0,154184,2 km / 48 hours / min 5 including self
+sensitivity Aqua_only,154184,63342,90842,separate experiment; does not modify primary or raw
+sensitivity Terra_only,154184,90842,63342,separate experiment; does not modify primary or raw
+sensitivity confidence_ge30,154184,10987,143197,separate experiment; does not modify primary or raw
+sensitivity confidence_ge80,154184,103810,50374,separate experiment; does not modify primary or raw
+sensitivity type0_only,154184,31463,122721,separate experiment; does not modify primary or raw

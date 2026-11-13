@@ -1,0 +1,4 @@
+code,evidence,status,url
+6.03,NASA GIBS ValueMap labels Collection 6 Standard processing,documented code; upload provenance and mismatch with filename unresolved,https://nasa-gibs.github.io/gibs-api-docs/python-usage/
+61.03,literal observed in archive 2023-2026; type exists,official exact mapping not verified; do not reinterpret as 6.1,https://firms.modaps.eosdis.nasa.gov/download/
+6.1NRT,NASA MODAPS attribute table,Collection 6.1 NRT documented code; original download provenance absent,https://modaps.modaps.eosdis.nasa.gov/services/about/products/c61-nrt/MCD14DL-NRT.html

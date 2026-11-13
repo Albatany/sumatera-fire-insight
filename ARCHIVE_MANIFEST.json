@@ -1,0 +1,14 @@
+[
+  {
+    "file": "research_original/Paket_UTS_Klasifikasi_F1E325063.zip",
+    "bytes": 67678934,
+    "sha256": "05ea205a161c31ca8b881209319eb82b034c967cb131a71fbe6c1f9fbe2d8cf2",
+    "byte_identical": true
+  },
+  {
+    "file": "research_original/Paket_Revisi_GEMASTIK_2026_F1E325063.zip",
+    "bytes": 7718352,
+    "sha256": "c2d0928358f4bea6db1f2ed0c40c5fec384baf1507ddb49a1312a08e404de54a",
+    "byte_identical": true
+  }
+]

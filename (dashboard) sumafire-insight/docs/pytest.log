@@ -1,0 +1,7 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> sumafire-insight@1.0.0 test:data
+> node scripts/python.mjs test
+
+..........................                                               [100%]
+26 passed in 0.91s

@@ -1,0 +1,22 @@
+output,status,reason
+data_latih.csv,BELUM MEMENUHI - TIDAK DIBUAT,label dan coverage belum sah; tidak ada pelatihan atau evaluasi
+data_validasi.csv,BELUM MEMENUHI - TIDAK DIBUAT,label dan coverage belum sah; tidak ada pelatihan atau evaluasi
+data_uji_2025.csv,BELUM MEMENUHI - TIDAK DIBUAT,label dan coverage belum sah; tidak ada pelatihan atau evaluasi
+data_studi_2026.csv,BELUM MEMENUHI - TIDAK DIBUAT,label dan coverage belum sah; tidak ada pelatihan atau evaluasi
+hasil_prediksi_uji_2025.csv,BELUM MEMENUHI - TIDAK DIBUAT,label dan coverage belum sah; tidak ada pelatihan atau evaluasi
+hasil_prediksi_2026.csv,BELUM MEMENUHI - TIDAK DIBUAT,label dan coverage belum sah; tidak ada pelatihan atau evaluasi
+model.joblib,BELUM MEMENUHI - TIDAK DIBUAT,label dan coverage belum sah; tidak ada pelatihan atau evaluasi
+tabel_evaluasi_model.csv,BELUM MEMENUHI - TIDAK DIBUAT,label dan coverage belum sah; tidak ada pelatihan atau evaluasi
+data_sesudah_diolah.csv,TERSEDIA,"hasil aktual; panel dan fitur adalah audit retrospektif, label seluruhnya NA"
+data_panel_wilayah_harian.csv,TERSEDIA,"hasil aktual; panel dan fitur adalah audit retrospektif, label seluruhnya NA"
+data_fitur.csv,TERSEDIA,"hasil aktual; panel dan fitur adalah audit retrospektif, label seluruhnya NA"
+data_fitur_tanpa_target_bocor.csv,TERSEDIA,"hasil aktual; panel dan fitur adalah audit retrospektif, label seluruhnya NA"
+label_definisi.json,TERSEDIA,"hasil aktual; panel dan fitur adalah audit retrospektif, label seluruhnya NA"
+manifest_sumber.csv,TERSEDIA,"hasil aktual; panel dan fitur adalah audit retrospektif, label seluruhnya NA"
+log_pembersihan.csv,TERSEDIA,"hasil aktual; panel dan fitur adalah audit retrospektif, label seluruhnya NA"
+clustering/hasil_st_dbscan.csv,TERSEDIA,"eksekusi aktual; clustering deskriptif atau audit kelayakan, bukan prediksi kebakaran"
+clustering/ringkasan_klaster.csv,TERSEDIA,"eksekusi aktual; clustering deskriptif atau audit kelayakan, bukan prediksi kebakaran"
+clustering/sensitivitas_27_skenario.csv,TERSEDIA,"eksekusi aktual; clustering deskriptif atau audit kelayakan, bukan prediksi kebakaran"
+clustering/keanggotaan_27_skenario.csv,TERSEDIA,"eksekusi aktual; clustering deskriptif atau audit kelayakan, bukan prediksi kebakaran"
+clustering/calon_fitur_dengan_gate_temporal.csv,TERSEDIA,"eksekusi aktual; clustering deskriptif atau audit kelayakan, bukan prediksi kebakaran"
+clustering/keputusan_classification.json,TERSEDIA,"eksekusi aktual; clustering deskriptif atau audit kelayakan, bukan prediksi kebakaran"

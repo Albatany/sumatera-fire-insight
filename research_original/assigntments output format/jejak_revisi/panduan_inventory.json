@@ -1,0 +1,11 @@
+{
+  "parts": 8,
+  "processes": 8,
+  "figures": 11,
+  "report_tables": 19,
+  "questions": 40,
+  "glossary": 58,
+  "notebook_cells": 30,
+  "code_cells": 13,
+  "script_words": 875
+}

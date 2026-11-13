@@ -1,0 +1,175 @@
+{
+  "revision_date_wib": "2026-11-05",
+  "checked_utc": "2026-11-05T03:22:14.529482+00:00",
+  "scope": "Editorial, structure, layout and learning guide; no research execution",
+  "preservation": {
+    "source_hashes_checked": 133,
+    "changed_source_files": [],
+    "trace_entries": 185,
+    "missing_relocated_text_blocks": [],
+    "equations_native_xml_identical": 9,
+    "embedded_media_byte_identical": 10,
+    "research_notebook_sha256": "9845736c213ce9b618ff6d24ab626ac9cd559f7adf8b2b1fefde04810da7c4bb",
+    "research_notebook_modified": false,
+    "research_rerun_in_revision": false,
+    "new_research_models_or_metrics": false
+  },
+  "scientific_claim_checks": 24,
+  "pdfs": [
+    {
+      "file": "Audit_Kesesuaian_Technical_Report_GEMASTIK_2026.pdf",
+      "pages": 12,
+      "empty_pages": [],
+      "out_of_page_text": [],
+      "fonts": [
+        "AAAAAA+LiberationSerif",
+        "AAAAAA+LiberationSerif-Bold",
+        "Helvetica"
+      ]
+    },
+    {
+      "file": "Panduan_Pemahaman_Penelitian_F1E325063.pdf",
+      "pages": 50,
+      "empty_pages": [],
+      "out_of_page_text": [],
+      "fonts": [
+        "BAAAAA+LiberationSerif",
+        "CAAAAA+LiberationSerif",
+        "DAAAAA+LiberationSerif",
+        "EAAAAA+LiberationSerif-Bold",
+        "FAAAAA+LiberationSerif-Italic",
+        "GAAAAA+LiberationSerif-Italic",
+        "HAAAAA+LiberationSerif-Bold",
+        "IAAAAA+LiberationSerif-Bold",
+        "JAAAAA+LiberationSerif",
+        "KAAAAA+LiberationSerif-Bold",
+        "LAAAAA+LiberationSerif-Bold",
+        "MAAAAA+LiberationSerif",
+        "NAAAAA+LiberationSerif-Bold",
+        "OAAAAA+LiberationSerif-Italic",
+        "PAAAAA+OpenSymbol",
+        "QAAAAA+LiberationSerif",
+        "RAAAAA+NimbusRoman-Italic",
+        "SAAAAA+LiberationMono"
+      ]
+    },
+    {
+      "file": "Panduan_Presentasi_dan_Tanya_Jawab_F1E325063.pdf",
+      "pages": 16,
+      "empty_pages": [],
+      "out_of_page_text": [],
+      "fonts": [
+        "BAAAAA+LiberationSerif",
+        "CAAAAA+LiberationSerif",
+        "DAAAAA+LiberationSerif",
+        "HAAAAA+LiberationSerif-Bold",
+        "IAAAAA+LiberationSerif-Bold",
+        "JAAAAA+LiberationSerif",
+        "KAAAAA+LiberationSerif-Bold",
+        "LAAAAA+LiberationSerif-Bold",
+        "MAAAAA+LiberationSerif",
+        "Times-Roman"
+      ]
+    },
+    {
+      "file": "Technical_Report_UTS_F1E325063_Rapih.pdf",
+      "pages": 35,
+      "empty_pages": [],
+      "out_of_page_text": [],
+      "fonts": [
+        "BAAAAA+LiberationSerif",
+        "CAAAAA+LiberationSerif",
+        "DAAAAA+LiberationSerif",
+        "EAAAAA+LiberationSerif-Bold",
+        "FAAAAA+LiberationSerif-Italic",
+        "GAAAAA+LiberationSerif-Bold",
+        "HAAAAA+LiberationSerif",
+        "IAAAAA+LiberationSerif-Bold",
+        "JAAAAA+LiberationSerif-Bold",
+        "KAAAAA+LiberationSerif-Bold",
+        "LAAAAA+LiberationSerif",
+        "MAAAAA+LiberationSerif-Italic",
+        "NAAAAA+OpenSymbol",
+        "OAAAAA+LiberationSerif",
+        "PAAAAA+NimbusRoman-Italic",
+        "QAAAAA+NotoSerif-Italic",
+        "RAAAAA+LiberationSerif-Italic"
+      ]
+    }
+  ],
+  "notebook": {
+    "nbformat_validate_in_memory": "NOT_REPEATED_NBFORMAT_UNAVAILABLE; PRIOR_LOG_PASS_RETAINED",
+    "cells": 30,
+    "code_cells": 13,
+    "stored_execution_counts": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+    ],
+    "stored_errors": 0,
+    "rerun": false,
+    "previous_run_evidence": {
+      "nbformat_validate": "PASS",
+      "sequential_run_all": "PASS_AUDIT_AND_STDBSCAN",
+      "execution_method": "IPython InteractiveShell in-process; all code cells executed in order with persistent namespace",
+      "native_nbclient_kernel": "NOT_AVAILABLE: environment denied TCP and IPC socket binding",
+      "code_cells": 13,
+      "executed_code_cells": 13,
+      "error_outputs": 0,
+      "seconds": 51.15,
+      "model_fit": "NOT_EXECUTED_MISSING_VALID_TARGET",
+      "final_plot_layout_check": "PASS: plotting cell re-executed after bottom-margin adjustment; analysis cells unchanged"
+    },
+    "native_colab_vscode_test": "NOT_PERFORMED"
+  },
+  "audit_old_report_status_counts": {
+    "Perlu Revisi": 10,
+    "Belum Didukung Data": 5,
+    "Sesuai": 6
+  },
+  "guide_inventory": {
+    "parts": 8,
+    "processes": 8,
+    "figures": 11,
+    "report_tables": 19,
+    "questions": 40,
+    "glossary": 58,
+    "notebook_cells": 30,
+    "code_cells": 13,
+    "script_words": 875
+  },
+  "presentation": {
+    "source_pages": "35–50 of revised learning guide",
+    "pages": 16,
+    "content_above_footer_pixel_identical": true
+  },
+  "visual_qa": {
+    "report": "35/35 pages inspected",
+    "revision_map": "7/7 pages inspected",
+    "audit": "12/12 pages inspected",
+    "learning_guide": "50/50; 48 content matches to inspected version plus revised pages 38 and 49 inspected",
+    "presentation": "All body content pixel-identical to inspected guide; renumbered footer previews inspected"
+  },
+  "not_final_for_submission": [
+    "Student review R01–R13",
+    "Related-work synthesis and section 3.7",
+    "Teacher determination of UTS method conformity",
+    "Authorship and acknowledgement decision",
+    "LMS timing confirmation"
+  ],
+  "classification_status": "NOT_FITTED_MISSING_VALID_TARGET",
+  "clustering_status": "PREVIOUS_EXECUTION_PRESERVED",
+  "cutoff_utc": "2026-10-30T23:59:59Z",
+  "last_retained_observation_utc": "2026-10-30 01:58:00+00:00",
+  "unresolved_version": "61.03"
+}

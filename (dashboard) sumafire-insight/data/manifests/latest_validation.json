@@ -1,0 +1,66 @@
+{
+  "status": "VALIDATED",
+  "raw_rows": 154184,
+  "retained_rows": 154184,
+  "rejected_rows": 0,
+  "filtered_rows": 0,
+  "duplicate_keys": 0,
+  "duplicate_policy": "error",
+  "missing_values": {
+    "latitude": 0,
+    "longitude": 0,
+    "brightness": 0,
+    "scan": 0,
+    "track": 0,
+    "confidence": 0,
+    "frp": 0,
+    "bright_t31": 0,
+    "type": 14281
+  },
+  "issue_counts": {},
+  "files": [
+    {
+      "file": "data_sesudah_diolah.csv",
+      "rows": 154184,
+      "bytes": 39594516,
+      "sha256": "cf505d81d257a80d1a7f7c766fb74afd9a6f780c7fdd4fceb643186d314a7cb5",
+      "columns": [
+        "latitude",
+        "longitude",
+        "brightness",
+        "scan",
+        "track",
+        "acq_date",
+        "acq_time",
+        "satellite",
+        "instrument",
+        "confidence",
+        "version",
+        "bright_t31",
+        "frp",
+        "daynight",
+        "type",
+        "source_file",
+        "source_row",
+        "row_id",
+        "acq_datetime_utc",
+        "processing_status",
+        "year",
+        "month",
+        "date",
+        "province",
+        "province_id",
+        "polygon_matches"
+      ],
+      "download_metadata": {},
+      "versions": {
+        "6.03": 114358,
+        "61.03": 25545,
+        "6.1NRT": 14281
+      },
+      "start": "2015-01-02T03:22:00+00:00",
+      "end": "2026-10-30T01:58:00+00:00"
+    }
+  ],
+  "errors": []
+}

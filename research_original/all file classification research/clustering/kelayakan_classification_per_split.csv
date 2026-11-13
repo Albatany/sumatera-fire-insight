@@ -1,0 +1,5 @@
+subset,calendar_rows,time_eligible_before_QA,complete_recorded_30d_feature,coverage_verified_rows,availability_verified_rows,eligible_labeled_rows,positive_class_count,negative_class_count,prevalence
+case_2026,2432,2416,86,0,0,0,,,
+test_2025,2920,2912,0,0,0,0,,,
+train,26288,26056,296,0,0,0,,,
+validation,2928,2920,0,0,0,0,,,

@@ -1,0 +1,10 @@
+{
+  "observations.parquet": "27ec06da7df8d2539e29606723a68e3f7eb5105e23b779781aed7bca8035490d",
+  "daily.parquet": "6ead66439b5f4bc3e21349ebcc64dd0d08e0731e666f0f493b3bc6c417f20952",
+  "monthly.parquet": "1f9752cf820a7f920f1f6de50518df431ab22523a5abceb626b28bab98347999",
+  "config.json": "a6c2c9cc14a3a3123f57754e258f1a1684564bb805239bd2a0a2e8cdb5f612d4",
+  "annual.parquet": "ff8e6f612868be95e3043f7d2ad2726f39a42ecab8677926b63acb851c2ca857",
+  "observations.duckdb": "948da60bd57f3be2f007f9f35e7ad0df9db32d697c9558a9f2c3e0f8d2e2a090",
+  "boundary.json": "f4d55baeebe897b04c3e1b5541dede67a568611cb5698bd47292173ea8815425",
+  "metadata.json": "af8e0d6b0ffbb674c3e0a06b36aaf19238d64aff0c7bebeaf53409e79b7aa7c0"
+}

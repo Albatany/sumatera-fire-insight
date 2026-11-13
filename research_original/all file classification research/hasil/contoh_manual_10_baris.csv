@@ -1,0 +1,11 @@
+row_id,source_file,source_row,acq_date,acq_time,province,latitude,longitude,confidence,frp,type
+fire_archive_M-C61_834980.csv:L18,fire_archive_M-C61_834980.csv,18,2015-01-02,0322,Sumatera Utara,1.1195,98.9519,27,28.5,0
+fire_archive_M-C61_834980.csv:L25,fire_archive_M-C61_834980.csv,25,2015-01-03,0405,Sumatera Barat,-0.7324,100.8091,80,48.1,0
+fire_archive_M-C61_834980.csv:L26,fire_archive_M-C61_834980.csv,26,2015-01-03,0405,Sumatera Barat,-0.7329,100.8189,75,38.0,0
+fire_archive_M-C61_834980.csv:L27,fire_archive_M-C61_834980.csv,27,2015-01-03,0405,Sumatera Barat,-0.7307,100.8037,61,23.3,0
+fire_archive_M-C61_834980.csv:L30,fire_archive_M-C61_834980.csv,30,2015-01-03,1922,Sumatera Utara,3.1592,98.4033,50,17.9,1
+fire_archive_M-C61_834980.csv:L31,fire_archive_M-C61_834980.csv,31,2015-01-03,1922,Sumatera Utara,3.1708,98.403,69,18.8,1
+fire_archive_M-C61_834980.csv:L39,fire_archive_M-C61_834980.csv,39,2015-01-05,0648,Sumatera Selatan,-3.0357,105.3081,50,10.1,0
+fire_archive_M-C61_834980.csv:L40,fire_archive_M-C61_834980.csv,40,2015-01-05,0649,Sumatera Barat,-1.3993,101.6722,92,40.1,0
+fire_archive_M-C61_834980.csv:L41,fire_archive_M-C61_834980.csv,41,2015-01-05,0649,Sumatera Barat,-1.363,101.4056,80,15.7,0
+fire_archive_M-C61_834980.csv:L42,fire_archive_M-C61_834980.csv,42,2015-01-05,0649,Sumatera Barat,-1.3477,101.449,71,8.4,0

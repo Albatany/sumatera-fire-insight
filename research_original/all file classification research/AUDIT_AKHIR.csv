@@ -1,0 +1,20 @@
+item,status,bukti_dan_rekomendasi
+Identitas dan logo,MEMENUHI,Identitas sama pada DOCX/PDF/notebook; logo asli tertanam
+Raw dan inventaris,MEMENUHI,13 CSV; 630384 baris; SHA-256 identik; raw tidak diubah
+Duplikasi,MEMENUHI,Audit ulang tidak menemukan duplikasi persis atau kunci deteksi
+Batas wilayah,MEMENUHI TERBATAS,BIG WGS84; daratan utama 8 provinsi; pulau kecil tidak dicakup
+Versi dan provenance,BELUM MEMENUHI,6.03 dipetakan NASA GIBS; 61.03 belum selesai; perlu metadata ekspor asli
+2026 dan cutoff,MEMENUHI TERBATAS,2026 parsial; archive dan NRT dipisahkan; cutoff 30 Oktober UTC
+FireMask dan QA,BELUM MEMENUHI,Dua akses HDF 401; metadata CMR bukan raster atau inventory lengkap
+Label classification,BELUM MEMENUHI,No-record tetap NA; belum ada unit berlabel sah; peroleh QA/kelengkapan ekspor
+Waktu ketersediaan fitur,BELUM MEMENUHI,available_at belum terverifikasi; perlu snapshot/latensi historis
+Pembagian temporal,MEMENUHI SEBAGAI RANCANGAN,2015–2023/2024/2025/2026; guard batas origin dan target; belum evaluasi
+Baseline dan classifier,BELUM MEMENUHI,"Belum ada pelatihan, skor, prediksi atau joblib; selesaikan dukungan target"
+Clustering utama,MEMENUHI SEBAGAI EKSPERIMEN,154184 deteksi; 3678 klaster; 74383 noise; bukan jumlah kebakaran
+Sensitivitas dan validasi implementasi,MEMENUHI,27 konfigurasi; filter kualitas/satelit/type; sampel nyata dan row_id
+Materi dan rubrik,BELUM MEMENUHI,7 PDF dipetakan; rubrik UTS resmi belum tersedia; metode tambahan diberi label
+Notebook,MEMENUHI TERBATAS,13 sel dieksekusi in-process; plot diperbarui dan diuji; antarmuka Colab/VS Code belum diuji
+Laporan dan panduan,MEMENUHI,35/17 halaman; semua halaman diperiksa; rumus Word; angka berasal dari output
+Font PDF,MEMENUHI TERBATAS,DOCX TNR; PDF menggunakan substitusi Nimbus Roman
+Daftar pustaka,MEMENUHI TERBATAS,19 sumber terverifikasi; metadata tak diketahui ditandai; 2 timestamp unduh tambahan tidak terekam
+Integritas hasil,MEMENUHI,Tidak ada metrik classifier atau label negatif buatan; ketidakpastian eksplisit
